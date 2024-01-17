@@ -35,8 +35,6 @@
 
    //echo substr_replace("Hello World","Duniya",6);
 
-   echo "Hello World"
-
-
+   
 
 ?>
