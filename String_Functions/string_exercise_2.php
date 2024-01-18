@@ -29,15 +29,15 @@
     //4
     /*
     $name = "John";
-    echo str_pad($name,10,"_",STR_PAD_LEFT);
-    echo str_pad($name,8,"*",STR_PAD_RIGHT);
+    echo str_pad($name,10,"_",STR_PAD_LEFT); //1 left pad _ to make 10
+    echo str_pad($name,8,"*",STR_PAD_RIGHT); //2 right pad * to make 8
     */
 
     //5
     /*
     $quote = "In three words I can sum up everything I've learned about life: it goes on.";
-    echo str_word_count($quote);
-    echo strtolower($quote);
-    echo ucwords($quote);
+    echo str_word_count($quote); // 1 word count
+    echo strtolower($quote); // 2 lowercase complete string
+    echo ucwords($quote); // 3 First word capital
     */
 ?>
