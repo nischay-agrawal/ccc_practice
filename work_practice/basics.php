@@ -121,20 +121,20 @@
     //         echo "Invalid day of the week.";
     // }
 
-    for ($i = 1; $i <= 5; $i++) {
-        echo $i . " ";
-    }
+    // for ($i = 1; $i <= 5; $i++) {
+    //     echo $i . " ";
+    // }
 
-    $i = 1;
-        while ($i <= 5) {
-            echo $i . " ";
-            $i++;
-        }
+    // $i = 1;
+    //     while ($i <= 5) {
+    //         echo $i . " ";
+    //         $i++;
+    //     }
 
-    $colors = array("Red", "Green", "Blue");
-    foreach ($colors as $color) {
-        echo $color . " ";
-    }
+    // $colors = array("Red", "Green", "Blue");
+    // foreach ($colors as $color) {
+    //     echo $color . " ";
+    // }
 
 
 ?>
