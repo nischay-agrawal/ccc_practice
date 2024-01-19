@@ -56,5 +56,16 @@
     // var_dump($num1<=$num2);
 
     //Logical Operators
-    echo $num1 && $num2 ;
+    // echo $num1 && $num2 ;
+    // echo $num1 || $num2 ;
+    // echo !$num1 ;
+
+    // Increment Decrement
+    $num1++;
+    echo $num1;
+
+    $num2--;
+    echo $num2;
+
+    
 ?>
