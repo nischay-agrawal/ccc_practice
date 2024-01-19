@@ -178,9 +178,9 @@
     //     echo $color . " ";
     // }
 
-    $colors1 = array("Red", "Green", "Blue");
-    $colors2 = array("Cyan", "Magenta", "Yellow");
-    $age = array("Peter" => "35", "Ben" => "37", "Joe" => "43");
+    // $colors1 = array("Red", "Green", "Blue");
+    // $colors2 = array("Cyan", "Magenta", "Yellow");
+    // $age = array("Peter" => "35", "Ben" => "37", "Joe" => "43");
 
     // print_r(array_merge($colors1, $colors2));
     // print_r(array_combine($colors1, $colors2));
@@ -231,7 +231,7 @@
 
     // arsort($age);
     // print_r($age);     
-
+      
     // krsort($age);
     // print_r($age);        
     
