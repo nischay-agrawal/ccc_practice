@@ -61,11 +61,15 @@
     // echo !$num1 ;
 
     // Increment Decrement
-    $num1++;
-    echo $num1;
+    //$num1++;
+    //echo $num1++; //10
+    //echo ++$num1; /11
 
-    $num2--;
-    echo $num2;
+    //$num2--;
+    //echo $num2--; //5
+    //echo --$num2; //4
 
     
+
+
 ?>
