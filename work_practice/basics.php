@@ -7,6 +7,48 @@
     // var_dump([1, 2, 3]);
     // var_dump(NULL);
 
+    // $a = 5;      
+    // $b = 5.34;   
+    // $c = "hello";
+    // $d = true;   
+    // $e = NULL;   
+
+    // $a = (string) $a;
+    // $b = (string) $b;
+    // $c = (string) $c;
+    // $d = (string) $d;
+    // $e = (string) $e;
+
+    // $a = (int) $a;
+    // $b = (int) $b;
+    // $c = (int) $c;
+    // $d = (int) $d;
+    // $e = (int) $e;
+
+    // $a = (float) $a;
+    // $b = (float) $b;
+    // $c = (float) $c;
+    // $d = (float) $d;
+    // $e = (float) $e;
+
+    // $a = (bool) $a;
+    // $b = (bool) $b;
+    // $c = (bool) $c;
+    // $d = (bool) $d;
+    // $e = (bool) $e;
+
+    // $a = (array) $a;
+    // $b = (array) $b;
+    // $c = (array) $c;
+    // $d = (array) $d;
+    // $e = (array) $e;
+
+    // $a = (unset) $a;
+    // $b = (unset) $b;
+    // $c = (unset) $c;
+    // $d = (unset) $d;
+    // $e = (unset) $e;
+
     // echo abs(-12.5);
     // echo ceil(87.9); //round number up
     // echo floor(87.9); // round number down
@@ -136,8 +178,9 @@
     //     echo $color . " ";
     // }
 
-    // $colors1 = array("Red", "Green", "Blue");
-    // $colors2 = array("Cyan", "Magenta", "Yellow");
+    $colors1 = array("Red", "Green", "Blue");
+    $colors2 = array("Cyan", "Magenta", "Yellow");
+    $age = array("Peter" => "35", "Ben" => "37", "Joe" => "43");
 
     // print_r(array_merge($colors1, $colors2));
     // print_r(array_combine($colors1, $colors2));
@@ -149,12 +192,26 @@
     // array_pop($colors2);
     // print_r($colors2);
 
+    // array_unshift($colors2,"K");
+    // print_r($colors2);
+    
+    // array_shift($colors2);
+    // print_r($colors2);
+
+    // array_splice($colors1,0,2,$colors2);
+    // print_r($colors1);
+
     // print_r(count($colors1));
     // print_r(sizeof($colors1));
     // print_r(array_values($colors1));
+    // echo array_key_exists("Peter",$age);
+    // print_r(array_keys($age));
+    // print_r(array_values($age));
+
 
     // print_r(in_array("Cyan",$colors2)); // 1 : True
     // print_r(array_search("Cyan",$colors2)); // Position : 0
+    // print_r(array_reverse($colors2));
 
     // sort($colors2);
     // sort($colors1);
@@ -166,5 +223,16 @@
     // print_r($colors1);        
     // print_r($colors2);     
     
+    // asort($age);
+    // print_r($age);      
+
+    // ksort($age);
+    // print_r($age);       
+
+    // arsort($age);
+    // print_r($age);     
+
+    // krsort($age);
+    // print_r($age);        
     
 ?>
