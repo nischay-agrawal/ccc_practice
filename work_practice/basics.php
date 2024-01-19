@@ -20,8 +20,8 @@
     //echo number_format("10000","2",".",",");
 
     
-    $num1 = 10;
-    $num2 = 5;
+    // $num1 = 10;
+    // $num2 = 5;
     
     //Arithmetic Operators  
     //echo $num1 + $num2 ;
@@ -136,5 +136,35 @@
     //     echo $color . " ";
     // }
 
+    // $colors1 = array("Red", "Green", "Blue");
+    // $colors2 = array("Cyan", "Magenta", "Yellow");
 
+    // print_r(array_merge($colors1, $colors2));
+    // print_r(array_combine($colors1, $colors2));
+    // print_r(range(0,100,10));
+
+    // array_push($colors2,"K");
+    // print_r($colors2);
+
+    // array_pop($colors2);
+    // print_r($colors2);
+
+    // print_r(count($colors1));
+    // print_r(sizeof($colors1));
+    // print_r(array_values($colors1));
+
+    // print_r(in_array("Cyan",$colors2)); // 1 : True
+    // print_r(array_search("Cyan",$colors2)); // Position : 0
+
+    // sort($colors2);
+    // sort($colors1);
+    // print_r($colors1);        
+    // print_r($colors2);     
+   
+    // rsort($colors2);
+    // rsort($colors1);
+    // print_r($colors1);        
+    // print_r($colors2);     
+    
+    
 ?>
