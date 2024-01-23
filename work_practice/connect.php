@@ -16,9 +16,32 @@
         echo "success";
     }
     
+    function update($table_name,$data,$condition){
+        
+        $column_name=$value=[];
+        $c_column_name=$c_value=[];
+
+        foreach($data as $column_name => $value)
+        {
+            $column_name[]= "`column_name`";
+            $value[]= "'value'";
+        }
+
+        foreach($condition as $c_column_name => $c_value)
+        {
+            $c_column_name[]= "`c_column_name`";
+            $c_value[]= "'c_value'";
+        }
+
+        echo "UPDATE {$table_name} SET {$column_name}={$value} WHERE {$c_column_name}={$c_value}";
+
+    }
+
+    die;
     if(isset($_POST["Submit"]))
     {
-        $productName = $_POST['productName'];
+
+        $productName = getPostData('productName');
         $sku = $_POST['sku'];
         $productType = $_POST['productType'];
         $category = $_POST['category'];
@@ -35,4 +58,8 @@
 
     }
     mysqli_close($conn);
+
+    function getPostData($key){
+        return $_POST[$key];
+    }
 ?>

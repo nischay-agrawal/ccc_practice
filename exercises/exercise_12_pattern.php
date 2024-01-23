@@ -20,11 +20,11 @@
         {
             if($i>$j)
             {
-                echo "&nbsp - &nbsp";
+                echo "&nbsp _ &nbsp";
             }
             elseif($j>($e_num+1)-$i)
             {
-                echo "&nbsp - &nbsp";
+                echo "&nbsp _ &nbsp";
             }
             else {
                 echo "&nbsp $j &nbsp";   
@@ -38,11 +38,11 @@
         {
             if($i>$j)
             {
-                echo "&nbsp - &nbsp";
+                echo "&nbsp _ &nbsp";
             }
             elseif($j>($e_num+1)-$i)
             {
-                echo "&nbsp - &nbsp";
+                echo "&nbsp _ &nbsp";
             }
             else {
                 echo "&nbsp $j &nbsp";   
@@ -61,11 +61,11 @@
         {
             if($i>$j)
             {
-                echo "&nbsp - &nbsp";
+                echo "&nbsp _ &nbsp";
             }
             elseif($j>(($o_num+1)-$i))
             {
-                echo "&nbsp - &nbsp";
+                echo "&nbsp _ &nbsp";
             }
             else {
                 echo "&nbsp $j &nbsp";   
@@ -79,11 +79,11 @@
         {
             if($i>$j)
             {
-                echo "&nbsp - &nbsp";
+                echo "&nbsp _ &nbsp";
             }
             elseif($j>(($o_num+1)-$i))
             {
-                echo "&nbsp - &nbsp";
+                echo "&nbsp _ &nbsp";
             }
             else {
                 echo "&nbsp $j &nbsp";   
