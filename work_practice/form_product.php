@@ -6,7 +6,7 @@
     <title>Product Form</title>
 </head>
 <body>
-    <form action="process_form.php" method="post">
+    <form action="connect.php" method="post">
         <label for="productName">Product Name:</label>
         <input type="text" id="productName" name="productName" required><br><br>
 
@@ -56,7 +56,7 @@
         <label for="updatedAt">Updated At:</label>
         <input type="date" id="updatedAt" name="updatedAt" required><br><br>
 
-        <input type="submit" value="Submit">
+        <button type="submit" name="Submit">Submit</button>
     </form>
 </body>
 </html>
