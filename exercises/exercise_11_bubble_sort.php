@@ -1,5 +1,5 @@
 <?php
-    $array = [5,4,6,3,1,2];
+    $array = [64,34,25,12,22,11,90];
     print_r($array);
     echo "<br>";
     for($j = 0; $j < count($array); $j++) {
