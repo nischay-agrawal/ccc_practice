@@ -1,5 +1,12 @@
 <?php
+    include 'connection.php';
 
+    function getPara(string $key){
+        if(isset($_POST[$key]))
+            return $_POST[$key];
+        elseif(isset($_GET[$key]))
+            return $_GET[$key];
+    }
     function insert($table_name,$data){
         $columns = $values = [];
         foreach($data as $col => $val){
@@ -12,6 +19,7 @@
     }
 
     function update($table_name, $data, $condition) {
+        global $connection;
         $updateParts = [];
         foreach ($data as $col => $val) {
             $val = addslashes($val);
@@ -24,17 +32,20 @@
             $conditionParts[] = "`$col` = '$val'";
         }
         $conditionString = implode(" AND ", $conditionParts);
-        echo "UPDATE {$table_name} SET {$updateString} WHERE {$conditionString}";
+        $query = "UPDATE {$table_name} SET {$updateString} WHERE {$conditionString}";
+        mysqli_query($connection,$query);
     }
     
     function delete($table_name, $conditionArray) {
+        global $connection;
         $conditionParts = [];
         foreach ($conditionArray as $col => $val) {
             $val = addslashes($val);
             $conditionParts[] = "`$col` = '$val'";
         }
         $conditionString = implode(" AND ", $conditionParts);
-        echo "DELETE FROM {$table_name} WHERE {$conditionString}";
+        $query = "DELETE FROM {$table_name} WHERE {$conditionString}";
+        mysqli_query($connection,$query);
     }
 
     function select($table_name, $data, $condition) {
