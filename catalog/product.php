@@ -14,6 +14,10 @@ if(getPara('action') == 'delete' && getPara('product_id'))
         echo "<script>location. href='product_list.php'</script>";
     }
 }
+
+$categoryQuery = "SELECT * FROM ccc_category";
+$categoryResult = mysqli_query($connection, $categoryQuery);
+
 ?>
 
 <!DOCTYPE html>
@@ -31,15 +35,9 @@ if(getPara('action') == 'delete' && getPara('product_id'))
 
         <label for="category">Category:</label>
         <select id="category" name="category" required>
-            <option value="Bar & Game Room">Bar & Game Room</option>
-            <option value="Bedroom">Bedroom</option>
-            <option value="Decor">Decor</option>
-            <option value="Dining & Kitchen">Dining & Kitchen</option>
-            <option value="Lighting">Lighting</option>
-            <option value="Living Room">Living Room</option>
-            <option value="Mattresses">Mattresses</option>
-            <option value="Office">Office</option>
-            <option value="Outdoor">Outdoor</option>
+        <?php while ($row = mysqli_fetch_assoc($categoryResult)) {
+            echo "<option value='" . $row['cat_id'] . "'>" . $row['name'] . "</option>";
+        } ?>
         </select><br><br>
 
         <button type="submit" name="Submit">Submit</button>
