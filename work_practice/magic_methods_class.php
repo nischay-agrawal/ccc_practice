@@ -18,10 +18,15 @@
         //     return $this->data[$name];
         // }
 
-        private $data = [];
-        //for writing data in private or protected
-        public function __set($name, $value) {
-            $this->data[$name] = $value;
+        // private $data = [];
+        // //for writing data in private or protected
+        // public function __set($name, $value) {
+        //     $this->data[$name] = $value;
+        // }
+
+        //for calling functions that are non accessibnle or does not exist
+        public function __call($name, $arguments) {
+            echo "Calling method '$name' " . implode(', ', $arguments) . "\n";
         }
     }
     
@@ -31,7 +36,8 @@
     $person = new Person();
     // echo $person->name . "\n";
     // echo $person->age . "\n";
-    $person->name = "Nischay" ;
+    // $person->name = "Nischay" ;
+    $person->notExist("Nischay", "Agrawal");
 
-    
+
 ?>
