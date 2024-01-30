@@ -36,13 +36,19 @@
         //     echo "Static call to '$name' " . implode(', ', $arguments) . "\n";
         // }
 
-        private $data = ['name' => 'Nischay', 'age' => 20];
-        public function __isset($name) {
-            return isset($this->data[$name]);
-        }
+        // private $data = ['name' => 'Nischay', 'age' => 20];
+        // public function __isset($name) {
+        //     return isset($this->data[$name]);
+        // }
 
-        public function __unset($name) {
-            unset($this->data[$name]);
+        // public function __unset($name) {
+        //     unset($this->data[$name]);
+        // }
+        
+        //called when an object is called as string
+        //directly echoing the object
+        public function __toString() {
+            return "This is a Person object\n";
         }
     
     }
@@ -56,7 +62,8 @@
     // $person->name = "Nischay" ;
     // $person->notExist("Nischay", "Agrawal");
     // Person::staticCall("Nischay", "Agrawal");
-    echo isset($person->name) ? "Name is set\n" : "Name is not set\n";
-    unset($person->name);
+    // echo isset($person->name) ? "Name is set\n" : "Name is not set\n";
+    // unset($person->name);
+    echo $person;
 
 ?>
