@@ -29,5 +29,3 @@
     // "sqrt"(pow($this->x - $other->x, 2) + pow($this->y - $other->y, 2)) = 5
 
 ?>
-
-
