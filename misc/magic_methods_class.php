@@ -51,16 +51,22 @@
         //     return "This is a Person object\n";
         // }
         
-        //called when an object is called as string
-        public function __invoke() {
-            return "Person object has been invoked\n";
+        //called when an object is called as method
+        // public function __invoke() {
+        //     return "Person object has been invoked\n";
+        // }
+
+        public $name;
+        public function __clone() {
+            $this->name = "Cloned " . $this->name;
         }
+    
     }
     
     // $person = new Person("Nischay");
     // unset($person);
 
-    $person = new Person();
+    // $person = new Person();
     // echo $person->name . "\n";
     // echo $person->age . "\n";
     // $person->name = "Nischay" ;
@@ -69,6 +75,11 @@
     // echo isset($person->name) ? "Name is set\n" : "Name is not set\n";
     // unset($person->name);
     // echo $person;
-    echo $person();
+    // echo $person();
+
+    $original = new Person();
+    $original->name = "Nischay";
+    $cloned = clone $original;
+    echo $cloned->name . "\n";
 
 ?>
