@@ -70,6 +70,8 @@
         // }
     
     }
+
+    
     
     // $person = new Person("Nischay");
     // unset($person);
@@ -90,7 +92,38 @@
     // $cloned = clone $original;
     // echo $cloned->name . "\n";
 
-    var_dump($person);
+    // var_dump($person);
+
+    class A
+    {
+        public $i = 0;
+        public function inc()
+        {
+            $this->i++;
+        }
+        public function reset()
+        {
+            $this->i = 10;
+        }
+    }
+
+    $obj1 = new A();
+    print_r($obj1);
+    $obj1->inc();
+    print_r($obj1);
+    $obj1->reset();
+    $obj1->i = 10;
+    $obj2 = new A();
+    $obj2->inc();
+    print_r($obj1);
+    $obj1->inc();
+    print_r($obj2);
+
 
     echo "</pre>";
 ?>
+
+
+    
+
+    
