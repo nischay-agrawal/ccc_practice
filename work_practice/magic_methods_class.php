@@ -25,8 +25,15 @@
         // }
 
         //for calling functions that are non accessibnle or does not exist
-        public function __call($name, $arguments) {
-            echo "Calling method '$name' " . implode(', ', $arguments) . "\n";
+        // public function __call($name, $arguments) {
+        //     echo "Calling method '$name' " . implode(', ', $arguments) . "\n";
+        // }
+        
+        //same as call
+        //method is executed when called from class
+        //static method calls
+        public static function __callStatic($name, $arguments) {
+            echo "Static call to '$name' " . implode(', ', $arguments) . "\n";
         }
     }
     
@@ -37,7 +44,7 @@
     // echo $person->name . "\n";
     // echo $person->age . "\n";
     // $person->name = "Nischay" ;
-    $person->notExist("Nischay", "Agrawal");
-
+    // $person->notExist("Nischay", "Agrawal");
+    Person::staticCall("Nischay", "Agrawal");
 
 ?>
