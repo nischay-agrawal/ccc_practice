@@ -6,17 +6,17 @@
         private $balance;
         private $transactions;
         
+        private function addTrasaction($amount)
+        {
+            $this->transactions[] = ['amount' => $amount, 'balance' => $this->balance];
+        }
+
         public function __construct($accountNumber, $accountHolder, $initialBalance) {
             $this->accountNumber = $accountNumber;
             $this->accountHolder = $accountHolder;
             $this->balance = $initialBalance;
             $this->transactions=[];
             $this->addTrasaction($initialBalance);
-        }
-        
-        private function addTrasaction($amount)
-        {
-            $this->transactions[] = ['amount' => $amount, 'balance' => $this->balance];
         }
         
         public function deposit($amount) {
@@ -29,7 +29,7 @@
                 $this->balance -= $amount;
                 $this->addTrasaction(-$amount);
             } else {
-                echo "Insufficient funds for withdrawal of $amount USD.<br>";
+                echo "<u>Insufficient funds for withdrawal of $amount USD.</u><br>";
                 $this->addTrasaction("Insufficient Funds:$amount");
             }
         }
@@ -45,10 +45,10 @@
             }
         }
     }
-
+    
     // Create a bank account object
     $account1 = new BankAccount("123456", "John Doe", 1000);
-
+    
     // Deposit and withdraw from the account
     $account1->deposit(500);
     $account1->withdraw(500);
@@ -66,15 +66,12 @@
     $account1->displayInfo();
     //Display account transactions
     $account1->displayTransactions();
-   
+    
     echo "<br>------------------------------------------------------------------------<br>";
-
+    
     $account2 = new BankAccount("654321", "Nischay Agrawal", 1000);
-
     $account2->deposit(500);
-    $account2->withdraw(500);
-
-
+    $account2->withdraw(200);
     $account2->displayInfo();
     $account2->displayTransactions();
 ?>
