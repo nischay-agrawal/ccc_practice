@@ -1,4 +1,5 @@
 <?php
+    echo "<pre>";
     class Person {
         
         // public $name;
@@ -56,17 +57,24 @@
         //     return "Person object has been invoked\n";
         // }
 
-        public $name;
-        public function __clone() {
-            $this->name = "Cloned " . $this->name;
-        }
+        // public $name;
+        // public function __clone() {
+        //     $this->name = "Cloned " . $this->name;
+        // }
+
+        private $name = "Nischay";
+        private $age = 20;
+
+        // public function __debugInfo() {
+        //     return ['name' => $this->name,'age' => $this->age];
+        // }
     
     }
     
     // $person = new Person("Nischay");
     // unset($person);
 
-    // $person = new Person();
+    $person = new Person();
     // echo $person->name . "\n";
     // echo $person->age . "\n";
     // $person->name = "Nischay" ;
@@ -77,9 +85,12 @@
     // echo $person;
     // echo $person();
 
-    $original = new Person();
-    $original->name = "Nischay";
-    $cloned = clone $original;
-    echo $cloned->name . "\n";
+    // $original = new Person();
+    // $original->name = "Nischay";
+    // $cloned = clone $original;
+    // echo $cloned->name . "\n";
 
+    var_dump($person);
+
+    echo "</pre>";
 ?>
