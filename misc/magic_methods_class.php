@@ -47,10 +47,14 @@
         
         //called when an object is called as string
         //directly echoing the object
-        public function __toString() {
-            return "This is a Person object\n";
+        // public function __toString() {
+        //     return "This is a Person object\n";
+        // }
+        
+        //called when an object is called as string
+        public function __invoke() {
+            return "Person object has been invoked\n";
         }
-    
     }
     
     // $person = new Person("Nischay");
@@ -64,6 +68,7 @@
     // Person::staticCall("Nischay", "Agrawal");
     // echo isset($person->name) ? "Name is set\n" : "Name is not set\n";
     // unset($person->name);
-    echo $person;
+    // echo $person;
+    echo $person();
 
 ?>
