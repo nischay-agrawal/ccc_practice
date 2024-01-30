@@ -4,7 +4,7 @@
         public $author;
 
         public function displayInfo() {
-            echo "Title: $this->title, Author: $this->author";
+            echo "Title: $this->title,<br> Author: $this->author<br>";
         }
     }
 

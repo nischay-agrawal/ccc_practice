@@ -35,16 +35,20 @@
         }
 
         public function displayItems() {
+            echo "------------------------------------------------------------------------\n<br>";
             echo "Shopping Cart Items:\n<br>";
+            echo "------------------------------------------------------------------------\n<br>";
             foreach ($this->items as $item) {
                 echo "{$item->getName()} - {$item->getPrice()} USD \n<br>";
             }
+            echo "------------------------------------------------------------------------\n<br>";
         }
     }
 
     // Create product objects
     $product1 = new Product(1, "Laptop", 800);
     $product2 = new Product(2, "Smartphone", 400);
+    $product3 = new Product(3, "TV", 600);
 
     // Create a shopping cart object
     $cart = new ShoppingCart();
@@ -52,6 +56,7 @@
     // Add products to the cart
     $cart->addItem($product1);
     $cart->addItem($product2);
+    $cart->addItem($product3);
 
     // Display items and calculate total price
     $cart->displayItems();
