@@ -21,8 +21,6 @@
         }
     }
 
-    // Example Usage:
     $calculator = new Calculator();
     echo $calculator->add(5, 3); // Output: 8
-
 ?>
