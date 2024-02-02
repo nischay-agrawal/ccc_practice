@@ -1,3 +1,4 @@
+<pre>
 <?php
 class View_Category
 {
@@ -8,10 +9,14 @@ class View_Category
 
     public function addCategory()
     {
+        
         $form = '<form action="" method="POST">';
-            $form .= '<h2>Add Details</h2>';
+            $form .= '<h2>Add Category</h2>';
             $form .= '<div>';
-	    	$form .= $this->createTextField('pdata[product_name]', "Product Name: ");
+	    	    $form .= $this->createTextField('cdata[name]', "Category Name: ");
+	        $form .= '</div>';
+            $form .= '<div>';
+	        	$form .= $this->createSubmitBtn('Submit');
 	        $form .= '</div>';
         $form .= '</form>';
 		return $form;
@@ -21,5 +26,14 @@ class View_Category
     {
         return '<span> ' . $title . ' </span><input id="' . $id . '" type="text" name="' . $name . '" value="' . $value . '">';
     }
+    public function createSubmitBtn($title)
+    {
+        return '<input type="submit" name="submit" value="'.$title.'">';
+    }
+    public function toHtml()
+    {
+    	return $this->addCategory();
+    }
+
 }
 ?>

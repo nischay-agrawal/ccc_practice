@@ -88,7 +88,7 @@ class View_Product
 	        	$form .= $this->createTextField('pdata[sku]', "SKU: ");
 	        $form .= '</div>';
             $form .= '<div>';
-                $form .= $this->createRadioBtn('pdata[product_type]', "ProductType: ", ['Simple', 'Bundle']);
+                $form .= $this->createRadioBtn('pdata[product_type]', "ProductType: ", ['Simple', 'Bundle'],'Simple');
             $form .= '</div>';
             $form .= '<div>';
                 $form .= $this->createDropdownMenu('pdata[category]', "Category: ", ['Bar & Game Room', 'Bedroom', 'Decor', 'Dining and Kitchen', 'Lighting', 'Living Room', 'Mattresses', 'Office', 'Outdoor']);
@@ -126,7 +126,7 @@ class View_Product
         return '<span> ' . $title . ' </span><input id="' . $id . '" type="text" name="' . $name . '" value="' . $value . '">';
     }
 
-    public function createRadioBtn($name, $title, $values, $default = 'Simple')
+    public function createRadioBtn($name, $title, $values, $default)
     {
         $radioBtns = '<span> ' . $title . ' </span>';
         foreach ($values as $value) {

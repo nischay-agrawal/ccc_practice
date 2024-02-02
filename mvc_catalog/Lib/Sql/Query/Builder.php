@@ -41,5 +41,9 @@
             $conditionString = implode(" AND ", $conditionParts);
             echo "DELETE FROM {$table_name} WHERE {$conditionString}";
         }
+        public function select($table_name, $column) {
+            
+            echo "SELECT {$column} FROM {$table_name};";
+        }
     }
 ?>
