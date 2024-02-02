@@ -18,5 +18,16 @@ class Model_Product extends Model_Abstract
             );
          $this->getQueryBuilder()->exec($sql);
     }
+
+    public function list($columns)
+    {
+        echo "<pre>";
+        $sql = $this->getQueryBuilder()
+            ->select(
+                $this->tableName,
+                $columns
+            );
+         $this->getQueryBuilder()->exec($sql);
+    }
 }
 ?>

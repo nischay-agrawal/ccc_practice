@@ -42,8 +42,16 @@
             echo "DELETE FROM {$table_name} WHERE {$conditionString}";
         }
         public function select($table_name, $column) {
-            
-            echo "SELECT {$column} FROM {$table_name};";
+            if($column!="*")
+            {
+                foreach($column as $column)
+                {
+                    $columnParts[] = "`$column`";
+                }
+                $columnString = implode(", ", $columnParts);
+            }
+            $columnString=$column;
+            echo "SELECT {$columnString} FROM {$table_name};";
         }
     }
 ?>

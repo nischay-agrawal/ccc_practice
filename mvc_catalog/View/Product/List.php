@@ -4,5 +4,11 @@
         {
             
         }
+        public function listProducts(){
+            $list = new Model_Product();
+            $list->list("*");
+        }
+
     }
+
 ?>
