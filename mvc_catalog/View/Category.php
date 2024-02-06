@@ -9,7 +9,7 @@ class View_Category
 
     public function addCategory()
     {
-        
+
         $form = '<form action="" method="POST">';
             $form .= '<h2>Add Category</h2>';
             $form .= '<div>';
