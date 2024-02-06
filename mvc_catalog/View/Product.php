@@ -159,6 +159,7 @@ class View_Product
 
     public function toHtml()
     {
-    	return $this->createForm();
+        echo "View->Product";
+    	// return $this->createForm();
     }
 }

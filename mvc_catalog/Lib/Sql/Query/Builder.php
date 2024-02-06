@@ -41,17 +41,17 @@
             $conditionString = implode(" AND ", $conditionParts);
             echo "DELETE FROM {$table_name} WHERE {$conditionString}";
         }
-        public function select($table_name, $column) {
-            if($column!="*")
-            {
-                foreach($column as $column)
-                {
-                    $columnParts[] = "`$column`";
+        public function select($table_name, $column, $where = null)
+        {
+            $whereCond = [];
+            if (isset($where)) {
+                foreach ($where as $field => $val) {
+                    $whereCond[] = " `$field` = '" . addslashes($val) . "'";
                 }
-                $columnString = implode(", ", $columnParts);
             }
-            $columnString=$column;
-            echo "SELECT {$columnString} FROM {$table_name};";
+            $whereCond = implode(" AND ", $whereCond);
+            $sql = $where == null ? "SELECT {$column} FROM {$table_name}" : "SELECT {$column} FROM {$table_name} WHERE {$whereCond};";
+            return $sql;
         }
     }
 ?>

@@ -38,6 +38,21 @@
     		}
     		return false;
     	}
+
+		public function getRequestURI($key = '')
+		{
+			$url = ($key == '')
+    			? $_SERVER
+    			: (isset($_SERVER[$key])
+    				? $_SERVER[$key]
+    				: ''
+    			);
+			
+			$url =str_replace('/practise/mvc_catalog/', '', $url);
+			return $url;
+
+			
+		}
 }
 
 

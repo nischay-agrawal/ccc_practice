@@ -5,5 +5,9 @@ class Model_Abstract
     {
         return new Lib_Sql_Query_Builder();
     }
+    public function getQueryExecutor()
+    {
+        return new Lib_Sql_Query_Executor();
+    }
 
 }
