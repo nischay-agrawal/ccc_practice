@@ -2,10 +2,13 @@
     class Mage{
         public static function init()
         {
-            $modelObj = Mage::getModel("core/request");
-            $var=$modelObj->getRequestUri();
-            // echo get_class($modelObj);
-            echo $var;
+            $frontController = new Core_Controller_Front();
+            $frontController->init();
+
+            // $modelObj = Mage::getModel("core/request");
+            // $var=$modelObj->getRequestUri();
+            // // echo get_class($modelObj);
+            // echo $var;
 
         }
         public static function getSingleton($className)
