@@ -1,5 +1,5 @@
 Root Folder
-/app/code/local
+    /app/code/local
             /Product/
                 /Model
                 /Controller
@@ -39,5 +39,3 @@ http://localhost/myfolderrootdirectory
     /customer/quote_address/list
     /customer/quote_address/save
     /customer/quote_address/delete
-
-
