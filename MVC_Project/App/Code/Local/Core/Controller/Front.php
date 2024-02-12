@@ -1,17 +1,17 @@
 <?php
     class Core_Controller_Front{
         public function init(){
-            $coreModelRequest = new Core_Model_Request();
+            $coreModelRequest = Mage::getModel("core/request");
             // echo $coreModelRequest->getModuleName();
             // echo $coreModelRequest->getControllerName();
             // echo $coreModelRequest->getActionName();
-            
             $fullControllerName = $coreModelRequest->getFullControllerClass();
-
+            $actionName = $coreModelRequest->getActionName();
+            $actionName .= "Action";
+            // echo $actionName;
             // echo $fullControllerName;
-
-            $obj = new $fullControllerName();
-            $obj->indexAction();
+            $controller = new $fullControllerName();
+            $controller->$actionName();
 
         }
     }
