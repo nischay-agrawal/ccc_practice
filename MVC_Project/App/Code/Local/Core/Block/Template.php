@@ -1,6 +1,7 @@
 <?php
 class Core_Block_Template extends Core_Block_Abstract
 {
+    protected $_child=[];
     public function toHtml()
     {
         // echo "abcd";
@@ -8,7 +9,7 @@ class Core_Block_Template extends Core_Block_Abstract
     }
     public function addChild($key, $value)
     {
-
+        $this ->_child[$key]=$value;
     }
     public function removeChild($key)
     {
@@ -16,7 +17,7 @@ class Core_Block_Template extends Core_Block_Abstract
     }
     public function getChild($key)
     {
-
+        return $this->_child[$key];
     }
     public function setTemplate($template)
     {
@@ -25,6 +26,14 @@ class Core_Block_Template extends Core_Block_Abstract
     public function getTemplate()
     {
         return $this->template;
+    }
+    public function getRequest()
+    {
+        return Mage::getModel('core/request');
+    }
+    public function getChildHtml($key)
+    {
+        return $this->getChild($key)->toHtml();
     }
 }
 ?>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MVC</title>
+    <pre><?php echo $this->getChild('head')->toHtml();?>
+</head>
+<body>
+    <div><pre><?php echo $this->getChild('header')->toHtml();?></div>
+    <div><pre><?php echo $this->getChild('footer')->toHtml();?></div>
+    <div><pre><?php echo $this->getChild('messages')->toHtml();?></div>
+    <div><pre><?php echo $this->getChild('content')->toHtml();?></div>
+    <div><pre><?php echo $this->getChild('right')->toHtml();?></div>
+    
+</body>
+</html>

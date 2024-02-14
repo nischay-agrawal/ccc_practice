@@ -30,5 +30,18 @@
     // $obj->minimumSum();
     // echo "<br>";
     // $obj->maximumSum();
+    
+    //find factors of number
+    $j=36;
+    $a=[];
+    for($i=1;$i<=$j;$i++)
+    {
+        if($j%$i==0)
+        {
+            array_push($a,$i);
+        }
+    }
+    print_r($a);
+
 
 ?>

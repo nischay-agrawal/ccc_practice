@@ -1,29 +1,24 @@
 <?php
-class Product_Controller_Index
+class Customer_Controller_Address
 {
     public function newAction()
     {
         echo dirname(__FILE__);
-        echo " Product New Action";
+        echo " Customer New Action";
     }
     public function listAction()
     {
         echo dirname(__FILE__);
-        echo "Product List Action";
+        echo "Customer List Action";
     }
     public function saveAction()
     {
         echo dirname(__FILE__);
-        echo "Product Save Action";
+        echo "Customer Save Action";
     }
     public function deleteAction()
     {
         echo dirname(__FILE__);
-        echo "Product Delete Action";
-    }
-    public function indexAction()
-    {
-        echo dirname(__FILE__);
-        echo "Product index Action";
+        echo "Customer Delete Action";
     }
 }

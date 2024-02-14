@@ -3,9 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>MVC</title>
+    <pre><?php echo $this->getChild('head')->toHtml();?>
 </head>
 <body>
-    <h1>Page</h1>    
+    <div><pre><?php echo $this->getChildHtml('header');?></div>
+    <div><pre><?php echo $this->getChildHtml('footer');?></div>
+    <div><pre><?php echo $this->getChildHtml('messages');?></div>
+    <div><pre><?php echo $this->getChildHtml('content');?></div>
 </body>
 </html>
