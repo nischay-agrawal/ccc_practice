@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MVC</title>
-    <pre><?php echo $this->getChild('head')->toHtml();?>
+    <?php echo $this->getChild('head')->toHtml();?>
 </head>
 <body>
-    <div><pre><?php echo $this->getChildHtml('header');?></div>
-    <div><pre><?php echo $this->getChildHtml('footer');?></div>
-    <div><pre><?php echo $this->getChildHtml('messages');?></div>
-    <div><pre><?php echo $this->getChildHtml('content');?></div>
+    <div><?php echo $this->getChildHtml('header');?></div>
+    <div><?php echo $this->getChildHtml('footer');?></div>
+    <div><?php echo $this->getChildHtml('messages');?></div>
+    <div><?php echo $this->getChildHtml('content');?></div>
 </body>
 </html>
