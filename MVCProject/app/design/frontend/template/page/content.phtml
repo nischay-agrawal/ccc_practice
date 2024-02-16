@@ -1,0 +1,5 @@
+<?php
+echo $this->getRequest()->getParams('id');
+$productModel = Mage::getModel('product/product');
+echo '<pre>';
+print_r($productModel->load(24));
