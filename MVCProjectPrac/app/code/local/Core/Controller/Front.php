@@ -11,6 +11,7 @@
             // echo $actionName;
             // echo $fullControllerName;
             $controller = new $fullControllerName();
+            // echo $actionName;
             $controller->$actionName();
 
         }

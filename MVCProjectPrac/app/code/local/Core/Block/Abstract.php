@@ -36,9 +36,11 @@
         {
             
         }
-        public function getUrl($action = null, $controller = null, $params = [], $resetParams = false)
+        // public function getUrl($action = null, $controller = null, $params = [], $resetParams = false)
+        public function getUrl($path)
         {
-            
+            // echo $path;
+            return "http://localhost/practise/MVCProjectPrac/".$path;
         }
         public function getRequest()
         {

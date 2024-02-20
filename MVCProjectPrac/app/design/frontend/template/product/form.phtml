@@ -1,0 +1,54 @@
+<form action="<?php echo $this->getUrl('catalog/product/save')?>" method="POST">
+        <label for="sku">SKU:</label>
+        <input type="text" id="sku" name="sku" >
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" >
+
+        <label for="color">Color:</label>
+        <input type="text" id="color" name="color">
+
+        <label for="size">Size:</label>
+        <input type="text" id="size" name="size">
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="3"></textarea>
+
+        <label for="image_link">Image Link:</label>
+        <input type="text" id="image_link" name="image_link">
+
+        <label for="link">Product Link:</label>
+        <input type="text" id="link" name="link">
+
+        <label for="category_id">Category ID:</label>
+        <input type="text" id="category_id" name="category_id">
+
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price"  >
+
+        <label for="mfr_cost">Manufacturer Cost:</label>
+        <input type="number" id="mfr_cost" name="mfr_cost" >
+
+        <label for="shipping_cost">Shipping Cost:</label>
+        <input type="number" id="shipping_cost" name="shipping_cost" >
+
+        <label for="total_cost">Total Cost:</label>
+        <input type="number" id="total_cost" name="total_cost" >
+
+        <label for="margin_percentage">Margin Percentage:</label>
+        <input type="number" id="margin_percentage" name="margin_percentage" >
+
+        <label for="min_price">Minimum Price:</label>
+        <input type="number" id="min_price" name="min_price" >
+        
+        <label for="status">Status:</label>
+        <input type="number" id="status" name="status" >
+
+        <!-- <label for="status">Status:</label>
+        <select id="status" name="status">
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+        </select> -->
+
+        <button type="submit">Submit</button>
+    </form>

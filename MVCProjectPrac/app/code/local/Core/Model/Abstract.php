@@ -24,7 +24,8 @@ class Core_Model_Abstract
     }
     public function setId($id)
     {
-
+        // $this->_data[$this->getResource()->getPrimaryKey()] = $id;
+        // return $this;
     }
     public function getId()
     {
@@ -58,7 +59,7 @@ class Core_Model_Abstract
     }
     public function __call($method, $args)
     {
-        $name=$this->camelCase2UnderScore(substr($method, 3));
+        $name = $this->camelCase2UnderScore(substr($method, 3));
         return isset($this->_data[$name])
             ? $this->_data[$name]
             : '';
@@ -77,11 +78,13 @@ class Core_Model_Abstract
     }
     public function getData($key = null)
     {
-
+        return $this->_data;
     }
     public function setData($data)
     {
-
+        $this->_data = $data;
+        // print_r($this->_data);
+        return $this;
     }
     public function addData($key, $value)
     {
@@ -93,7 +96,8 @@ class Core_Model_Abstract
     }
     public function save()
     {
-
+        $this->getResource()->save($this);
+        return $this;
     }
     public function load($id, $column = null)
     {
