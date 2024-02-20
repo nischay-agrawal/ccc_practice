@@ -1,5 +1,5 @@
 <?php
-class Product_Model_Resource_Product
+class Catalog_Model_Resource_Product
 {
     protected $_tableName = "";
     protected $_primaryKey = "";

@@ -22,7 +22,6 @@
             // $classname=ucwords("$classname","_");
             $className = ucwords(str_replace("/","_Model_",$className),"_");
             return new $className;
-            
         }
         public static function getBlock($className)
         {

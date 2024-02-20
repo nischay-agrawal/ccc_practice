@@ -1,0 +1,160 @@
+
+CREATE TABLE catalog_product(
+    product_id int(11) PRIMARY KEY,
+    sku varchar(255),
+    name varchar(255),
+    color varchar(255),
+    size varchar(255),
+    description text,
+    image_link varchar(255),
+    link varchar(255),
+    category_id int(11),
+    price Decimal(12,2),
+    mfr_cost Decimal(12,2),
+    shipping_cost Decimal(12,2),
+    total_cost Decimal(12,2),
+    margin_percentage int(11),
+    min_price Decimal(12,2),
+    status TINYINT
+);
+
+CREATE TABLE customer(
+    customer_id int(11) PRIMARY KEY,
+    customer_email varchar(255),
+    first_name varchar(255),
+    last_name varchar(255),
+    billing_address varchar(255),
+    billing_city varchar(255),
+    billing_region int(11),
+    billing_country int(11),
+    billing_phone varchar(255),
+    shipping_address varchar(255),
+    shipping_city varchar(255),
+    shipping_region int(11),
+    shipping_country int(11),
+    shipping_phone varchar(255),
+    default TINYINT
+);
+
+CREATE TABLE catelog_category(
+    category_id int(11) PRIMARY KEY,
+    category_name varchar(255),
+    status TINYINT
+);
+
+CREATE TABLE cutomer_address(
+    address_id int(11) PRIMARY KEY,
+    customer_id int(11)
+);
+
+CREATE TABLE banner(
+    banner_id int(11) PRIMARY KEY,
+    banner_image varchar(255),
+    status TINYINT,
+    show_on varchar(255)
+);
+
+CREATE TABLE sales_order(
+    order_id int(11) PRIMARY KEY,
+    order_number varchar(255),
+    tax_percent int(11),
+    grand_total Decimal(12,2)
+);
+
+CREATE TABLE sales_order_item(
+    item_id int(11) PRIMARY KEY,
+    order_id int(11),
+    product_id int(11),
+    price Decimal(12,2),
+    qty int(11),
+    row_total Decimal(12,2),
+    product_name varchar(255),
+    product_color varchar(255)
+);
+
+CREATE TABLE sales_order_customer(
+    order_customer_id int(11) PRIMARY KEY,
+    order_id int(11),
+    customer_id int(11),
+    email varchar(255),
+    billing_address varchar(255),
+    billing_city varchar(255),
+    billing_region int(11),
+    billing_country int(11),
+    billing_phone varchar(255),
+    shipping_address varchar(255),
+    shipping_city varchar(255),
+    shipping_region int(11),
+    shipping_country int(11),
+    shipping_phone varchar(255)
+);
+
+CREATE TABLE sales_quote(
+    quote_id int(11) PRIMARY KEY,
+    tax_percent int(11),
+    grand_total Decimal(12,2)
+);
+
+CREATE TABLE sales_quote_item(
+    item_id int(11) PRIMARY KEY,
+    quote_id int(11),
+    product_id int(11),
+    price Decimal(12,2),
+    qty int(11),
+    row_total Decimal(12,2)
+);
+
+CREATE TABLE sales_quote_customer(
+    quote_customer_id int(11) PRIMARY KEY,
+    quote_id int(11),
+    customer_id int(11),
+    email varchar(255),
+    billing_address varchar(255),
+    billing_city varchar(255),
+    billing_region int(11),
+    billing_country int(11),
+    billing_phone varchar(255),
+    shipping_address varchar(255)
+);
+
+-- Add foreign keys to catalog_product table
+ALTER TABLE catalog_product
+ADD CONSTRAINT fk_catalog_product_category
+FOREIGN KEY (category_id) REFERENCES catalog_category(category_id);
+
+ALTER TABLE catalog_product
+ADD CONSTRAINT fk_catalog_product_customer
+FOREIGN KEY (customer_id) REFERENCES customer(customer_id);
+
+-- Add foreign keys to sales_order table
+ALTER TABLE sales_order
+ADD CONSTRAINT fk_sales_order_customer
+FOREIGN KEY (order_customer_id) REFERENCES sales_order_customer(order_customer_id);
+
+-- Add foreign keys to sales_order_item table
+ALTER TABLE sales_order_item
+ADD CONSTRAINT fk_sales_order_item_order
+FOREIGN KEY (order_id) REFERENCES sales_order(order_id);
+
+ALTER TABLE sales_order_item
+ADD CONSTRAINT fk_sales_order_item_product
+FOREIGN KEY (product_id) REFERENCES catalog_product(product_id);
+
+-- Add foreign keys to sales_order_customer table
+ALTER TABLE sales_order_customer
+ADD CONSTRAINT fk_sales_order_customer_customer
+FOREIGN KEY (customer_id) REFERENCES customer(customer_id);
+
+-- Add foreign keys to sales_quote table
+ALTER TABLE sales_quote
+ADD CONSTRAINT fk_sales_quote_customer
+FOREIGN KEY (quote_customer_id) REFERENCES sales_quote_customer(quote_customer_id);
+
+-- Add foreign keys to sales_quote_item table
+ALTER TABLE sales_quote_item
+ADD CONSTRAINT fk_sales_quote_item_quote
+FOREIGN KEY (quote_id) REFERENCES sales_quote(quote_id);
+
+ALTER TABLE sales_quote_item
+ADD CONSTRAINT fk_sales_quote_item_product
+FOREIGN KEY (product_id) REFERENCES catalog_product(product_id);
