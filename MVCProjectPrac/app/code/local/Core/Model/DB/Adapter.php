@@ -58,7 +58,13 @@ class Core_Model_DB_Adapter
 
     public function update($query)
     {
-
+        $this->connect();
+        $result = mysqli_query($this->connect, $query);
+        if($result){
+            echo '<script>alert("Data updated successfully")</script>';
+        }else{
+            echo '<script>alert("Data not updated")</script>';
+        }
     }
     public function delete($query)
     {

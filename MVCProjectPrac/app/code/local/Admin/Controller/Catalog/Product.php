@@ -9,11 +9,19 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action
     }
     public function formAction()
     {
-        $this->setFormCss();
         $layout = $this->getLayout();
+
+        // $this->getCss();
+        
         $child = $layout->getChild('content');
-        $form = $layout->createBlock('catalog/admin_product');
-        $child->addChild('form', $form);
+        $productForm = $layout->createBlock('catalog/admin_product_form');
+        if ($this->getRequest()->getParams('edit') !== '') {
+            $id = $this->getRequest()->getParams('edit');
+            $productData = Mage::getModel('catalog/product');
+            $productData->load($id);
+            $productForm->setProductData($productData);
+        }
+        $child->addChild('form', $productForm);
         $layout->toHtml();
     }
     public function saveAction()
@@ -22,7 +30,6 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action
         Mage::getModel('catalog/product')
             ->setData($data)
             ->save();
-        print_r($data);
     }
 
     public function deleteAction()
@@ -30,5 +37,15 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action
         Mage::getModel('catalog/product')
             ->setId($this->getRequest()->getParams('id'))
             ->delete();
+    }
+
+    public function listAction()
+    {
+        $layout = $this->getLayout();
+        $this->setFormCss();
+        $child = $layout->getChild('content');
+        $productList = $layout->createBlock('catalog/admin_product_list');
+        $child->addChild('list', $productList);
+        $layout->toHtml();
     }
 }

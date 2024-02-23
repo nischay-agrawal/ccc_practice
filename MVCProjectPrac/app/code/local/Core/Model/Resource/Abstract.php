@@ -59,4 +59,26 @@ class Core_Model_Resource_Abstract
     {
         return $this->_primaryKey;
     }
+    public function update(Core_Model_Abstract $abstract){
+        $data = $abstract->getData();
+        echo "<pre>";
+        print_r($abstract);
+        $sql = $this->updateSql($this->getTableName(), $data, [$this->getPrimaryKey()=>$abstract->getId()]);
+        $this->getAdapter()->update($sql);
+    }
+    public function updateSql(string $tablename, array $data, array $where)
+    {
+        $columns = $where_cond = [];
+        foreach ($data as $col => $val) {
+            $columns[] = "`$col` = '$val'";
+        }
+        ;
+        foreach ($where as $col => $val) {
+            $where_cond[] = "`$col` = '$val'";
+        }
+        ;
+        $columns = implode(", ", $columns);
+        $where_cond = implode(" AND ", $where_cond);
+        return "UPDATE {$tablename} SET {$columns} WHERE {$where_cond};";
+    }
 }
