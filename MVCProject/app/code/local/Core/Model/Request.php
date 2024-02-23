@@ -53,6 +53,18 @@ class Core_Model_Request
         $uri = stristr($uri, '?', True);
         return $uri;
     }
+    // public function getRequestUri(){
+    //     $uri = $_SERVER['REQUEST_URI'];
+    //     $uri = str_replace("/practise/MVCProject/","",$uri);
+    //     if(str_contains($uri, '?'))
+    //     {
+    //         $pos = strpos($uri, '?');
+    //         $temp_uri = substr($uri,$pos);
+    //         $uri = str_replace($temp_uri,"",$uri);
+    //         return $uri;
+    //     }
+    //     return $uri;
+    // }
     public function getModuleName()
     {
         return $this->_moduleName;

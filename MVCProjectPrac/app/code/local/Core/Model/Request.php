@@ -50,12 +50,24 @@ class Core_Model_Request
 		return false;
 	}
 
-	public function getRequestUri($key = '')
-	{
-		$url = $_SERVER['REQUEST_URI'];
-		$url = str_replace('/practise/MVCProjectPrac/', "", $url);
-		return $url;
-	}
+	// public function getRequestUri($key = '')
+	// {
+	// 	$url = $_SERVER['REQUEST_URI'];
+	// 	$url = str_replace('/practise/MVCProjectPrac/', "", $url);
+		public function getRequestUri(){
+			$uri = $_SERVER['REQUEST_URI'];
+			$uri = str_replace("/practise/MVCProjectPrac/","",$uri);
+			if(str_contains($uri, '?'))
+			{
+				$pos = strpos($uri, '?');
+				$temp_uri = substr($uri,$pos);
+				$uri = str_replace($temp_uri,"",$uri);
+				return $uri;
+			}
+			return $uri;
+		}
+	// 	return $url;
+	// }
 
 	public function getModuleName()
 	{

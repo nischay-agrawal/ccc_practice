@@ -62,7 +62,8 @@ class Core_Model_DB_Adapter
     }
     public function delete($query)
     {
-        $result = mysqli_query($this->connect(), $query);
+        $this->connect();
+        $result = mysqli_query($this->connect, $query);
         if($result){
             echo '<script>alert("Data deleted successfully")</script>';
         }else{
