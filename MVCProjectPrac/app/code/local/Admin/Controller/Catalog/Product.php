@@ -9,19 +9,11 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action
     }
     public function formAction()
     {
-        $layout = $this->getLayout();
-
         $this->setFormCss();
-        
+        $layout = $this->getLayout();
         $child = $layout->getChild('content');
-        $productForm = $layout->createBlock('catalog/admin_product_form');
-        if ($this->getRequest()->getParams('edit') !== '') {
-            $id = $this->getRequest()->getParams('edit');
-            $productData = Mage::getModel('catalog/product');
-            $productData->load($id);
-            $productForm->setProductData($productData);
-        }
-        $child->addChild('form', $productForm);
+        $form = $layout->createBlock('catalog/admin_product');
+        $child->addChild('form', $form);
         $layout->toHtml();
     }
     public function saveAction()
