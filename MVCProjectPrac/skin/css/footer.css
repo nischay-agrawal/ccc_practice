@@ -1,0 +1,34 @@
+footer {
+    background-color: #f4f4f4;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Style for the Contact Us section */
+footer div:nth-child(1) {
+    margin-bottom: 20px;
+}
+
+/* Style for the Links section */
+footer div:nth-child(2) {
+    display: flex;
+    justify-content: space-around;
+}
+
+/* Style for the Links section unordered list */
+footer div:nth-child(2) ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* Style for the Links section list items */
+footer div:nth-child(2) li {
+    display: inline;
+    margin-right: 10px;
+}
+
+/* Style for the copyright text */
+footer .copyright {
+    margin-top: 20px;
+    color: #777;
+}

@@ -1,6 +1,8 @@
 <?php
     class Mage{
         private static $baseDir = "/Applications/XAMPP/xamppfiles/htdocs/Practise/MVCProjectPrac"; 
+        private static $baseUrl = 'http://localhost/practise/MVCProjectPrac';
+
 
         public static function init()
         {
@@ -43,6 +45,14 @@
                 return self::$baseDir."/".$subDir;
             }
             return self::$baseDir;
+        }
+        public static function getBaseUrl($subDir = null){
+
+            if($subDir)
+            {
+                return self::$baseUrl.'/'.$subDir;
+            }
+            return self::$baseUrl;
         }
 
     }

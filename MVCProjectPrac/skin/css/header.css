@@ -1,0 +1,43 @@
+/* Reset some default styles */
+body, h1, h2, h3, p, ul, li {
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Style the main header */
+  .main-header {
+    background-color: #333; /* Set your desired background color */
+    color: #fff; /* Set your desired text color */
+    padding: 10px 20px; /* Adjust padding as needed */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* Style the logo */
+  .logo img {
+    max-width: 50%; /* Ensure the logo doesn't exceed its container */
+  }
+  
+  /* Style the navigation */
+  .main-nav ul {
+    list-style: none;
+    display: flex;
+  }
+  
+  .main-nav li {
+    margin-right: 15px; /* Adjust spacing between list items */
+  }
+  
+  .main-nav a {
+    text-decoration: none;
+    font-size: 25px;
+    color: #fff; /* Set your desired link color */
+    font-weight: bold; /* Adjust font weight as needed */
+  }
+  
+  /* Hover effect for links */
+  .main-nav a:hover {
+    color: #ffcc00; /* Set your desired hover color */
+  }
+  

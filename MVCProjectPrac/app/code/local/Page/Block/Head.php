@@ -9,10 +9,12 @@ class Page_Block_Head extends Core_Block_Template{
     public function addJs($file)
     {
         $this->_js[]=$file;
+        return $this;
     }
     public function addCss($file)
     {
         $this->_css[]=$file;
+        return $this;
     }
     public function getJs()
     {
@@ -21,6 +23,12 @@ class Page_Block_Head extends Core_Block_Template{
     public function getCss()
     {
         return $this->_css;
+    }
+    public function getCssUrl($_css){
+        return Mage::getBaseUrl('skin/css/' . $_css);
+    }
+    public function getJsUrl($_js){
+        return Mage::getBaseUrl('/skin/js/'. $_js);
     }
 
 }

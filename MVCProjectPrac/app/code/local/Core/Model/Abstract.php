@@ -24,8 +24,8 @@ class Core_Model_Abstract
     }
     public function setId($id)
     {
-        // $this->_data[$this->getResource()->getPrimaryKey()] = $id;
-        // return $this;
+        $this->_data[$this->getResource()->getPrimaryKey()] = $id;
+        return $this;
     }
     public function getId()
     {
@@ -54,7 +54,7 @@ class Core_Model_Abstract
             return $str;
         }
         $str = lcfirst($str);
-        $str = preg_replace("/[A-Z]/", $separator . "$0", $str);
+        preg_replace("/[A-Z]/", $separator . "$0", $str);
         return strtolower($str);
     }
     public function __call($method, $args)
@@ -107,7 +107,8 @@ class Core_Model_Abstract
     }
     public function delete()
     {
-
+        $this->getResource()->delete($this);
+        return $this;
     }
 
 }
