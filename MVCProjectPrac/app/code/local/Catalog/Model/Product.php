@@ -14,7 +14,7 @@ class Catalog_Model_Product extends Core_Model_Abstract
     //     ];
     //     return $mapping[$this->_data['status']];
     // }   
-    // public function getCategoryId(){
-    //     print_r(Mage::getModel('catalog/category')->$this->getCollection());
-    // }
+    public function getCategoryId(){
+        print_r(Mage::getModel('catalog/category')->$this->getCollection());
+    }
 }

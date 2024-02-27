@@ -1,0 +1,60 @@
+<?php   $productModel =  Mage::getModel('catalog/product')->getCollection(); ?>
+<?php   $catModel =  Mage::getModel('catalog/category')->getCollection(); ?>
+
+<section class="list">
+<h2>Product List</h2>
+    <table border="1">
+        <tr>
+            <th>Product Id</th>
+            <th>Product Name</th>
+            <th>SKU</th>
+            <th>Category</th>
+            <th>Status</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        <?php foreach ($productModel->getData() as $product): ?>
+            <!-- <tr> -->
+            <tr id="row_<?= $product->getProductId() ?>">
+                <td style="width:30px"><?= $product->getProductId() ?></td>
+                <td><?= $product->getName() ?></td>
+                <td><?= $product->getSku() ?></td>
+                <td>
+                <?php
+                    foreach ($catModel->getData() as $category) {
+                        if ($category->getCategoryId() ==  $product->getCategoryId()) {
+                            $categoryName = $category->getCategoryName();
+                            break;
+                        }
+                    }
+                    echo $categoryName;
+                ?>
+                </td>
+                <td><?= $product->getStatus() ?></td>
+                <td><a href="http://localhost/Practice/mvc_project/admin/catalog_product/form?id=<?= $product->getProductId() ?>">Edit</a></td>
+                <td><a href="http://localhost/Practice/mvc_project/admin/catalog_product/delete?id=<?= $product->getProductId() ?>">Delete</a></td>
+            </tr>
+        <?php endforeach; ?>
+  </table>
+  <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            <?php if (($this->getRequest()->getParams('highlighted_id'))): ?>
+            var highlightedId = <?= ($this->getRequest()->getParams('highlighted_id')) ?>;
+            var row = document.getElementById('row_' + highlightedId);
+            if (row) {
+                row.style.backgroundColor = '#4CAF50';
+                row.style.border = '3px solid black';
+                setTimeout(function () {
+                    row.style.backgroundColor = '';
+                    row.style.border = '';
+                }, 4000); 
+                row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            <?php endif; ?>
+        });
+    </script>
+</section>
+
+
+
+

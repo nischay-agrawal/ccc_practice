@@ -1,0 +1,66 @@
+/* Reset some default styles */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Style the table headers */
+th {
+    background-color: black;
+    color: white;
+    padding: 10px;
+}
+
+/* Style the table rows */
+td {
+    padding: 10px;
+    text-align: center;
+}
+
+/* Alternate row colors */
+tr:nth-child(even) {
+    background-color: white;
+}
+
+tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+/* Hover effect for table rows */
+tr:hover {
+    background-color: yellow;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover effect for links in table cells */
+td a:hover {
+    color: blue;
+    transition: color 0.3s ease;
+}
+
+/* Animation for Edit and Delete links */
+td a {
+    display: inline-block;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+td a:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: blue;
+    bottom: 0;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease;
+}
+
+td a:hover:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}

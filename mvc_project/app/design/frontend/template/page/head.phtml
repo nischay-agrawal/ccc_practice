@@ -1,0 +1,13 @@
+<?php $js = $this->getJs(); ?>
+<?php if(count($js)): ?>
+<?php foreach($js as $_js): ?>
+    <script type="" src="<?php echo Mage::getBaseUrl('skin/js/'. $_css);?>" ></script>
+<?php endforeach;?>
+<?php endif?>
+
+<?php $css = $this->getCss(); ?>
+<?php if(count($css)): ?>
+    <?php foreach($css as $_css): ?>
+        <link rel="stylesheet" type="text/css" href="<?php echo Mage::getBaseUrl('skin/css/'. $_css); ?>">
+    <?php endforeach;?>
+<?php endif?>

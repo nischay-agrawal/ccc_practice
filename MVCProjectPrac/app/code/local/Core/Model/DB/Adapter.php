@@ -50,7 +50,7 @@ class Core_Model_DB_Adapter
     }
     public function insert($query)
     {
-        $this->connect();
+        // $this->connect();
         // print_r($query);
         // die;
         $sql = mysqli_query($this->connect(), $query);
@@ -64,8 +64,10 @@ class Core_Model_DB_Adapter
 
     public function update($query)
     {
-        $this->connect();
-        $result = mysqli_query($this->connect, $query);
+        // $this->connect();
+        // echo $query;
+        // die;
+        $result = mysqli_query($this->connect(), $query);
         if($result){
             echo '<script>alert("Data updated successfully")</script>';
         }else{
@@ -74,8 +76,8 @@ class Core_Model_DB_Adapter
     }
     public function delete($query)
     {
-        $this->connect();
-        $result = mysqli_query($this->connect, $query);
+        // $this->connect();
+        $result = mysqli_query($this->connect(), $query);
         if($result){
             echo '<script>alert("Data deleted successfully")</script>';
         }else{

@@ -1,0 +1,27 @@
+<?php $catData = $this->getCategoryData(); ?>
+<form action="<?php echo Mage::getBaseUrl('admin/catalog_category/save')?>" method="POST" class="form">
+<input type="hidden" name="catalog_category[category_id]" value="<?php echo isset($catData) ? $catData->getCategoryId() : ''; ?>">
+
+  <div class="form-row">
+        <div class="form-col">
+            <label for="sku">SKU:</label>
+            <input type="text" id="sku" name="catalog_category[category_name]" value="<?php echo isset($catData) ? $catData->getCategoryName() : ''; ?>" >
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-col">
+            <label>Status:</label>
+
+            <input type="radio" id="status_active" name="catalog_category[status]" value="1" <?php echo isset($catData) && $catData->getStatus() == 'Enable' ? 'checked' : ''; ?>>
+            <label for="status_active" style="display: inline-block; margin-right: 10px;">Enable</label>
+
+            <input type="radio" id="status_inactive" name="catalog_category[status]" value="0" <?php echo isset($catData) && $catData->getStatus() == 'Disabel' ? 'checked' : ''; ?>>
+            <label for="status_inactive" style="display: inline-block;">Disable</label>
+        </div>
+    </div>
+
+    <button type="submit" >
+        <?php echo ($catData->getId() !== "") ? 'Update' : 'Submit'; ?>
+    </button>
+</form>
