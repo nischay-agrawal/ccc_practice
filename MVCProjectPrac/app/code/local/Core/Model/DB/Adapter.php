@@ -19,10 +19,16 @@ class Core_Model_DB_Adapter
                 $this->config['db']
             );
         }
+        return $this->connect;
     }
     public function fetchAll($query)
     {
-
+        $row=[];
+        $result = $this->connect()->query($query);
+        while($_row = mysqli_fetch_assoc($result)){
+            $row[] = $_row;
+        }
+        return $row;
     }
     public function fetchPairs($query)
     {
@@ -35,8 +41,8 @@ class Core_Model_DB_Adapter
     public function fetchRow($query)
     {
         $row = [];
-        $this->connect();
-        $result = mysqli_query($this->connect, $query);
+        // $this->connect();
+        $result = mysqli_query($this->connect(), $query);
         while ($_row = mysqli_fetch_assoc($result)) {
             $row = $_row;
         }
@@ -47,7 +53,7 @@ class Core_Model_DB_Adapter
         $this->connect();
         // print_r($query);
         // die;
-        $sql = mysqli_query($this->connect, $query);
+        $sql = mysqli_query($this->connect(), $query);
         if ($sql) {
             echo "Data insert Successfully";
             return mysqli_insert_id($this->connect);

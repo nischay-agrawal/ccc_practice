@@ -1,0 +1,21 @@
+<?php $data = $this->getCategory();?>
+<div class="form" style="border:1px solid black; width:35%; padding: 15px">
+    <h2>Category Form</h2><br>
+    <form action="<?php echo $this->getUrl('admin/catalog_category/save') ?>">
+        <div class="row">
+                <input type="hidden" value="<?php echo $data->getCategoryId()?>" name="catalog_category[category_id]">
+            </div>
+            <div class="row">
+                <label for="name">Name : </label>
+                <input type="text" value="<?php echo $data->getCategoryName()?>" name="catalog_category[category_name]" id="name">
+            </div>
+            <div class="row">
+                <label for="status">Status : </label>
+                <input type="text" value="<?php echo $data->getStatus()?>" name="catalog_category[status]" id="status">
+            </div>
+    
+            <div class="row" id="sbtButton">
+                <input name="submit[submit]" type="submit" value="Submit">
+            </div>
+        </form>
+</div>

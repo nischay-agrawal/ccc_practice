@@ -1,0 +1,14 @@
+<?php
+echo "<pre>";
+$productCollection = Mage::getModel("catalog/product")->getCollection();
+// $productCollection->addFieldToFilter('name', 'abc');
+// $productCollection->addFieldToFilter('product_id', ['in'=>[52,53,54]]);
+// $productCollection->addFieldToFilter('sku', ['like'=>'%abc']);
+// $productCollection->getData();
+foreach ($productCollection->getData() as $product) {
+    print_r($product);
+    // echo $product->getCategoryId();
+    // echo $product->getStatus();
+    // echo '' . $product->getProductId();
+    // echo ''. $product->delete();
+}

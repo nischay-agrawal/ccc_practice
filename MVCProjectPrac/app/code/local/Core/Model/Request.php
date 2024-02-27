@@ -12,13 +12,13 @@ class Core_Model_Request
 		$this->_actionName = isset($requestUri[2]) ? $requestUri[2] : "index";
 		// echo "<br>"."". $this->_moduleName ."". $this->_controllerName ."<br>";
 	}
-	public function getParams($key = '')
+	public function getParams($key = '',$arg=null)
 	{
 		return ($key == '')
 			? $_REQUEST
 			: (isset($_REQUEST[$key])
 				? $_REQUEST[$key]
-				: ''
+				: ((!is_null($arg)) ? $arg : '')
 			);
 	}
 

@@ -7,6 +7,7 @@
         public function setTemplate($template)
         {
             $this->template = $template;
+            return $this;
         }
         public function getTemplate()
         {

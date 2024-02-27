@@ -12,7 +12,7 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action
         $this->setFormCss();
         $layout = $this->getLayout();
         $child = $layout->getChild('content');
-        $form = $layout->createBlock('catalog/admin_product');
+        $form = $layout->createBlock('catalog/admin_product_form');
         $child->addChild('form', $form);
         $layout->toHtml();
     }
@@ -26,15 +26,14 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action
 
     public function deleteAction()
     {
-        Mage::getModel('catalog/product')
-            ->setId($this->getRequest()->getParams('id'))
+        $productId = $this->getRequest()->getParams('id');
+        Mage::getModel('catalog/product')->load($productId)
             ->delete();
     }
 
     public function listAction()
     {
         $layout = $this->getLayout();
-        $this->setFormCss();
         $child = $layout->getChild('content');
         $productList = $layout->createBlock('catalog/admin_product_list');
         $child->addChild('list', $productList);
