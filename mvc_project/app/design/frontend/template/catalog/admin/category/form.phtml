@@ -4,8 +4,8 @@
 
   <div class="form-row">
         <div class="form-col">
-            <label for="sku">SKU:</label>
-            <input type="text" id="sku" name="catalog_category[category_name]" value="<?php echo isset($catData) ? $catData->getCategoryName() : ''; ?>" >
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="catalog_category[category_name]" value="<?php echo isset($catData) ? $catData->getCategoryName() : ''; ?>" >
         </div>
     </div>
 
@@ -16,7 +16,7 @@
             <input type="radio" id="status_active" name="catalog_category[status]" value="1" <?php echo isset($catData) && $catData->getStatus() == 'Enable' ? 'checked' : ''; ?>>
             <label for="status_active" style="display: inline-block; margin-right: 10px;">Enable</label>
 
-            <input type="radio" id="status_inactive" name="catalog_category[status]" value="0" <?php echo isset($catData) && $catData->getStatus() == 'Disabel' ? 'checked' : ''; ?>>
+            <input type="radio" id="status_inactive" name="catalog_category[status]" value="0" <?php echo isset($catData) && $catData->getStatus() == 'Disable' ? 'checked' : ''; ?>>
             <label for="status_inactive" style="display: inline-block;">Disable</label>
         </div>
     </div>

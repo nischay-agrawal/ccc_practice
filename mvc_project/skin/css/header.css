@@ -12,6 +12,7 @@ body, h1, h2, h3, p, ul, li {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100vw;
   }
   
   /* Style the logo */

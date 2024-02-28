@@ -1,6 +1,7 @@
 <?php
 
-class Core_Model_DB_Adapter{
+class Core_Model_DB_Adapter
+{
 
 
     public $config = [
@@ -12,9 +13,10 @@ class Core_Model_DB_Adapter{
     public $connect = null;
 
 
-    public function connect() {
+    public function connect()
+    {
 
-        if(is_null($this->connect)){
+        if (is_null($this->connect)) {
 
             $this->connect = mysqli_connect(
                 $this->config["host"],
@@ -23,89 +25,95 @@ class Core_Model_DB_Adapter{
                 $this->config["db"]
             );
         }
-        return $this;
+        return $this->connect;
     }
 
-    public function fetchAll($query) {
+    public function fetchAll($query)
+    {
         
     }
 
-    public function fetchPairs($query) {
-        
+    public function fetchPairs($query)
+    {
+
     }
 
-    public function fetchOne($query) {
-        
+    public function fetchOne($query)
+    {
+
     }
 
-    public function fetchRow($query) {
+    public function fetchRow($query)
+    {
         $row = [];
         $this->connect();
-        $sql = mysqli_query($this->connect,$query);
-        while($_row = mysqli_fetch_assoc($sql))
-        {
-            $row=$_row;
+        $sql = mysqli_query($this->connect, $query);
+        while ($_row = mysqli_fetch_assoc($sql)) {
+            $row = $_row;
         }
         return $row;
     }
 
-    public function insert($query) {
-        $this->connect();
-        $sql = mysqli_query($this->connect,$query);
+    public function insert($query)
+    {
+        // $this->connect();
+        $sql = mysqli_query($this->connect(), $query);
         if ($sql) {
             echo "Data Update Succsessfully!";
-            return mysqli_insert_id($this->connect);
+            return mysqli_insert_id($this->connect());
         } else {
             return FALSE;
         }
     }
 
-    public function update($query) {
-       
+    public function update($query)
+    {
+
     }
 
-    public function delete($query) {
-        
+    public function delete($query)
+    {
+
     }
 
-    public function query($query) {
+    public function query($query)
+    {
         $this->connect();
-        $sql = mysqli_query($this->connect,$query);
+        $sql = mysqli_query($this->connect, $query);
     }
 
-
-    // --------------------------------------------
-
-    public function fetch_allData($result){
+    public function fetch_allData($result)
+    {
         $this->connect();
-        $sql = mysqli_query($this->connect,$result);
+        $sql = mysqli_query($this->connect, $result);
         $rows = [];
-        
+
         while ($row = $sql->fetch_assoc()) {
-            $this->rows[] = $row;
+            $rows[] = $row;
         }
 
         // print_r($this->rows);
-        return $this->rows;
+        return $rows;
 
         // $this->table($this->column,$this->rows);
     }
 
-    public function table($column,$rows){
+    public function table($column, $rows)
+    {
         echo "<table border=1>";
         echo "<tr>";
         foreach ($column as $col) {
-            echo "<th>".$col."</th>";
+            echo "<th>" . $col . "</th>";
         }
         echo "</tr>";
         foreach ($rows as $row) {
             echo "<tr>";
             foreach ($row as $val) {
-                echo "<td>".$val."</td>";
+                echo "<td>" . $val . "</td>";
             }
             echo "</tr>";
         }
-    
+
         echo "</table>";
     }
 }

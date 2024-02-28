@@ -83,7 +83,7 @@ class Core_Model_Request{
     }
 
     public function getUrl($path){
-        return "http://localhost/Practice/mvc_project/".$path;
+        return "http://localhost/practise/mvc_project/".$path;
     }
 
     public function redirect($url){

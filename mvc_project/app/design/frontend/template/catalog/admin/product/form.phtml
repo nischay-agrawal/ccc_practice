@@ -101,7 +101,7 @@ $catData = Mage::getModel('catalog/category')->getCollection();
             <input type="radio" id="status_active" name="catalog_product[status]" value="1" <?php echo isset($productData) && $productData->getStatus() == 'Enable' ? 'checked' : ''; ?>>
             <label for="status_active" style="display: inline-block; margin-right: 10px;">Enable</label>
 
-            <input type="radio" id="status_inactive" name="catalog_product[status]" value="0" <?php echo isset($productData) && $productData->getStatus() == 'Disabel' ? 'checked' : ''; ?>>
+            <input type="radio" id="status_inactive" name="catalog_product[status]" value="0" <?php echo isset($productData) && $productData->getStatus() == 'Disable' ? 'checked' : ''; ?>>
             <label for="status_inactive" style="display: inline-block;">Disable</label>
         </div>
     </div>
