@@ -1,4 +1,5 @@
 <?php
-class Catalog_Block_Admin_Product{
-        
+class Catalog_Block_Admin_Product
+{
+
 }

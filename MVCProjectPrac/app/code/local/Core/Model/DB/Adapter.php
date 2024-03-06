@@ -23,9 +23,9 @@ class Core_Model_DB_Adapter
     }
     public function fetchAll($query)
     {
-        $row=[];
+        $row = [];
         $result = $this->connect()->query($query);
-        while($_row = mysqli_fetch_assoc($result)){
+        while ($_row = mysqli_fetch_assoc($result)) {
             $row[] = $_row;
         }
         return $row;
@@ -68,9 +68,9 @@ class Core_Model_DB_Adapter
         // echo $query;
         // die;
         $result = mysqli_query($this->connect(), $query);
-        if($result){
+        if ($result) {
             echo '<script>alert("Data updated successfully")</script>';
-        }else{
+        } else {
             echo '<script>alert("Data not updated")</script>';
         }
     }
@@ -78,9 +78,9 @@ class Core_Model_DB_Adapter
     {
         // $this->connect();
         $result = mysqli_query($this->connect(), $query);
-        if($result){
+        if ($result) {
             echo '<script>alert("Data deleted successfully")</script>';
-        }else{
+        } else {
             echo '<script>alert("Data not deleted")</script>';
         }
     }

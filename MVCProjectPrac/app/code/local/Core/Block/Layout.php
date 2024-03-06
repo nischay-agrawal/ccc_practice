@@ -1,5 +1,6 @@
 <?php
-class Core_Block_Layout extends Core_Block_Template{
+class Core_Block_Layout extends Core_Block_Template
+{
     public function __construct()
     {
         $this->setTemplate('core/1column.phtml');
@@ -8,15 +9,15 @@ class Core_Block_Layout extends Core_Block_Template{
     }
     public function prepareChildren()
     {
-        $header=$this->createBlock('page/header');
+        $header = $this->createBlock('page/header');
         $this->addChild('header', $header);
-        $head=$this->createBlock('page/head');
+        $head = $this->createBlock('page/head');
         $this->addChild('head', $head);
-        $content=$this->createBlock('page/content');
+        $content = $this->createBlock('page/content');
         $this->addChild('content', $content);
-        $footer=$this->createBlock('page/footer');
+        $footer = $this->createBlock('page/footer');
         $this->addChild('footer', $footer);
-        $messages=$this->createBlock('core/template');
+        $messages = $this->createBlock('core/template');
         $messages->setTemplate('core/messages.phtml');
         $this->addChild('messages', $messages);
     }

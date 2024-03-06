@@ -1,0 +1,44 @@
+<?php   $converterModel =  Mage::getModel('currency/converter')->getCollection(); ?>
+<?php   $catModel =  Mage::getModel('currency/rate')->getCollection(); ?>
+
+<section class="list">
+<h2>List</h2>
+    <table border="1">
+        <tr>
+            <th>Id</th>
+            <th>User Name</th>
+            <th>Amount</th>
+            <th>Country</th>
+            <th>Current_Country</th>
+            <th>Result</th>
+            <th>Delete</th>
+        </tr>
+        <?php foreach ($converterModel->getData() as $converter): ?>
+            <!-- <tr> -->
+            <tr id="row_<?= $converter->getconverterId() ?>">
+                <td style="width:30px"><?= $converter->getconverterId() ?></td>
+                <td><?= $converter->getName() ?></td>
+                <td><?= $converter->getSku() ?></td>
+                <td>
+                <?php
+                    foreach ($catModel->getData() as $rate) {
+                        if ($rate->getrateId() ==  $converter->getrateId()) {
+                            $rateName = $rate->getrateName();
+                            break;
+                        }
+                    }
+                    echo $rateName;
+                ?>
+                </td>
+                <td><?= $converter->getStatus() ?></td>
+                <td><a href="http://localhost/practise/mvc_project/admin/currency_converter/form?id=<?= $converter->getconverterId() ?>">Edit</a></td>
+                <td><a href="http://localhost/practise/mvc_project/admin/currency_converter/delete?id=<?= $converter->getconverterId() ?>">Delete</a></td>
+            </tr>
+        <?php endforeach; ?>
+  </table>
+  
+</section>
+
+
+
+

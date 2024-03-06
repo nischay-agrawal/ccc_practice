@@ -1,6 +1,7 @@
 <?php
-class Core_Controller_Front_Action{
-    protected $_layout= null;
+class Core_Controller_Front_Action
+{
+    protected $_layout = null;
     public function __construct()
     {
         $layout = $this->getLayout();
@@ -10,8 +11,8 @@ class Core_Controller_Front_Action{
     }
     public function getLayout()
     {
-        if(is_null($this->_layout)){
-            $this->_layout=Mage::getBlock('core/layout');
+        if (is_null($this->_layout)) {
+            $this->_layout = Mage::getBlock('core/layout');
         }
         return $this->_layout;
     }

@@ -1,0 +1,67 @@
+<?php $converterData = $this->getconverterData(); 
+$catData = Mage::getModel('currency/rate')->getCollection();
+?>
+<form action="<?php echo Mage::getBaseUrl('admin/currency_converter/save')?>" method="POST" class="form">
+<input type="hidden" name="currency_converter[converter_id]" value="<?php echo isset($converterData) ? $converterData->getconverterId() : ''; ?>">
+
+<div class="form-row">
+        <div class="form-col">
+            <label for="user_name">user_name:</label>
+            <input type="text" id="user_name" name="currency_converter[user_name]" value="<?php echo isset($converterData) ? $converterData->getUserName() : ''; ?>" >
+        </div>
+        <div class="form-col">
+            <label for="amount">amount:</label>
+            <input type="text" id="amount" name="currency_converter[amount]" value="<?php echo isset($converterData) ? $converterData->getUserName() : ''; ?>" >
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-col">
+            <label for="currency_country">currency_Country</label>
+            <select id="country" name="currency_converter[country]">
+                <option value="">-----select-----</option>
+                <?php
+                foreach ($catData->getData() as $rate) {
+                    $rateId = $rate->getId();
+                    $rateCountry = $rate->getCountry();
+                    $selected = isset($converterData) && $converterData->getId() == $rateId ? 'selected' : '';
+                    
+                    echo "<option value=\"$rateId\" $selected>$rateCountry</option>";
+                }
+                ?>
+            </select>
+        </div>
+        <div class="form-col">
+            <label for="currency_country">currency_Country</label>
+            <select id="currency_country" name="currency_converter[currency_country]">
+                <option value="">-----select-----</option>
+                <?php
+                foreach ($catData->getData() as $rate) {
+                    $rateId = $rate->getId();
+                    $ratecurrency_Country = $rate->getcurrency_Country();
+                    $selected = isset($converterData) && $converterData->getId() == $rateId ? 'selected' : '';
+                    
+                    echo "<option value=\"$rateId\" $selected>$ratecurrency_Country</option>";
+                }
+                ?>
+            </select>
+        </div>
+    </div>
+    <div class="form-row">
+            <div class="form-col">
+                <label for="user_name">user_name:</label>
+                <input type="text" id="user_name" name="currency_converter[user_name]" value="<?php echo isset($converterData) ? $converterData->getUserName() : ''; ?>" >
+            </div>
+            <div class="form-col">
+                <label for="amount">amount:</label>
+                <input type="text" id="amount" name="currency_converter[amount]" value="<?php echo isset($converterData) ? $converterData->getUserName() : ''; ?>" >
+            </div>
+        </div>
+
+   
+
+<div>
+    <button type="submit" >
+        <?php echo ($converterData->getId() !== "") ? 'Update' : 'Submit'; ?>
+    </button >
+            </div>
+</form>

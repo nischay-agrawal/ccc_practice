@@ -12,9 +12,9 @@ class Core_Model_Request
 		$this->_actionName = isset($requestUri[2]) ? $requestUri[2] : "index";
 		// echo "<br>"."". $this->_moduleName ."". $this->_controllerName ."<br>";
 	}
-	public function getParams($key = '',$arg=null)
+	public function getParams($key = '', $arg = null)
 	{
-		return ($key == '')
+		return($key == '')
 			? $_REQUEST
 			: (isset($_REQUEST[$key])
 				? $_REQUEST[$key]
@@ -24,7 +24,7 @@ class Core_Model_Request
 
 	public function getPostData($key = '')
 	{
-		return ($key == '')
+		return($key == '')
 			? $_POST
 			: (isset($_POST[$key])
 				? $_POST[$key]
@@ -34,7 +34,7 @@ class Core_Model_Request
 
 	public function getQueryData($key = '')
 	{
-		return ($key == '')
+		return($key == '')
 			? $_GET
 			: (isset($_GET[$key])
 				? $_GET[$key]
@@ -54,18 +54,18 @@ class Core_Model_Request
 	// {
 	// 	$url = $_SERVER['REQUEST_URI'];
 	// 	$url = str_replace('/practise/MVCProjectPrac/', "", $url);
-		public function getRequestUri(){
-			$uri = $_SERVER['REQUEST_URI'];
-			$uri = str_replace("/practise/MVCProjectPrac/","",$uri);
-			if(str_contains($uri, '?'))
-			{
-				$pos = strpos($uri, '?');
-				$temp_uri = substr($uri,$pos);
-				$uri = str_replace($temp_uri,"",$uri);
-				return $uri;
-			}
+	public function getRequestUri()
+	{
+		$uri = $_SERVER['REQUEST_URI'];
+		$uri = str_replace("/practise/MVCProjectPrac/", "", $uri);
+		if (str_contains($uri, '?')) {
+			$pos = strpos($uri, '?');
+			$temp_uri = substr($uri, $pos);
+			$uri = str_replace($temp_uri, "", $uri);
 			return $uri;
 		}
+		return $uri;
+	}
 	// 	return $url;
 	// }
 
@@ -86,7 +86,7 @@ class Core_Model_Request
 		$this->_moduleName = ucwords($this->_moduleName);
 		$this->_controllerName = ucwords($this->_controllerName);
 
-		return ($this->_moduleName . "_Controller_" . $this->_controllerName . "");
+		return($this->_moduleName . "_Controller_" . $this->_controllerName . "");
 	}
 }
 
