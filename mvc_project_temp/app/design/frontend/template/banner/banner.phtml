@@ -1,0 +1,16 @@
+<?php  $bannerData= $this->getBannerData() ;
+    $currentBanner = '';
+    foreach ($bannerData->getData() as $bData) {
+       $currentBanner = $bData->getBannerImage();
+    }
+?>
+
+
+<div class="banner-container" style="background-image: url('<?php echo Mage::getBaseUrl('media/banner/'.$currentBanner) ?>');">
+    <div class="banner-overlay"></div>
+    <div class="banner-content">
+        <h1 class="banner-heading">This is Heading</h1>
+        <p class="banner-subheading">Banner Subheading</p>
+        <a href="#" class="btn-banner">Learn More</a>
+    </div>
+</div>

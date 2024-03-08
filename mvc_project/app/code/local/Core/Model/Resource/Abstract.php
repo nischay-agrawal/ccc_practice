@@ -38,7 +38,6 @@ class Core_Model_Resource_Abstract{
     public function save($product){
 
         $data = $product->getData();
-        print_r($product->getId());
         if($product->getId() !== ""){
             $updateQu = $this->updateData($product->getId(), $data);
             return $this->getAdapter()->query($updateQu);
@@ -64,6 +63,7 @@ class Core_Model_Resource_Abstract{
 
     public function delete($abstract){
         $sql = "DELETE FROM {$this->getTableName()} WHERE {$this->getPrimaryKey()} = {$abstract->getId()}";
+
         return $this->getAdapter()->query($sql);
     }
 

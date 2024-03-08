@@ -1,0 +1,8 @@
+<?php $this->getDataText() ?>
+<ul class = "adheader">
+  <li><a class="active" href="<?php echo Mage::getBaseUrl('page/index/index')?>">User Home</a></li>
+  <?php if($this->text !== '') :?>
+  <li><a href="<?php echo $this->link ?>"><?php echo $this->text ?></a></li>
+  <?php endif ;?>
+</ul>
+

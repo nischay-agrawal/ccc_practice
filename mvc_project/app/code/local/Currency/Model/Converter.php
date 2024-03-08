@@ -8,4 +8,5 @@ class Currency_Model_Converter extends Core_Model_Abstract
         $this->_collectionClass = "Currency_Model_Resource_Collection_Converter";
     }
 
+    
 }

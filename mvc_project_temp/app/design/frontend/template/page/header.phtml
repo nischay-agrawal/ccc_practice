@@ -1,0 +1,42 @@
+<?php $this->logInOutText();
+$categoryData = $this->getCategoryData();
+$cartCount = sizeof($this->getItemData()->getData());
+?>
+<header class="header">
+    <a href="https://jinil09.github.io/MyPortfolio/" class="logo"><img
+            src="<?php echo Mage::getBaseUrl('skin/img/logo.png') ?>" alt="Hello"></a>
+
+    <nav class="navbar">
+        <ul>
+            <li><a href="<?php echo Mage::getBaseUrl('page/index/index') ?>">Home</a></li>
+            <li><a href="<?php echo Mage::getBaseUrl('customer/account/dashboard') ?>">DashBoard</a></li>
+            <li><a href="<?php echo Mage::getBaseUrl('admin/user') ?>">Admin Panel</a></li>
+            <li class="category-dropdown">
+                <a href="#" class="dropdown-toggle">Categories</a>
+                <div class="category-dropdown-content">
+                    <?php foreach ($categoryData->getData() as $category): ?>
+                        <a href="<?php echo Mage::getBaseUrl('catalog/category/view?id=' . $category->getCategoryId()) ?>">
+                            <?php echo $category->getCategoryName() ?>
+                        </a>
+                    <?php endforeach; ?>
+                </div>
+            </li>
+            <li>
+                <a href="<?php echo Mage::getBaseUrl('cart/checkout/view') ?>" class="cart-button">
+                    <!-- <i class="fa fa-shopping-cart"></i>
+                    Cart (<?php echo $cartCount; ?>) -->
+                    <div class="cart-icon-container">
+                        <i class="fas fa-shopping-cart"></i>
+                        Cart
+                        <span class="cart-item-count">
+                            <?php echo $cartCount ; ?>
+                        </span>
+                    </div>
+                </a>
+            </li>
+            <li><a href="<?php echo $this->link; ?>" class="login-button">
+                    <?php echo $this->logInOutText(); ?>
+                </a></li>
+        </ul>
+    </nav>
+</header>

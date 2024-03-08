@@ -1,0 +1,33 @@
+<?php
+$userData = $this->getUserData();
+?>
+
+<section class="list">
+    <h2>User List</h2>
+
+    <table border="1">
+        <tr>
+            <th>Id</th>
+            <th>User Name</th>
+            <th>Amount</th>
+            <th>Result</th>
+        </tr>
+        <?php foreach ($userData->getData() as $user): ?>
+            <tr>
+                <td>
+                    <?= $user->getId() ?>
+                </td>
+                <td>
+                    <?= $user->getUserName() ?>
+                </td>
+                <td>
+                    <?= $user->getAmount() ?>
+                </td>
+                <td>
+                    <?= $user->getResult() ?>
+                </td>
+
+            </tr>
+        <?php endforeach; ?>
+    </table>
+</section>

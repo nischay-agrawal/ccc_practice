@@ -1,0 +1,49 @@
+<?php $productData = $this->getProductData(); ?>
+
+<div class="product-container">
+    <div class="product-images">
+        <img src="<?php echo Mage::getBaseUrl('media/product/'.$productData->getImageLink())?>" alt="Product Image 1" class="product-image">
+        <!-- Add more images as needed -->
+    </div>
+
+    <div class="product-details">
+        <h1 class="product-name">
+            <?php echo $productData->getName() ?>
+        </h1>
+        <p class="product-price">
+            <?php echo $productData->getPrice() ?>
+        </p>
+        <p class="product-description">
+            <?php echo $productData->getDescription() ?>
+        </p>
+
+        <div class="product-quantity">
+            <form action="<?php echo Mage::getBaseUrl('sales/quote/add')?>" method="post">
+                <input type="hidden" name="product_id" value="<?php echo isset($productData) ? $productData->getProductId() : ''; ?>">
+                <label for="quantity" class="quantity-label">Quantity:</label>
+                <input type="number" id="quantity" name="quantity" class="quantity-input" value="1" min="1">
+                <!-- <div class="quantity-controls">
+                    <button class="quantity-btn" onclick="decrementQuantity()">-</button>
+                    <button class="quantity-btn" onclick="incrementQuantity()">+</button>
+                </div> -->
+
+                <input type="submit" value="submit" class="add-to-cart-btn">
+
+            </form>
+        </div>
+
+
+    </div>
+
+    <script>
+        function incrementQuantity() {
+            var quantityInput = document.getElementById('quantity');
+            quantityInput.stepUp();
+        }
+
+        function decrementQuantity() {
+            var quantityInput = document.getElementById('quantity');
+            quantityInput.stepDown();
+        }
+        
+    </script>

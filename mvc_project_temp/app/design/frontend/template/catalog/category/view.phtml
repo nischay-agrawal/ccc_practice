@@ -1,0 +1,20 @@
+<?php  $productData = $this->getProductData() ?>
+
+<div class="product-card-container">
+    <?php foreach ($productData->getData() as $product) :?>
+    <a href = "<?php echo Mage::getBaseUrl('catalog/product/view?id='.$product->getProductId())?>">
+    <div class="product-card">
+        <img src="<?php echo Mage::getBaseUrl('media/product/'.$product->getImageLink())?>" alt="Product Image 1" class="product-image">
+        <div class="product-details">
+            <h3 class="product-name">
+                <?php echo $product->getName()?>
+            </h3>
+            <p class="product-price">
+                <?php echo $product->getPrice()?>
+            </p>
+            <a href="#" class="add-to-cart-btn">Add to Cart</a>
+        </div>
+    </div>
+    </a>
+    <?php endforeach ;?>
+</div>

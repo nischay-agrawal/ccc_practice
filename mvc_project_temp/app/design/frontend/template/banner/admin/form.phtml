@@ -1,0 +1,27 @@
+<?php  $bannerData = $this->getBannerData();
+?>
+
+<div class="form-container">
+    <form action="<?php echo Mage::getBaseUrl('admin/banner/save') ?>" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="banner[banner_id]" value="<?php echo isset($bannerData) ? $bannerData->getId() : ''; ?>">
+
+        <?php if ($bannerData->getId() !== ''): ?>
+            <label for="currentImage">Current Image:</label>
+            <img src="<?php echo Mage::getBaseUrl('media/banner/' . $bannerData->getBannerImage()) ?>" alt="Current Image" class="imgEditForm">
+        <?php endif; ?>
+
+        <label for="photoname">Banner Photo:</label>
+        <input type="file" name="banner[banner_image]" required>
+
+        <label for="status">Status:</label>
+        <select name="banner[status]" required>
+            <option value="1" <?php echo ($bannerData->getStatus() == 1) ? 'selected' : ''; ?>>Active</option>
+            <option value="0" <?php echo ($bannerData->getStatus() == 0) ? 'selected' : ''; ?>>Inactive</option>
+        </select>
+
+        <label for="show_on">Show On:</label>
+        <input type="text" name="banner[show_on]" value="<?php echo isset($bannerData) ? $bannerData->getShowOn() : ''; ?>" required>
+
+        <input type="submit" value="Submit">
+    </form>
+</div>

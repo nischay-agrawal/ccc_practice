@@ -1,0 +1,134 @@
+header.navbar {
+  height: 100%;
+  background: linear-gradient(135deg, #3498db, #6c5ce7);
+  background-size: 200% 200%;
+  animation: gradientAnimation 5s infinite alternate-reverse;
+  width: 250px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+  border-top-right-radius: 20px; 
+  border-bottom-right-radius: 20px; 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+@keyframes gradientAnimation {
+  0% {
+      background-position: 0% 0%;
+  }
+  100% {
+      background-position: 100% 100%;
+  }
+}
+
+header.navbar {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+}
+
+header.navbar .logo {
+  font-size: 2em;
+  font-family: 'Montserrat', sans-serif; /* Use Montserrat font */
+  font-weight: 700; /* Bold */
+  color: #fff;
+  text-align: center;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Add text shadow */
+  transform-origin: center bottom; /* Set transform origin to center bottom */
+  transition: transform 0.3s ease, text-shadow 0.3s ease; /* Add transition for transform and text-shadow */
+}
+
+header.navbar .logo:hover {
+  color: #ff0;
+  transform: scale(1.1) rotate(2deg); /* Apply scale and rotation on hover */
+  text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.3); /* Modify text shadow on hover */
+}
+
+header.navbar .nav-links {
+  list-style-type: none;
+}
+
+header.navbar a {
+  display: block;
+  padding: 15px;
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 2px solid transparent; /* Add a transparent border */
+  transition: background-color 0.3s ease, transform 0.3s ease, border-color 0.3s ease; /* Add transition for border-color */
+}
+
+header.navbar a:hover {
+  color: #ff0;
+  background-color: #4a69bd;
+  /* transform: scale(1.05); */
+  border-color: #fff; /* Change border color on hover */
+}
+
+header.navbar a:focus {
+  background-color: #4a69bd;
+  outline: none;
+  border-color: #fff; /* Change border color on focus */
+}
+
+/* Active link style */
+header.navbar a.active {
+  background-color: #3b5998;
+  border-color: #fff; /* Change border color for active link */
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+  header.navbar {
+      width: 100%;
+  }
+
+  header.navbar .logo {
+      margin: 0;
+      text-align: center;
+  }
+}
+
+
+
+
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  /* background: linear-gradient(to right, rgba(255, 255, 255, 0), #ccc);  */
+  position: sticky;
+  top: 0;
+  width: 100%;
+  margin-bottom: 4rem;
+  /* border-bottom: 1px solid #999; */
+}
+
+li {
+  float: right;
+}
+
+li a {
+  display: block;
+  color: #333; /* Change text color to dark for better contrast */
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 14px;
+  background-color: #ff0;
+}
+
+
+li a:hover:not(.active) {
+  color: black; /* Change to yellow */
+  font-weight: 900;
+ 
+}
+
+.active {
+  background-color: #fca31b; /* Change to a different shade of yellow for active state */
+  color: white; /* Change text color for better visibility */
+}

@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&display=swap');
+
+
+*{
+    font-family: 'Poppins' , sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all 0.2s linear;
+    text-decoration: none;
+
+}
+
+html{
+    font-size: 80%;
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+.mainCont {
+    display: flex;
+    flex-direction: column;
+    /* gap: 20px; */
+}
+
+.left2 {
+    width: 250px; /* Adjust the width as needed */
+    position: fixed;
+    height: 100%;
+    /* background-color: #333; */
+    color: #fff;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.container_content {
+    flex: 1;
+    margin-left: 250px; /* Match the width of the left2 section */
+    /* padding: 20px; */
+    box-sizing: border-box;
+}
+
+/* Add styles for the horizontal navbar in the left2 section */

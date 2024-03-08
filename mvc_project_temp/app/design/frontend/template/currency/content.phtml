@@ -1,0 +1,27 @@
+<?php  $countryData = $this->getCountryData(); ?>
+<?php  $tocountryData = $this->getToCountryData(); ?>
+
+<form method="post" action="<?php echo Mage::getBaseUrl('currency/index/save')?>">
+    <label for="userName">User Name:</label>
+    <input type="text" id="userName" name="currency_converter[user_name]" required><br>
+
+    <label for="amount">Amount:</label>
+    <input type="number" id="amount" name="currency_converter[amount]" step="any"><br>
+
+    <label for="fromCountry">From Country:</label>
+    <select id="fromCountry" name="currency_converter[country]" required>
+        <?php foreach ($countryData->getData() as $country) :?>
+        <option value="<?php echo $country->getRate()?>"> <?php echo $country->getCounty()?> </option>
+        <?php endforeach; ?>
+    </select><br>
+
+    <label for="toCountry">To Country:</label>
+    <select id="toCountry" name="currency_converter[currency_country]" required>
+         <?php foreach ($tocountryData->getData() as $country) :?>
+         <option value="<?php echo $country->getRate()?>"> <?php echo $country->getCounty()?> </option>
+         <?php endforeach; ?>
+    </select><br>
+
+    <input type="submit" value="submit">
+
+</form>

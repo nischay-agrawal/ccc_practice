@@ -1,0 +1,16 @@
+<?php $this->logInOutText();?>
+
+<header class="navbar">
+    <div class="logo">
+        <!-- <img src="logo.png" alt="Logo"> -->
+        <span>Admin Panel</span>
+    </div>
+    <nav class="nav-links">
+        <a href="<?php echo Mage::getBaseUrl('admin/user/index') ?>">Home</a>
+        <a href="<?php echo Mage::getBaseUrl('admin/catalog_product/list') ?>">Product</a>
+        <a href="<?php echo Mage::getBaseUrl('admin/catalog_category/list') ?>">Category</a>
+        <a href="<?php echo Mage::getBaseUrl('admin/banner/list') ?>">Banner</a>
+        <a href="#">Settings</a>
+        <a href="<?php echo $this->link;?>"><?php  echo $this->logInOutText(); ?></a>
+    </nav>
+</header>

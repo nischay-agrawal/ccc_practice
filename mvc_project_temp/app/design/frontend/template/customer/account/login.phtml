@@ -1,0 +1,18 @@
+<div class="login-container">
+    <h2>Login</h2>
+    
+    <form action="<?php echo Mage::getBaseUrl('customer/account/login') ?>" method="post">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="login[email]" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="login[password]" required>
+
+        <button type="submit">Login</button>
+    </form>
+
+    <p>Forgot your password? <a href="<?php echo $this->getRequest()->getUrl('customer/account/forgotpassword') ?>">Reset it here</a>.</p>
+    
+    <!-- New user registration link -->
+    <p>Don't have an account? <a href="<?php echo $this->getRequest()->getUrl('customer/account/register') ?>">Create one here</a>.</p>
+</div>

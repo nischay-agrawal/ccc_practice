@@ -1,0 +1,105 @@
+<div class="form-container">
+    <h2>Create an Account</h2>
+    
+    <form action="<?php echo Mage::getBaseUrl('customer/account/save') ?>" method="post" class="form">
+
+        <!-- Customer fields -->
+        <input type="hidden" name="customer[customer_id]" value="<?php echo isset($customerData) ? $customerData->getCustomerId() : ''; ?>">
+
+        <div class="form-row">
+            <div class="form-col">
+                <label for="first_name">First Name:</label>
+                <input type="text" id="first_name" name="customer[first_name]" value="<?php echo isset($customerData) ? $customerData->getFirstName() : ''; ?>" placeholder="Enter First Name" required>
+            </div>
+            <div class="form-col">
+                <label for="last_name">Last Name:</label>
+                <input type="text" id="last_name" name="customer[last_name]" value="<?php echo isset($customerData) ? $customerData->getLastName() : ''; ?>" placeholder="Enter Last Name" required>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-col">
+                <label for="customer_email">Email:</label>
+                <input type="email" id="customer_email" name="customer[customer_email]" value="<?php echo isset($customerData) ? $customerData->getCustomerEmail() : ''; ?>" placeholder="Enter Email" required>
+            </div>
+        </div>
+<hr style="margin-bottom: 2rem">
+        <div class="form-row">
+            <div class="form-col">
+                <label for="billing_address">Billing Address:</label>
+                <input type="text" id="billing_address" name="customer[billing_address]" value="<?php echo isset($customerData) ? $customerData->getBillingAddress() : ''; ?>" placeholder="Enter Billing Address" required>
+            </div>
+            <div class="form-col">
+                <label for="billing_city">Billing City:</label>
+                <input type="text" id="billing_city" name="customer[billing_city]" value="<?php echo isset($customerData) ? $customerData->getBillingCity() : ''; ?>" placeholder="Enter Billing City" required>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-col">
+                <label for="billing_region">Billing Region:</label>
+                <input type="text" id="billing_region" name="customer[billing_region]" value="<?php echo isset($customerData) ? $customerData->getBillingRegion() : ''; ?>" placeholder="Enter Billing Region" required>
+            </div>
+            <div class="form-col">
+                <label for="billing_country">Billing Country:</label>
+                <input type="text" id="billing_country" name="customer[billing_country]" value="<?php echo isset($customerData) ? $customerData->getBillingCountry() : ''; ?>" placeholder="Enter Billing Country" required>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-col">
+                <label for="billing_phone">Billing Phone:</label>
+                <input type="text" id="billing_phone" name="customer[billing_phone]" value="<?php echo isset($customerData) ? $customerData->getBillingPhone() : ''; ?>" placeholder="Enter Billing Phone" required>
+            </div>
+        </div>
+
+<hr style="margin-bottom: 2rem">
+
+        <div class="form-row">
+            <div class="form-col">
+                <label for="shipping_address">Shipping Address:</label>
+                <input type="text" id="shipping_address" name="customer[shipping_address]" value="<?php echo isset($customerData) ? $customerData->getShippingAddress() : ''; ?>" placeholder="Enter Shipping Address" required>
+            </div>
+            <div class="form-col">
+                <label for="shipping_city">Shipping City:</label>
+                <input type="text" id="shipping_city" name="customer[shipping_city]" value="<?php echo isset($customerData) ? $customerData->getShippingCity() : ''; ?>" placeholder="Enter Shipping City" required>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-col">
+                <label for="shipping_region">Shipping Region:</label>
+                <input type="text" id="shipping_region" name="customer[shipping_region]" value="<?php echo isset($customerData) ? $customerData->getShippingRegion() : ''; ?>" placeholder="Enter Shipping Region" required>
+            </div>
+            <div class="form-col">
+                <label for="shipping_country">Shipping Country:</label>
+                <input type="text" id="shipping_country" name="customer[shipping_country]" value="<?php echo isset($customerData) ? $customerData->getShippingCountry() : ''; ?>" placeholder="Enter Shipping Country" required>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-col">
+                <label for="shipping_phone">Shipping Phone:</label>
+                <input type="text" id="shipping_phone" name="customer[shipping_phone]" value="<?php echo isset($customerData) ? $customerData->getShippingPhone() : ''; ?>" placeholder="Enter Shipping Phone" required>
+            </div>
+        </div>
+
+<hr style="margin-bottom: 2rem">
+
+
+        <div class="form-row">
+            <div class="form-col">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="customer[password]" placeholder="Enter Password" required>
+            </div>
+            <div class="form-col">
+                <label for="confirm_password">Confirm Password:</label>
+                <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required>
+            </div>
+        </div>
+
+        <button type="submit">Create Account</button>
+    </form>
+
+    <p>Already have an account? <a href="<?php echo Mage::getBaseUrl('customer/account/login') ?>">Login here</a>.</p>
+</div>

@@ -1,0 +1,13 @@
+<?php $bannerData = $this->getBannerData(); ?>
+<h2 class="h2listt">List of Uploaded Images</h2>
+
+<div class="image-container">
+    <?php foreach ($bannerData->getData() as $banner): ?>
+        <div class="image-card" style="background-image: url('<?php echo Mage::getBaseUrl('media/banner/' . $banner->getBannerImage()) ?>')">
+            <div class="actions">
+                <a href="<?php echo Mage::getBaseUrl('admin/banner/form?id='.$banner->getBannerId())?>">Edit</a>
+                <a href="<?php echo Mage::getBaseUrl('admin/banner/delete?id='.$banner->getBannerId())?>">Delete</a>
+            </div>
+        </div>
+    <?php endforeach; ?>
+</div>

@@ -1,0 +1,27 @@
+<?php   $listModel = $this->getCategoryData();?>
+
+<section class="list">
+<h2>Category List</h2>
+    <table border="1">
+        <tr>
+            <th>Category Id</th>
+            <th>Category Name</th>
+            <th>Status</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        <?php foreach ($listModel->getData() as $category): ?>
+            <tr>
+                <td style="width:30px"><?= $category->getCategoryId() ?></td>
+                <td><?= $category->getCategoryName() ?></td>
+                <td><?= $category->getStatus() ?></td>
+                <td><a href="<?php echo Mage::getBaseUrl('admin/catalog_category/form?id='. $category->getCategoryId()) ?>"  >Edit</a></td>
+                <td><a href="<?php echo Mage::getBaseUrl('admin/catalog_category/delete?id='. $category->getCategoryId()) ?>"  >Delete</a></td>
+            </tr>
+        <?php endforeach; ?>
+  </table>
+</section>
+
+
+
+

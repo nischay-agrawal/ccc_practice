@@ -1,0 +1,21 @@
+<?php $customerData = $this->getCustomer(); ?>
+
+<div class="dashboard">
+    <div class="user-info">
+      <h2>User Information</h2>
+      <p><strong>Customer ID:</strong> <span id="customer-id"><?php echo $customerData->getCustomerId(); ?></span></p>
+      <p><strong>Email:</strong> <span id="customer-email"><?php echo $customerData->getCustomerEmail(); ?></span></p>
+      <p><strong>Name:</strong> <span id="first-name"><?php echo $customerData->getFirstName(); ?></span> <span id="last-name"><?php echo $customerData->getLastName(); ?></span></p>
+      <p><strong>Billing Address:</strong> <span id="billing-address"><?php echo $customerData->getBillingAddress(); ?></span></p>
+      <p><strong>Billing City/Region/Country:</strong> <span id="billing-city"><?php echo $customerData->getBillingCity(); ?></span>, <span id="billing-region"><?php echo $customerData->getBillingRegion(); ?></span>, <span id="billing-country"><?php echo $customerData->getBillingCountry(); ?></span></p>
+      <p><strong>Billing Phone:</strong> <span id="billing-phone"><?php echo $customerData->getBillingPhone(); ?></span></p>
+    </div>
+    
+    <div class="shipping-info">
+      <h2>Shipping Information</h2>
+      <p><strong>Shipping Address:</strong> <span id="shipping-address"><?php echo $customerData->getShippingAddress(); ?></span></p>
+      <p><strong>Shipping City/Region/Country:</strong> <span id="shipping-city"><?php echo $customerData->getShippingCity(); ?></span>, <span id="shipping-region"><?php echo $customerData->getShippingRegion(); ?></span>, <span id="shipping-country"><?php echo $customerData->getShippingCountry(); ?></span></p>
+      <p><strong>Shipping Phone:</strong> <span id="shipping-phone"><?php echo $customerData->getShippingPhone(); ?></span></p>
+      <p><strong>Default:</strong> <span id="default"><?php echo $customerData->getDefault(); ?></span></p>
+    </div>
+</div>

@@ -1,0 +1,60 @@
+<?php $itemData = $this->getItemData();
+$checkItemData = $this->checkCart();
+$quoteId = $this->getItemData()->getFirstItem();
+$totalQty = 0;
+?>
+
+<div class="cart-container">
+    <h1>Your Shopping Cart</h1>
+
+    <?php if (empty($checkItemData)) : ?>
+        <p>Your Cart is feeling empty. Please add some goods.</p>
+    <?php else: ?>
+    <div class="cart-items">
+
+        <?php foreach ($itemData->getData() as $item): ?>
+            <div class="cart-item">
+                <img src="<?php echo Mage::getBaseUrl('media/product/') . $this->getProduct($item->getProductId())->getImageLink() ?>"
+                    alt="Product 1">
+                <div class="item-details">
+                    <h3>
+                        <?php echo $this->getProduct($item->getProductId())->getName() ?>
+                    </h3>
+                    <p>Price:
+                        <?php echo $item->getPrice(); ?>
+                    </p>
+                    <div class="quantity-section">
+                        <form action="<?php echo Mage::getBaseUrl('sales/quote/update') ?>" method="post">
+                            <input type="hidden" name="item_id" value="<?php echo $item->getItemId(); ?>">
+                            <label for="new_qty">Quantity:</label>
+                            <input type="number" name="new_qty" value="<?php echo $item->getQty() ?>" min="1">
+                            <input type="submit" value="Update">
+                        </form>
+                    </div>
+                    <p>Total Cost: $
+                        <?php echo $item->getQty() * $item->getPrice(); ?>
+                    </p>
+                    <button class="remove-item"><a
+                            href="<?php echo Mage::getBaseUrl('sales/quote/delete?id=' . $item->getItemId()) ?>">Remove</a></button>
+                </div>
+            </div>
+            <?php 
+            $totalQty += $item->getQty(); ?>
+        <?php endforeach; ?>
+
+    </div>
+    <hr>
+    <div class="cart-summary">
+        <p>Total Items: <span id="total-items">
+                <?php echo sizeof($this->getItemData()->getData()) ?>
+            </span></p>
+        <p>Total Quantity: <span id="total-quantity">
+                <?php echo $totalQty ?>
+            </span></p>
+        <p>Total Price: $<span id="total-price">
+                <?php echo $this->getQuoteData($quoteId->getQuoteId())->getGrandTotal(); ?>
+            </span></p>
+        <button class="checkout-btn">Checkout</button>
+    </div>
+    <?php endif; ?>
+</div>

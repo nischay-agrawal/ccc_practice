@@ -1,12 +1,13 @@
-<?php   $converterModel =  Mage::getModel('currency/converter')->getCollection(); ?>
-<?php   $catModel =  Mage::getModel('currency/rate')->getCollection(); ?>
+<?php $converterModel = Mage::getModel('currency/converter')->getCollection(); ?>
+<?php $catModel = Mage::getModel('currency/rate')->getCollection(); ?>
+<?php $currModel = Mage::getModel('currency/rate')->getCollection(); ?>
 
 <section class="list">
-<h2>List</h2>
+    <h2>List</h2>
     <table border="1">
         <tr>
             <th>Id</th>
-            <th>User Name</th>
+            <!-- <th>User Name</th> -->
             <th>Amount</th>
             <th>Country</th>
             <th>Current_Country</th>
@@ -15,30 +16,62 @@
         </tr>
         <?php foreach ($converterModel->getData() as $converter): ?>
             <!-- <tr> -->
-            <tr id="row_<?= $converter->getconverterId() ?>">
-                <td style="width:30px"><?= $converter->getconverterId() ?></td>
-                <td><?= $converter->getName() ?></td>
-                <td><?= $converter->getSku() ?></td>
+            <tr id="row_<?= $converter->getId() ?>">
+                <td style="width:30px">
+                    <?= $converter->getId() ?>
+                </td>
+                <!-- <td>
+                    <?= $converter->getUserName() ?>
+                </td> -->
                 <td>
-                <?php
+                    <?= $converter->getAmount() ?>
+                </td>
+                <td>
+                    <?php
                     foreach ($catModel->getData() as $rate) {
-                        if ($rate->getrateId() ==  $converter->getrateId()) {
-                            $rateName = $rate->getrateName();
+                        if ($rate->getId() == $converter->getCountry()) {
+                            $country = $rate->getCountry();
                             break;
                         }
                     }
-                    echo $rateName;
-                ?>
+                    echo $country;
+                    ?>
                 </td>
-                <td><?= $converter->getStatus() ?></td>
-                <td><a href="http://localhost/practise/mvc_project/admin/currency_converter/form?id=<?= $converter->getconverterId() ?>">Edit</a></td>
-                <td><a href="http://localhost/practise/mvc_project/admin/currency_converter/delete?id=<?= $converter->getconverterId() ?>">Delete</a></td>
+                <td>
+                    <?php
+                    foreach ($currModel->getData() as $rate) {
+                        if ($rate->getId() == $converter->getCurrencyCountry()) {
+                            $country = $rate->getCountry();
+                            break;
+                        }
+                    }
+                    echo $country;
+                    ?>
+                </td>
+                <td> <?php 
+                    foreach ($catModel->getData() as $rate) {
+                        if ($rate->getId() == $converter->getCountry()) {
+                            $conv = $rate->getRate();
+                            break;
+                        }
+                    }
+                    foreach ($currModel->getData() as $rate) {
+                        if ($rate->getId() == $converter->getCurrencyCountry()) {
+                            $curConv = $rate->getRate();
+                            break;
+                        }
+                    }
+                    // echo $conv; 
+                    // echo $curConv; 
+                    echo (($converter->getAmount())/$conv * $curConv);
+
+                    ?>
+                </td>
+                <td><a
+                        href="http://localhost/practise/mvc_project/admin/currency_converter/delete?id=<?= $converter->getId() ?>">Delete</a>
+                </td>
             </tr>
         <?php endforeach; ?>
-  </table>
-  
+    </table>
+
 </section>
-
-
-
-

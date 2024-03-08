@@ -1,0 +1,97 @@
+<?php
+
+$productModel = $this->getProductData();
+$perPage = isset($_GET['per_page']) ? (int) $_GET['per_page'] : 5;
+$page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
+$totalRows = count($productModel->getData());
+$totalPages = ceil($totalRows / $perPage);
+$page = max(1, min($page, $totalPages));
+$offset = ($page - 1) * $perPage;
+$currentPageData = array_slice($productModel->getData(), $offset, min($perPage, $totalRows - $offset), true);
+if (empty($currentPageData) && $page > 1) {
+    header('Location: ?page=' . ($page - 1) . '&per_page=' . $perPage);
+}
+?>
+
+<section class="list">
+    <h2>Product List</h2>
+
+    <label for="per_page">Rows per page:</label>
+    <select id="per_page" name="per_page" onchange="changeRowsPerPage(this)">
+        <option value="5" <?= ($perPage == 5) ? 'selected' : '' ?>>5</option>
+        <option value="10" <?= ($perPage == 10) ? 'selected' : '' ?>>10</option>
+        <option value="15" <?= ($perPage == 15) ? 'selected' : '' ?>>15</option>
+    </select>
+
+    <table border="1">
+        <tr>
+            <th>Product Id</th>
+            <th>Product Name</th>
+            <th>SKU</th>
+            <th>Image</th>
+            <th>Category</th>
+            <th>Status</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        <?php foreach ($currentPageData as $product): ?>
+            <tr id="row_<?= $product->getProductId() ?>">
+                <td>
+                    <?= $product->getProductId() ?>
+                </td>
+                <td>
+                    <?= $product->getName() ?>
+                </td>
+                <td>
+                    <?= $product->getSku() ?>
+                </td>
+                <td class="productListImg">
+                    <img src="<?= Mage::getBaseUrl('media/product/' . $product->getImageLink()) ?>" alt="Image">
+                </td>
+                <td>
+                    <?= $this->getCategoryIdByName($product->getCategoryId()) ?>
+                </td>
+                <td>
+                    <?= $product->getStatus() ?>
+                </td>
+                <td>
+                    <a href="<?= Mage::getBaseUrl('admin/catalog_product/form?id=' . $product->getProductId()) ?>"
+                        class="edit-link">Edit</a>
+                </td>
+                <td>
+                    <a href="<?= Mage::getBaseUrl('admin/catalog_product/delete?id=' . $product->getProductId()) ?>"
+                        class="delete-link">Delete</a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+
+    <div class="pagination">
+        <?php
+        $showEllipsis = true;
+        for ($i = 1; $i <= $totalPages; $i++):
+            if ($i == $page || $i == 1 || $i == $totalPages || ($i >= $page - 2 && $i <= $page + 2)) :
+                ?>
+                <a href="?page=<?= $i ?>&per_page=<?= $perPage ?>" <?= ($i == $page) ? 'class="active"' : '' ?>>
+                    <?= $i ?>
+                </a>
+                <?php
+                $showEllipsis = true;
+            elseif ($showEllipsis):
+                ?>
+                <span>. . .</span>
+                <?php
+                $showEllipsis = false;
+            endif;
+        endfor;
+        ?>
+    </div>
+</section>
+
+<script>
+
+    function changeRowsPerPage(select) {
+        var perPage = select.value;
+        window.location.href = '?page=1&per_page=' + perPage;
+    }
+</script>
