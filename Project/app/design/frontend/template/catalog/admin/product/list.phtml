@@ -1,0 +1,42 @@
+<div class="list">
+    <h2>Product List</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>SKU</th>
+                <th>Status</th>
+                <th>Category</th>
+                <th>Color</th>
+                <th colspan="2">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($this->getProductList() as $_product): ?>
+                <tr>
+                    <td>
+                        <?php echo $_product->getName() ?>
+                    </td>
+                    <td>
+                        <?php echo $_product->getSku() ?>
+                    </td>
+                    <td>
+                        <?php echo $_product->getStatus() ?>
+                    </td>
+                    <td>
+                        <?php echo $_product->getCategoryName() ?>
+                    </td>
+                    <td>
+                        <?php echo $_product->getColor() ?>
+                    </td>
+                    <td><a
+                            href="<?php echo $this->getUrl("admin/catalog_product/delete?product_id={$_product->getId()}") ?>">Delete</a>
+                    </td>
+                    <td><a
+                            href="<?php echo $this->getUrl("admin/catalog_product/form?product_id={$_product->getId()}") ?>">Update</a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>

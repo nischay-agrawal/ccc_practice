@@ -1,0 +1,20 @@
+.product-card {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px;
+    width: 300px;
+    text-align: center;
+    display: inline-block;
+    vertical-align: top;
+}
+
+/* Style for the product image */
+.product-image {
+    width: 100%;
+    height: auto;
+}
+
+/* Style for the AddToCart form */
+.add-to-cart-form {
+    margin-top: 10px;
+}

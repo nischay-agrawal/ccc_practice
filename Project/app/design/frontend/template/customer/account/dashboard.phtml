@@ -1,0 +1,53 @@
+<?php 
+    $customerDetails = $this->getCustomerDetails();
+
+?>
+<div class="container">
+    <header>
+        <h2>Customer Dashboard</h2>
+    </header>
+    
+    <div class="row">
+        <div class="column personal-info">
+            <h4>Personal Information</h4>
+            <ul class="info-list">
+                <li><strong>Customer ID:</strong> <span id="customer-id"><?php echo $customerDetails->getCustomerId() ?></span></li>
+                <li><strong>Email:</strong> <span id="customer-email"><?php echo $customerDetails->getCustomerEmail() ?></span></li>
+                <li><strong>First Name:</strong> <span id="first-name"><?php echo $customerDetails->getFirstName() ?></span></li>
+                <li><strong>Last Name:</strong> <span id="last-name"><?php echo $customerDetails->getLastName() ?></span></li>
+                <li><strong>Password:</strong> <span id="password"><?php echo $customerDetails->getPassword() ?></span></li>
+            </ul>
+        </div>
+
+        <div class="column billing-info">
+            <h4>Billing Information</h4>
+            <ul class="info-list">
+                <li><strong>Address:</strong> <span id="billing-address"><?php echo $customerDetails->getBillingAddress() ?></span></li>
+                <li><strong>City:</strong> <span id="billing-city"><?php echo $customerDetails->getBillingCity() ?></span></li>
+                <li><strong>Region:</strong> <span id="billing-region"><?php echo $customerDetails->getBillingRegion() ?></span></li>
+                <li><strong>Country:</strong> <span id="billing-country"><?php echo $customerDetails->getBillingCountry() ?></span></li>
+                <li><strong>Phone:</strong> <span id="billing-phone"><?php echo $customerDetails->getBillingPhone() ?></span></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="column shipping-info">
+            <h4>Shipping Information</h4>
+            <ul class="info-list">
+                <li><strong>Address:</strong> <span id="shipping-address"><?php echo $customerDetails->getShippingAddress() ?></span></li>
+                <li><strong>City:</strong> <span id="shipping-city"><?php echo $customerDetails->getShippingCity() ?></span></li>
+                <li><strong>Region:</strong> <span id="shipping-region"><?php echo $customerDetails->getShippingRegion() ?></span></li>
+                <li><strong>Country:</strong> <span id="shipping-country"><?php echo $customerDetails->getShippingCountry() ?></span></li>
+                <li><strong>Phone:</strong> <span id="shipping-phone"><?php echo $customerDetails->getShippingPhone() ?></span></li>
+            </ul>
+        </div>
+
+        <div class="column other-info">
+            <h4>Other Information</h4>
+            <ul class="info-list">
+                <li><strong>Default:</strong> <span id="default"><?php echo $customerDetails->getDefault() ?></span></li>
+            </ul>
+        </div>
+    </div>
+</div>

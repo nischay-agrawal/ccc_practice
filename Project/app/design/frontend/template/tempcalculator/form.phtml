@@ -1,0 +1,48 @@
+<?php  
+    $units = $this->getTempratureUnits();
+?>
+
+<div class="form">
+    <h2>Temp Converter</h2>
+    <form method="POST" action="<?php echo $this->getUrl('tempcalculator/calculator/save') ?>">
+        <div>
+            <input type="hidden" value="<?php  ?>" name="temp_calculator[id]">
+        </div>
+        <div>
+            <input type="hidden" value="<?php  ?>" name="temp_calculator[session_id]">
+        </div>
+        <div class="row">
+            <div>
+                <label for="user_name">User Name: </label>
+                <input type="text" value="<?php ?>" name="temp_calculator[user_name]" id="user_name">
+            </div>
+            <div>
+                <label for="temprature">Temprature: </label>
+                <input type="number" value="<?php ?>" name="temp_calculator[temprature]" id="loan_amount">
+            </div>
+            <div>
+                <label for="term_unit">Unit:</label>
+                <select name="temp_calculator[unit]">
+                    <?php foreach($units as $_unit) : ?>
+                        <option value=<?php echo $_unit ?>>
+                            <?php echo $_unit; ?>
+                        </option>;
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <div>
+                <label for="conv_unit">Convert Unit:</label>
+                <select name="temp_calculator[convert_unit]">
+                    <?php foreach($units as $_unit) : ?>
+                        <option value=<?php echo $_unit ?>>
+                            <?php echo $_unit; ?>
+                        </option>;
+                    <?php endforeach; ?>
+                </select>
+            </div>
+        </div>
+        <div>
+            <input type="submit" name="Calculate" value="calculate">
+        </div>
+    </form>
+</div>

@@ -1,0 +1,56 @@
+<?php
+    $bankRateData = $this->getBankRate();
+    
+?>
+
+    <div class="form">
+        <h2>Loan Calculator</h2>
+        <form method="POST" action="<?php echo $this->getUrl('loanCalculator/calculator/save') ?>">
+            <div>
+                <input type="hidden" value="<?php  ?>" name="loan_calculator[id]">
+            </div>
+            <div>
+                <input type="hidden" value="<?php  ?>" name="loan_calculator[session_id]">
+            </div>
+            <div class="row">
+                <div>
+                    <label for="user_name">User Name:</label>
+                    <input type="text" value="<?php ?>" name="loan_calculator[user_name]" id="user_name">
+                </div>
+                <div>
+                    <label for="loan_amount">Loan Amount:</label>
+                    <input type="number" value="<?php ?>" name="loan_calculator[loan_amount]" id="loan_amount">
+                </div>
+                <div>
+                    <label for="monthly_amount">Monthly Amount:</label>
+                    <input type="number" value="<?php ?>" name="loan_calculator[monthly_amount]" id="monthly_amount">
+                </div>
+                <div>
+                    <label for="term">Term:</label>
+                    <select name="loan_calculator[term]">
+                        <?php for ($i = 1; $i <= 20; $i++) : ?>
+                            <option value=<?php echo $i ?> >
+                                <?php echo $i; ?>
+                            </option>;
+                        <?php endfor; ?>
+                    </select>
+                </div>
+                <div>
+                    <label for="bank_code">Bank Code:</label>
+                    <select name="loan_calculator[bank_code]" id="bank_code">
+                        <?php foreach ($this->getBankRate() as $_bank) : ?>
+                            <option value=<?php echo $_bank->getBankCode() ?> class="bank_code">
+                                <?php echo $_bank->getBankCode(); ?>
+                            </option>;
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+
+
+
+            </div>
+            <div>
+                <input type="submit" name="Calculate" value="calculate">
+            </div>
+        </form>
+    </div>

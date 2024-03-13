@@ -1,0 +1,42 @@
+<?php
+    $operator = $this->getAllOperator(); 
+?>
+
+    <div class="form">
+        <h2>Calculator</h2>
+        <form method="POST" action="<?php echo $this->getUrl('calculator/calculator/save') ?>">
+            <div>
+                <input type="hidden" value="<?php  ?>" name="calculator[id]">
+            </div>
+            <div>
+                <input type="hidden" value="<?php  ?>" name="calculator[session_id]">
+            </div>
+            <div class="row">
+                <div>
+                    <label for="user_name">User Name:</label>
+                    <input type="text" value="<?php ?>" name="calculator[user_name]" id="user_name">
+                </div>
+                <div>
+                    <label for="from">Num 1:</label>
+                    <input type="number" value="<?php ?>" name="calculator[from]" id="from">
+                </div>
+                <div>
+                    <label for="operator">Operator:</label>
+                    <select name="calculator[operator]">
+                        <?php foreach($operator as $_opKey => $_opValue): ?>
+                            <option value=<?php echo $_opValue ?> >
+                                <?php echo $_opKey ?>
+                            </option>;
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <div>
+                    <label for="to">Num 2:</label>
+                    <input type="number" value="<?php ?>" name="calculator[to]" id="to">
+                </div>
+            </div>
+            <div>
+                <input type="submit" name="Calculate" value="calculate">
+            </div>
+        </form>
+    </div>

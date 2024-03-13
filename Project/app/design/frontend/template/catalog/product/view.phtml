@@ -1,0 +1,17 @@
+<div class="product-cards-container">
+    <?php foreach ($this->getItem() as $product) { ?>
+        <div class="product-card">
+            <h3><?php echo $product->getName(); ?></h3>
+            <img class="product-image" src="<?php echo Mage::getBaseUrl('media/product/') . $product->getImageLink(); ?>" alt="Product Image">
+            <p><strong>Color:</strong> <?php echo $product->getColor(); ?></p>
+            <p><strong>Description:</strong> <?php echo $product->getDescription(); ?></p>
+
+            <form class="add-to-cart-form" method="POST" action="<?php echo $this->getUrl('sales/quote/add') ?>">
+                <input type="hidden" name="sales_quote[product_id]" value="<?php echo $product->getProductId(); ?>">
+                <label for="quantity">Quantity:</label>
+                <input type="text" name="sales_quote[qty]" id="quantity">
+                <input type="submit" value="Add To Cart">
+            </form>
+        </div>
+    <?php } ?>
+</div>
