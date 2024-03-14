@@ -1,38 +1,105 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
 .container {
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    width: 100%;
-    padding-top: 3rem;
+    width: 80%;
+    margin: 20px auto;
 }
 
 .form {
-    height: fit-content;
-    width: 40%;
+    background-color: #fff;
     padding: 20px;
-    border: 1px solid #333;
-    border-radius: 10px;
-    box-shadow: 0px 0px 12px 0px rgba(0, 123, 255, 0.4);
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
-.form h2 {
-    text-align: center;
+h2 {
     margin-bottom: 20px;
     color: #333;
 }
 
-.form .row {
-    display: grid;
-    grid-template-columns: auto;
-    gap: 15px;
+ul {
+    list-style: none;
+    padding: 0;
 }
 
-.form>p>a {
+li {
+    margin-bottom: 10px;
+}
+
+/* Address Cards */
+.address-cards {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.address-cards:hover {
+    background-color: #e9e9e9;
+}
+
+/* Checkout Form */
+.checkoutAddress div,
+.payment-method-container div,
+.shipping-method-container div {
+    margin-bottom: 15px;
+}
+
+label {
     display: inline-block;
-    color: #0056b3;
-    letter-spacing: 1px;
+    margin-bottom: 5px;
+    color: #555;
 }
 
-.form>p>a:hover {
-    text-decoration: underline;
+input[type="text"],
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+input[type="radio"] {
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+/* To align radio buttons and labels on the same line */
+.payment-method-container label,
+.shipping-method-container label {
+    margin-left: 5px;
+}
+
+.payment-method-container div,
+.shipping-method-container div {
+    /* display: flex; */
+    align-items: center;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
 }

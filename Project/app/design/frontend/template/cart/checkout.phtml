@@ -1,204 +1,170 @@
 <?php
 $customerAddress = $this->getAddress();
 ?>
+<?php if (!empty($customerAddress)): ?>
+    <?php foreach ($customerAddress as $address): ?>
+
+        <div id="jaddress" class="address-cards"
+            data-json='{"customer":"<?php echo $address->getCustomerId(); ?>","billing_address":"<?php echo $address->getBillingAddress(); ?>","billing_city":"<?php echo $address->getBillingCity(); ?>","billing_country":"<?php echo $address->getBillingCountry(); ?>","billing_region":"<?php echo $address->getBillingRegion(); ?>","billing_phone":"<?php echo $address->getBillingPhone(); ?>","shipping_address":"<?php echo $address->getShippingAddress(); ?>","shipping_city":"<?php echo $address->getShippingCity(); ?>","shipping_region":"<?php echo $address->getShippingRegion(); ?>","shipping_country":"<?php echo $address->getShippingCountry(); ?>","shipping_phone":"<?php echo $address->getShippingPhone(); ?>"}'>
+            <ul>
+                <li>Customer ID :
+                    <?php echo $address->getCustomerId(); ?>
+                </li>
+                <li>BillingAddress :
+                    <?php echo $address->getBillingAddress(); ?>
+                </li>
+                <li>BillingCity :
+                    <?php echo $address->getBillingCity(); ?>
+                </li>
+                <li>BillingRegion :
+                    <?php echo $address->getBillingRegion(); ?>
+                </li>
+                <li>BillingCountrt :
+                    <?php echo $address->getBillingCountrt(); ?>
+                </li>
+                <li>BillingPhone :
+                    <?php echo $address->getBillingPhone(); ?>
+                </li>
+                <li>ShippingAddress :
+                    <?php echo $address->getShippingAddress(); ?>
+                </li>
+                <li>ShippingCity :
+                    <?php echo $address->getShippingCity(); ?>
+                </li>
+                <li>ShippingRegion :
+                    <?php echo $address->getShippingRegion(); ?>
+                </li>
+                <li>ShippingCountry :
+                    <?php echo $address->getShippingCountry(); ?>
+                </li>
+                <li>ShippingPhone :
+                    <?php echo $address->getShippingPhone(); ?>
+                </li>
+            </ul>
+        </div>
+    <?php endforeach; ?>
+    <?php else: ?>
+        <h3>No Addresses Found</h3>
+        <h4>Add one</h4>
+        <form action="<?php echo Mage::getBaseUrl("customer/address/save"); ?>" method="post">
+                <input type="text" placeholder="billing_address" name="customerAddress[billing_address]" id="">
+                <input type="text" placeholder="billing_city" name="customerAddress[billing_city]" id="">
+                <input type="text" placeholder="billing_region" name="customerAddress[billing_region]" id="">
+                <input type="text" placeholder="billing_country" name="customerAddress[billing_country]" id="">
+                <input type="text" placeholder="billing_zip" name="customerAddress[billing_zip]" id="">
+                <input type="text" placeholder="billing_phone" name="customerAddress[billing_phone]" id="">
+                <input type="text" placeholder="shipping_address" name="customerAddress[shipping_address]" id="">
+                <input type="text" placeholder="shipping_city" name="customerAddress[shipping_city]" id="">
+                <input type="text" placeholder="shipping_region" name="customerAddress[shipping_region]" id="">
+                <input type="text" placeholder="shipping_country" name="customerAddress[shipping_country]" id="">
+                <input type="text" placeholder="shipping_zip" name="customerAddress[shipping_zip]" id="">
+                <input type="text" placeholder="shipping_phone" name="customerAddress[shipping_phone]" id="">
+                <input type="submit" value="save">
+            </form>
+    </form>
+<?php endif; ?>
 
 <div class="container">
     <div class="form">
         <h2>Checkout</h2>
-        <form method="POST" action="<?php echo $this->getUrl('sales/quote/address') ?>">
-            <div>
-                <input type="hidden" name="checkout[customer_id]" value="">
-                <input type="hidden" name="checkout[customer_email]" value="">
-                <input type="hidden" name="checkout[quote_id]" value="<?php echo $this->getQuoteId(); ?>">
-            </div>
-            <div class="row">
+        <form method="POST" action="<?php echo $this->getUrl('sales/quote/save') ?>">
+            <div class="checkoutAddress">
                 <div>
                     <label for="billing_address">Billing Address:</label>
-                    <input type="text" name="checkout[billing_address]" id="billing_address" value="">
+                    <input type="text" name="checkoutAddress[billing_address]" id="billing_address" value="">
                 </div>
                 <div>
                     <label for="billing_city">Billing City:</label>
-                    <input type="text" name="checkout[billing_city]" id="billing_city" value="">
+                    <input type="text" name="checkoutAddress[billing_city]" id="billing_city" value="">
                 </div>
                 <div>
                     <label for="billing_region">Billing Region:</label>
-                    <input type="text" name="checkout[billing_region]" id="billing_region" value="">
+                    <input type="text" name="checkoutAddress[billing_region]" id="billing_region" value="">
                 </div>
                 <div>
                     <label for="billing_country">Billing Country:</label>
-                    <input type="text" name="checkout[billing_country]" id="billing_country" value="">
+                    <input type="text" name="checkoutAddress[billing_country]" id="billing_country" value="">
                 </div>
                 <div>
                     <label for="billing_phone">Billing Phone:</label>
-                    <input type="text" name="checkout[billing_phone]" id="billing_phone" value="">
+                    <input type="text" name="checkoutAddress[billing_phone]" id="billing_phone" value="">
                 </div>
                 <div>
                     <label for="shipping_address">Shipping Address:</label>
-                    <input type="text" name="checkout[shipping_address]" id="shipping_address" value="">
+                    <input type="text" name="checkoutAddress[shipping_address]" id="shipping_address" value="">
                 </div>
                 <div>
                     <label for="shipping_city">Shipping City:</label>
-                    <input type="text" name="checkout[shipping_city]" id="shipping_city" value="">
+                    <input type="text" name="checkoutAddress[shipping_city]" id="shipping_city" value="">
                 </div>
                 <div>
                     <label for="shipping_region">Shipping Region:</label>
-                    <input type="text" name="checkout[shipping_region]" id="shipping_region" value="">
+                    <input type="text" name="checkoutAddress[shipping_region]" id="shipping_region" value="">
                 </div>
                 <div>
                     <label for="shipping_country">Shipping Country:</label>
-                    <input type="text" name="checkout[shipping_country]" id="shipping_country" value="">
+                    <input type="text" name="checkoutAddress[shipping_country]" id="shipping_country" value="">
                 </div>
                 <div>
                     <label for="shipping_phone">Shipping Phone:</label>
-                    <input type="text" name="checkout[shipping_phone]" id="shipping_phone" value="">
+                    <input type="text" name="checkoutAddress[shipping_phone]" id="shipping_phone" value="">
+                </div>
+
+            </div>
+            <div class="payment-method-container" style="width: 300px;">
+                <p>Payment Method</p>
+                <div>
+                    <input type="radio" required name="checkoutPayment[payment_method]" checked value="cash on delivery"
+                        id="cod">
+                    <label for="cod">Cash on Delivery</label>
+                </div>
+                <div>
+                    <input type="radio" required name="checkoutPayment[payment_method]" value="credit card"
+                        id="creditcard">
+                    <label for="creditcard">Credit Card</label>
+                </div>
+                <div>
+                    <input type="radio" required name="checkoutPayment[payment_method]" value="debit card"
+                        id="debitcard">
+                    <label for="debitcard">Debit Card</label>
+                </div>
+                <div>
+                    <label for="card_number">Card Number:</label>
+                    <input type="text" name="checkoutPayment[card_number]" id="card_number" value="">
                 </div>
                 
             </div>
+            <div class="shipping-method-container">
+                <p>Shipping Method</p>
+                <div>
+                    <input type="radio" required name="checkoutShipping[shipping_method]" value="standard delivery"
+                        id="sd">
+                    <label for="sd">Standard Delivery</label>
+                </div>
+                <div>
+                    <input type="radio" required name="checkoutShipping[shipping_method]" value="express delivery"
+                        id="ed">
+                    <label for="ed">Express Delivery</label>
+                </div>
+            </div>
             <div>
-                <input type="submit" name="submit" value="">
+                <input type="submit" name="submit" value="Submit">
+            </div>
     </div>
-</div>
-
-<!-- <?php
-// $addressData = $this->getAddress();
-?>
-
-<section class= "checkout-section">
-<div class="address-show">
-<?php if (!empty($addressData)): ?>
-<?php foreach ($addressData as $addValue): ?>
-<div id="asdasdasdasd" class="address-cards" data-json='{"customer":"<?php echo $addValue->getCustomerId(); ?>","billing_address":"<?php echo $addValue->getBillingAddress(); ?>","billing_city":"<?php echo $addValue->getBillingCity(); ?>","billing_country":"<?php echo $addValue->getBillingCountry(); ?>"}'>
-    <p>Address :<?php echo $addValue->getCustomerId() ?></p>
-    <p>Address :<?php echo $addValue->getBillingAddress() ?></p>
-    <p>City : <?php echo $addValue->getBillingCity() ?></p>
-    <p>Country :<?php echo $addValue->getBillingCountry() ?></p>
-    <p>ZipCode :<?php echo $addValue->getBillingZip() ?></p>
-    <p>Phone No:<?php echo $addValue->getBillingPhone() ?></p>
-</div>
-
-<?php endforeach; ?>
-<?php endif; ?>
-</div>
-<script type="text/javascript">
-    $('.address-cards').each((i,e)=>{
-        console.log($(e).attr('data-json'))
-        $(e).click(()=>{
-            var _data = JSON.parse($(e).attr('data-json'))
-            for (var key in _data) {
-                if (_data.hasOwnProperty(key)) {
-                    $('#'+key).val(_data[key]);
+    <script type="text/javascript">
+        $('.address-cards').each((i, e) => {
+            console.log($(e).attr('data-json'))
+            $(e).click(() => {
+                var _data = JSON.parse($(e).attr('data-json'))
+                for (var key in _data) {
+                    if (_data.hasOwnProperty(key)) {
+                        $('#' + key).val(_data[key]);
+                    }
                 }
-            }
-            // $('#billing_address').val(_data.billing_address);
-            // $('#billing_city').val(_data.billing_city);
-            // $('#billing_country').val(_data.billing_country);
-        });
-    })
-</script>
-
-<div class="form-show">
-<form action="<?php echo Mage::getBaseUrl('sales/quote/save') ?>" method="post" class="sales-quote-form">
-    <h2>Customer Information</h2>
-    <div class="form-group">
-
-        Billing Information
-        <div class="field-group">
-            <label for="billing_address" class="label-billing-address">Billing Address:</label>
-            <input type="text" id="billing_address" name="sales_quote_customer[billing_address]" required class="input-billing-address">
-        </div>
-
-        <div class="field-group">
-            <label for="billing_city" class="label-billing-city">Billing City:</label>
-            <input type="text" id="billing_city" name="sales_quote_customer[billing_city]" required class="input-billing-city">
-        </div>
-
-        <div class="field-group">
-            <label for="billing_region" class="label-billing-region">Billing Region:</label>
-            <input type="text" id="billing_region" name="sales_quote_customer[billing_region]" class="input-billing-region">
-        </div>
-
-        <div class="field-group">
-            <label for="billing_country" class="label-billing-country">Billing Country:</label>
-            <input type="text" id="billing_country" name="sales_quote_customer[billing_country]" required class="input-billing-country">
-        </div>
-
-        <div class="field-group">
-            <label for="billing_phone" class="label-billing-phone">Billing Phone:</label>
-            <input type="tel" id="billing_phone" name="sales_quote_customer[billing_phone]" required class="input-billing-phone">
-        </div>
-
-        <div class="field-group">
-            <label for="billing_zip" class="label-billing-zip">Billing ZIP:</label>
-            <input type="text" id="billing_zip" name="sales_quote_customer[billing_zip]" class="input-billing-zip">
-        </div>
-    </div>
-
-    <h2>Shipping Details</h2>
-    <div class="form-group">
-
-        Shipping Information
-        <input type="checkbox" id="same_as_billing" onchange="copyBillingToShipping()" class="checkbox-same-as-billing">
-        <label for="same_as_billing" class="label-same-as-billing">Same as Billing</label>
-
-        <div class="field-group">
-            <label for="shipping_address" class="label-shipping-address">Shipping Address:</label>
-            <input type="text" id="shipping_address" name="sales_quote_customer[shipping_address]" required class="input-shipping-address">
-        </div>
-
-        <div class="field-group">
-            <label for="shipping_city" class="label-shipping-city">Shipping City:</label>
-            <input type="text" id="shipping_city" name="sales_quote_customer[shipping_city]" required class="input-shipping-city">
-        </div>
-
-        <div class="field-group">
-            <label for="shipping_region" class="label-shipping-region">Shipping Region:</label>
-            <input type="text" id="shipping_region" name="sales_quote_customer[shipping_region]" class="input-shipping-region">
-        </div>
-
-        <div class="field-group">
-            <label for="shipping_country" class="label-shipping-country">Shipping Country:</label>
-            <input type="text" id="shipping_country" name="sales_quote_customer[shipping_country]" required class="input-shipping-country">
-        </div>
-
-        <div class="field-group">
-            <label for="shipping_phone" class="label-shipping-phone">Shipping Phone:</label>
-            <input type="tel" id="shipping_phone" name="sales_quote_customer[shipping_phone]" required class="input-shipping-phone">
-        </div>
-
-        <div class="field-group">
-            <label for="shipping_zip" class="label-shipping-zip">Shipping ZIP:</label>
-            <input type="text" id="shipping_zip" name="sales_quote_customer[shipping_zip]" class="input-shipping-zip">
-        </div>
-    </div>
-
-    <input type="submit" value="Submit" class="submit-button">
-</form>
-
-
-
-</div>
-
-</section>
-
-
-
-<script>
-    function copyBillingToShipping() {
-        if (document.getElementById('same_as_billing').checked) {
-            document.getElementById('shipping_address').value = document.getElementById('billing_address').value;
-            document.getElementById('shipping_city').value = document.getElementById('billing_city').value;
-            document.getElementById('shipping_region').value = document.getElementById('billing_region').value;
-            document.getElementById('shipping_country').value = document.getElementById('billing_country').value;
-            document.getElementById('shipping_phone').value = document.getElementById('billing_phone').value;
-            document.getElementById('shipping_zip').value = document.getElementById('billing_zip').value;
-        } else {
-            // Clear shipping fields if checkbox is unchecked
-            document.getElementById('shipping_address').value = '';
-            document.getElementById('shipping_city').value = '';
-            document.getElementById('shipping_region').value = '';
-            document.getElementById('shipping_country').value = '';
-            document.getElementById('shipping_phone').value = '';
-            document.getElementById('shipping_zip').value = '';
-        }
-    }
-</script> -->
+                // $('#billing_address').val(_data.billing_address);
+                // $('#billing_city').val(_data.billing_city);
+                // $('#billing_country').val(_data.billing_country);
+            });
+        })
+    </script>
+ 

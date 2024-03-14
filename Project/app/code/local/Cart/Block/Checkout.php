@@ -8,7 +8,7 @@ class Cart_Block_Checkout extends Core_Block_Template
     public function getAddress()
     {
         $id  = Mage::getSingleton('core/session')->get('logged_in_customer_id');
-        $list = Mage::getModel('customer/customer')->getCollection()->addFieldToFilter("customer_id",$id);
+        $list = Mage::getModel('customer/address')->getCollection()->addFieldToFilter("customer_id",$id);
         return $list->getData();
     }
     public function getQuoteId()

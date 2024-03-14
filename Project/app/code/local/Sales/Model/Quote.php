@@ -68,4 +68,48 @@ class Sales_Model_Quote extends Core_Model_Abstract
         }
         $this->save();
     }
+    public function addAddress($address)
+    {
+        $this->initQuote();
+        if ($this->getId()) {
+            Mage::getModel("sales/quote_customer")->addCustomer($this, $address);
+        }
+        return $this;
+    }
+    public function addPayment($payment)
+    {
+        $quotePayment = Mage::getModel("sales/quote_payment");
+        if ($this->getId()) {
+            $quotePayment->addPayment($this, $payment);
+        }
+        $this->addData("payment_id", $quotePayment->getId());
+        $this->save();
+    }
+    public function addShipping($shipping)
+    {
+        $quoteShipping = Mage::getModel("sales/quote_shipping");
+        if ($this->getId()) {
+            $quoteShipping->addShipping($this, $shipping);
+        }
+        $this->addData("shipping_id", $quoteShipping->getId());
+        $this->save();
+    }
+    public function convert($request)
+    {
+        $address = $request["checkoutAddress"];
+        $payment = $request["checkoutPayment"];
+        $shipping = $request["checkoutShipping"];
+        $this->initQuote();
+        if ($this->getId()) {
+            $this->addAddress($address);
+            $this->addPayment($payment);
+            $this->addShipping($shipping);
+            $order = Mage::getModel('sales/order')->addOrder($this);
+            Mage::getModel('sales/order_customer')->addCustomer($this->getCustomer(), $order->getId());
+            foreach ($this->getItemCollection()->getData() as $_item) {
+                Mage::getModel("sales/order_item")->addItem($_item, $order->getId());
+            }
+            $this->addData("order_id", $order->getId())->save();
+        }
+    }
 }
