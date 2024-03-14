@@ -5,7 +5,7 @@ $customerAddress = $this->getAddress();
     <?php foreach ($customerAddress as $address): ?>
 
         <div id="jaddress" class="address-cards"
-            data-json='{"customer":"<?php echo $address->getCustomerId(); ?>","billing_address":"<?php echo $address->getBillingAddress(); ?>","billing_city":"<?php echo $address->getBillingCity(); ?>","billing_country":"<?php echo $address->getBillingCountry(); ?>","billing_region":"<?php echo $address->getBillingRegion(); ?>","billing_phone":"<?php echo $address->getBillingPhone(); ?>","shipping_address":"<?php echo $address->getShippingAddress(); ?>","shipping_city":"<?php echo $address->getShippingCity(); ?>","shipping_region":"<?php echo $address->getShippingRegion(); ?>","shipping_country":"<?php echo $address->getShippingCountry(); ?>","shipping_phone":"<?php echo $address->getShippingPhone(); ?>"}'>
+            data-json='{"customer":"<?php echo $address->getCustomerId(); ?>","billing_address":"<?php echo $address->getBillingAddress(); ?>","billing_city":"<?php echo $address->getBillingCity(); ?>","billing_country":"<?php echo $address->getBillingCountry(); ?>","billing_region":"<?php echo $address->getBillingRegion(); ?>","billing_phone":"<?php echo $address->getBillingPhone(); ?>","shipping_address":"<?php echo $address->getShippingAddress(); ?>","shipping_city":"<?php echo $address->getShippingCity(); ?>","shipping_region":"<?php echo $address->getShippingRegion(); ?>","shipping_country":"<?php echo $address->getShippingCountry(); ?>","shipping_phone":"<?php echo $address->getShippingPhone(); ?>","billing_zip":"<?php echo $address->getBillingZip(); ?>","shipping_zip":"<?php echo $address->getShippingZip(); ?>"}'>
             <ul>
                 <li>Customer ID :
                     <?php echo $address->getCustomerId(); ?>
@@ -19,11 +19,14 @@ $customerAddress = $this->getAddress();
                 <li>BillingRegion :
                     <?php echo $address->getBillingRegion(); ?>
                 </li>
-                <li>BillingCountrt :
+                <li>BillingCountry :
                     <?php echo $address->getBillingCountrt(); ?>
                 </li>
                 <li>BillingPhone :
                     <?php echo $address->getBillingPhone(); ?>
+                </li>
+                <li>BillingZip :
+                    <?php echo $address->getBillingZip(); ?>
                 </li>
                 <li>ShippingAddress :
                     <?php echo $address->getShippingAddress(); ?>
@@ -39,6 +42,9 @@ $customerAddress = $this->getAddress();
                 </li>
                 <li>ShippingPhone :
                     <?php echo $address->getShippingPhone(); ?>
+                </li>
+                <li>ShippingZip :
+                    <?php echo $address->getShippingZip(); ?>
                 </li>
             </ul>
         </div>
@@ -90,6 +96,10 @@ $customerAddress = $this->getAddress();
                     <input type="text" name="checkoutAddress[billing_phone]" id="billing_phone" value="">
                 </div>
                 <div>
+                    <label for="billing_zip">Billing Zip:</label>
+                    <input type="text" name="checkoutAddress[billing_zip]" id="billing_zip" value="">
+                </div>
+                <div>
                     <label for="shipping_address">Shipping Address:</label>
                     <input type="text" name="checkoutAddress[shipping_address]" id="shipping_address" value="">
                 </div>
@@ -108,6 +118,10 @@ $customerAddress = $this->getAddress();
                 <div>
                     <label for="shipping_phone">Shipping Phone:</label>
                     <input type="text" name="checkoutAddress[shipping_phone]" id="shipping_phone" value="">
+                </div>
+                <div>
+                    <label for="shipping_zip">Shipping zip:</label>
+                    <input type="text" name="checkoutAddress[shipping_zip]" id="shipping_zip" value="">
                 </div>
 
             </div>

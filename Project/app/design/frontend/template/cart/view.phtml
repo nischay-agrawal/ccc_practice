@@ -21,8 +21,8 @@
                             </div>
                             <div>
                                 <label for="qty">Quantity:</label>
-                                <input type="number" min='1' name="sales_quote[qty]" value="<?php echo $quoteItem->getQty() ?>"
-                                    id="qty">
+                                <input type="number" min='1' name="sales_quote[qty]"
+                                    value="<?php echo $quoteItem->getQty() ?>" id="qty">
                             </div>
                         </div>
                     </div>
@@ -44,6 +44,6 @@
                 <?php echo "Total Price: &#8377;" . $this->getQuote()->getGrandTotal() ?>
             </strong>
         </p>
-        <button class="checkout-btn">Checkout</button>
+        <a href="<?php echo Mage::getBaseUrl("cart/checkout/form") ?>"><button class="checkout-btn">Checkout</button></a>
     </div>
 </div>

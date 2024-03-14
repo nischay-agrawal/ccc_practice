@@ -12,7 +12,7 @@ class Sales_Model_Quote extends Core_Model_Abstract
         $quoteId = Mage::getSingleton('core/session')->get('quote_id');
         if (!$quoteId) {
             $quote = Mage::getModel('sales/quote')
-                ->setData(['tax_percent' => 0, 'grand_total' => 0])
+                ->setData(['tax_percent' => 8, 'grand_total' => 0])
                 ->save();
             Mage::getSingleton('core/session')
                 ->set('quote_id', $quote->getId());
@@ -93,6 +93,15 @@ class Sales_Model_Quote extends Core_Model_Abstract
         }
         $this->addData("shipping_id", $quoteShipping->getId());
         $this->save();
+    }
+    public function getCustomer()
+    {
+        $this->initQuote();
+        return Mage::getModel("sales/quote_customer")
+            ->getCollection()
+            ->addFieldToFilter("quote_id", $this->getId())
+            ->addFieldToFilter("customer_id", Mage::getModel("core/session")->get("logged_in_customer_id"))
+            ->getFirstItem();
     }
     public function convert($request)
     {
