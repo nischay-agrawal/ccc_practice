@@ -1,0 +1,97 @@
+<?php $admin = Mage::getSingleton('core/session')->get('admin_id') ? 10 : false ?>
+<div class="left">
+    <div class="logo-cont">
+        <img src="<?php echo Mage::getBaseUrl('skin/images/logo.png') ?>" style="margin: 5px" height="40px" alt="">
+    </div>
+    <div class="nav-items">
+        <div class="nav-item">
+            <p class="nav-item-child">
+                <a href="<?php echo Mage::getBaseUrl('admin'); ?>"><i class="fa-solid fa-border-all"></i>Dashboard</a>
+            </p>
+        </div>
+        <div class="nav-item">
+            <p class="nav-title">FORMS AND DATA</p>
+            <ul>
+                <li class="nav-item-child">
+                    <a href="<?php echo Mage::getBaseUrl('admin/user/list'); ?>"><i
+                            class="fa-solid fa-users"></i>Users</a>
+                </li>
+                <li class="nav-item-child">
+                    <a href="<?php echo Mage::getBaseUrl('admin/sales_order/list'); ?>"><i
+                            class="fa-solid fa-boxes-packing"></i>Orders</a>
+                </li>
+                <li class="nav-item-child">
+                    <a href="<?php echo Mage::getBaseUrl('admin/catalog_product/list'); ?>"><i
+                            class="fa-solid fa-box"></i>Product</a>
+                </li>
+                <li class="nav-item-child">
+                    <a href="<?php echo Mage::getBaseUrl('admin/catalog_category/list'); ?>"><i
+                            class="fa-solid fa-icons"></i>Category</a>
+                </li>
+                <li class="nav-item-child">
+                    <a href="<?php echo Mage::getBaseUrl('admin/banner/list'); ?>"><i
+                            class="fa-solid fa-table-columns"></i>Banner</a>
+                </li>
+                <li class="nav-item-child">
+                    <a href="<?php echo Mage::getBaseUrl('admin/sales_payment/list'); ?>"><i
+                            class="fa-solid fa-money-bill-1-wave"></i>Payment</a>
+                </li>
+                <li class="nav-item-child">
+                    <a href="<?php echo Mage::getBaseUrl('admin/sales_shipping/list'); ?>"><i
+                            class="fa-solid fa-truck-fast"></i>Shipping</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script>
+    let navItems = document.getElementsByClassName('nav-item-child');
+    let cont = "<?php echo $this->getRequest()->getControllerName() ?>";
+    switch (cont) {
+        case 'index':
+            navItems[0].classList.add('active');
+            break;
+        case 'user':
+            navItems[1].classList.add('active');
+            break;
+        case 'sales_order':
+            navItems[2].classList.add('active');
+            break;
+        case 'catalog_product':
+            navItems[3].classList.add('active');
+            break;
+        case 'catalog_category':
+            navItems[4].classList.add('active');
+            break;
+        case 'banner':
+            navItems[5].classList.add('active');
+            break;
+        case 'sales_payment':
+            navItems[6].classList.add('active');
+            break;
+        case 'sales_shipping':
+            navItems[7].classList.add('active');
+            break;
+    }
+</script>
+<div class="right">
+    <header style="background: rgb(39, 39, 255);border-bottom: 1px solid white;color: white; padding: 10px 20px">
+        <div class="g-cont">
+            <span style="font-size: 24px;font-weight: 800;">Welcome</span>
+        </div>
+        <?php if ($admin == 10): ?>
+            <div class="l-cont" style="display: flex;align-items: center;">
+                <a href="<?php echo Mage::getBaseUrl('admin/user/logout'); ?>" style="color: white;font-weight: 600">
+                    Log Out
+                    <i class="fa-solid fa-circle-user" style="font-size: 18px;"></i>
+                </a>
+            </div>
+        <?php else: ?>
+            <div class="l-cont" style="display: flex;align-items: center;color: white;">
+                <a href="<?php echo Mage::getBaseUrl('admin/user/login'); ?>">
+                    Log In
+                    <i class="fa-solid fa-circle-user" style="font-size: 18px;"></i>
+                </a>
+            </div>
+        <?php endif; ?>
+    </header>

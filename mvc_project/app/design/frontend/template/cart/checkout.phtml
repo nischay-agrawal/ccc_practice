@@ -1,0 +1,196 @@
+<?php $paymentMethods = $this->getPaymentMethods() ?>
+<?php $shippingMethods = $this->getShippingMethods() ?>
+<?php $addressData = $this->getAddress() ?>
+<div class="checkout-container" style="display: flex;">
+    <div>
+        <?php if (!empty ($addressData)): ?>
+            <?php foreach ($addressData as $addValue): ?>
+                <div id="asdasdasdasd" class="address-cards"
+                    data-json='{"customer":"<?php echo $addValue->getCustomerId(); ?>","billing_address":"<?php echo $addValue->getBillingAddress(); ?>","billing_city":"<?php echo $addValue->getBillingCity(); ?>","billing_country":"<?php echo $addValue->getBillingCountry(); ?>", "billing_zip":"<?php echo $addValue->getBillingZip(); ?>"}'>
+                    <p>Address :
+                        <?php echo $addValue->getCustomerId() ?>
+                    </p>
+                    <p>Address :
+                        <?php echo $addValue->getBillingAddress() ?>
+                    </p>
+                    <p>City :
+                        <?php echo $addValue->getBillingCity() ?>
+                    </p>
+                    <p>Country :
+                        <?php echo $addValue->getBillingCountry() ?>
+                    </p>
+                    <p>ZipCode :
+                        <?php echo $addValue->getBillingZip() ?>
+                    </p>
+                    <p>Phone No:
+                        <?php echo $addValue->getBillingPhone() ?>
+                    </p>
+
+                </div>
+            <?php endforeach; ?>
+            <button onclick="showForm()">Add New Address</button>
+            <div id="new-address-form" class="new-address-form active">
+                <form action="<?php echo Mage::getBaseUrl("customer/address/save"); ?>" method="post">
+                    <input type="text" placeholder="billing_address" name="customerAddress[billing_address]" id="">
+                    <input type="text" placeholder="billing_city" name="customerAddress[billing_city]" id="">
+                    <input type="text" placeholder="billing_zip" name="customerAddress[billing_zip]" id="">
+                    <input type="text" placeholder="shipping_address" name="customerAddress[shipping_address]" id="">
+                    <input type="text" placeholder="shipping_city" name="customerAddress[shipping_city]" id="">
+                    <input type="text" placeholder="shipping_zip" name="customerAddress[shipping_zip]" id="">
+                    <input type="submit" value="save">
+                </form>
+            </div>
+        <?php else: ?>
+            <p>No Address Found Add One</p>
+            <form action="<?php echo Mage::getBaseUrl("customer/address/save"); ?>" method="post">
+                <input type="text" placeholder="billing_address" name="customerAddress[billing_address]" id="">
+                <input type="text" placeholder="billing_city" name="customerAddress[billing_city]" id="">
+                <input type="text" placeholder="billing_zip" name="customerAddress[billing_zip]" id="">
+                <input type="text" placeholder="shipping_address" name="customerAddress[shipping_address]" id="">
+                <input type="text" placeholder="shipping_city" name="customerAddress[shipping_city]" id="">
+                <input type="text" placeholder="shipping_zip" name="customerAddress[shipping_zip]" id="">
+                <input type="submit" value="save">
+            </form>
+        <?php endif; ?>
+    </div>
+    <form action="<?php echo Mage::getBaseUrl('sales/quote/order') ?>" style="display: flex;" method="post">
+        <div class="address-form-container">
+            <p>Billing Address</p>
+            <div class="billing-address-container">
+                <div>
+                    <label for="">Address</label>
+                    <input type="text" name="checkoutAddress[billing_address]" id="billing_address">
+                </div>
+                <div class="row" style="display: flex;gap: 20px;">
+                    <div>
+                        <label for="">City</label>
+                        <input type="text" name="checkoutAddress[billing_city]" id="billing_city">
+                    </div>
+                    <div>
+                        <label for="">Zip-Code</label>
+                        <input type="text" name="checkoutAddress[billing_zip]" id="billing_zip">
+                    </div>
+                </div>
+                <div>
+                    <label for="billing_country">Country</label>
+                    <input type="text" name="checkoutAddress[billing_country]" id="billing_country">
+                </div>
+                <div>
+                    <label for="billing_phone">Phone</label>
+                    <input type="text" name="checkoutAddress[billing_phone]" id="billing_phone">
+                </div>
+            </div>
+            <input type="checkbox" style="width: fit-content;margin: 5px" onclick="toggleAddress()" name=""
+                id="addCheck">
+            <label for="addCheck" style="display: inline">shipping address same as billing</label>
+            <div class="shipping-address-container">
+                <p>Shipping Address</p>
+                <div>
+                    <label for="">Address</label>
+                    <input type="text" class="shipping-input" name="checkoutAddress[shipping_address]"
+                        id="shipping_address">
+                </div>
+                <div class="row" style="display: flex;gap: 20px;">
+                    <div>
+                        <label for="">City</label>
+                        <input type="text" class="shipping-input" name="checkoutAddress[shipping_city]"
+                            id="shipping_city">
+                    </div>
+                    <div>
+                        <label for="">Zip-Code</label>
+                        <input type="text" class="shipping-input" name="checkoutAddress[shipping_zip]"
+                            id="shipping_zip">
+                    </div>
+                </div>
+                <div>
+                    <label for="">Country</label>
+                    <input type="text" class="shipping-input" name="checkoutAddress[shipping_country]"
+                        id="shipping_country">
+                </div>
+                <div>
+                    <label for="">Phone</label>
+                    <input type="text" class="shipping-input" name="checkoutAddress[shipping_phone]"
+                        id="shipping_phone">
+                </div>
+                <div>
+                    <button type="submit">Save</button>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="payment-method-container" style="width: 300px;">
+                <p>Payment Method</p>
+                <?php foreach ($paymentMethods as $_paymentMethod): ?>
+                    <div>
+                        <input type="radio" id="<?php echo 'payment_method_' . $_paymentMethod->getPaymentId() ?>" required
+                            name="checkoutPayment[payment_method]" value="<?php echo $_paymentMethod->getPaymentId(); ?>">
+                        <label for="<?php echo 'payment_method_' . $_paymentMethod->getPaymentId() ?>">
+                            <?php echo $_paymentMethod->getPaymentType(); ?>
+                        </label>
+                    </div>
+                <?php endforeach ?>
+                <div class="credit-card-container" style="display: none;" id="card-number">
+                    <label for="ccNum" style="display: block;">Card Number</label>
+                    <input type="text" name="checkoutPayment[card_number]" id="ccNum">
+                </div>
+            </div>
+            <div class="shipping-method-container">
+                <p>Shipping Method</p>
+                <?php foreach ($shippingMethods as $_shippingMethod): ?>
+                    <div>
+                        <input type="radio" required name="checkoutShipping[shipping_method]"
+                            value="<?php echo $_shippingMethod->getShippingId(); ?>"
+                            id="<?php echo 'shipping_method_' . $_shippingMethod->getShippingId(); ?>">
+                        <label for="<?php echo 'shipping_method_' . $_shippingMethod->getShippingId(); ?>">
+                            <?php echo $_shippingMethod->getShippingType(); ?>
+                        </label>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+
+    </form>
+</div>
+<script>
+    let check = document.getElementById('addCheck');
+    function toggleAddress() {
+        if (check.checked) {
+            console.log("checked");
+            document.getElementById('shipping_address').value = document.getElementById('billing_address').value;
+            document.getElementById('shipping_city').value = document.getElementById('billing_city').value;
+            document.getElementById('shipping_zip').value = document.getElementById('billing_zip').value;
+            document.getElementById('shipping_country').value = document.getElementById('billing_country').value;
+            document.getElementById('shipping_phone').value = document.getElementById('billing_phone').value;
+        }
+        else {
+            document.getElementById('shipping_address').value = '';
+            document.getElementById('shipping_city').value = '';
+            document.getElementById('shipping_zip').value = '';
+            document.getElementById('shipping_country').value = '';
+            document.getElementById('shipping_phone').value = '';
+        }
+    }
+    $('input[name="checkoutPayment[payment_method]"]').not('[id="payment_method_2"]').click(function () {
+        $('#card-number').hide();
+    });
+    $('input[name="checkoutPayment[payment_method]"][id="payment_method_2"]').click(function () {
+        $('#card-number').show();
+    });
+    function showForm() {
+        document.getElementById("new-address-form").classList.toggle("active");
+    }
+</script>
+
+
+<script type="text/javascript">
+    $('.address-cards').each((i, e) => {
+        $(e).click(() => {
+            var _data = JSON.parse($(e).attr('data-json'))
+            for (var key in _data) {
+                if (_data.hasOwnProperty(key)) {
+                    $('#' + key).val(_data[key]);
+                }
+            }
+        });
+    })
+</script>

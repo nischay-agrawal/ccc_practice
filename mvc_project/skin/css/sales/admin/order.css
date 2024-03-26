@@ -1,0 +1,34 @@
+/* Style for the order list container */
+.order-list-container {
+    width: 100%;
+    margin: 20px auto;
+}
+
+/* Style for the table */
+.order-list-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Style for table header */
+.order-list-container th {
+    background-color: #f2f2f2;
+    text-align: left;
+    padding: 8px;
+}
+
+/* Style for table rows */
+.order-list-container td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+/* Style for alternate rows */
+.order-list-container tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Hover effect on rows */
+.order-list-container tr:hover {
+    background-color: #ddd;
+}

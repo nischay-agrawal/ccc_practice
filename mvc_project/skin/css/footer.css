@@ -1,35 +1,30 @@
-footer {
-    background-color: #f4f4f4;
-    padding: 20px;
-    text-align: center;
-    width: 100vw;
+footer{
+    background-color: #121C2C;
 }
-
-/* Style for the Contact Us section */
-footer div:nth-child(1) {
-    margin-bottom: 20px;
-}
-
-/* Style for the Links section */
-footer div:nth-child(2) {
+.footer-bottom{
+    border-top: 1px solid gray;
+    margin: 0 2%;
+    padding: 20px 3%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    align-items: center;
+    color: gray;
 }
-
-/* Style for the Links section unordered list */
-footer div:nth-child(2) ul {
-    list-style-type: none;
-    padding: 0;
+.footer-bottom div{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
 }
-
-/* Style for the Links section list items */
-footer div:nth-child(2) li {
-    display: inline;
-    margin-right: 10px;
+.footer-bottom div a{
+    color: gray;
 }
-
-/* Style for the copyright text */
-footer .copyright {
-    margin-top: 20px;
-    color: #777;
+.footer-top{
+    padding: 20px 5%;
+}
+.footer-top p{
+    margin: 5px;
+}
+.footer-top p a{
+    margin-left: 10px;
+    color: gray;
 }

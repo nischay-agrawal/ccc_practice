@@ -1,0 +1,26 @@
+.payment-list-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.payment-list-container th,
+.payment-list-container td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.payment-list-container th {
+    color: black;
+    text-align: center;
+    background-color: #f2f2f2;
+}
+
+.payment-list-container td a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.payment-list-container td a:hover {
+    text-decoration: underline;
+}

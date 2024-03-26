@@ -1,0 +1,36 @@
+.shipping-form-container {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+.shipping-form-container form {
+    width: 100%;
+}
+
+.shipping-form-container label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.shipping-form-container input[type="text"] {
+    margin: 5px 0;
+    width: 50%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.shipping-form-container button[type="submit"] {
+    margin: 5px 0;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color .3s ease;
+}
+
+.shipping-form-container button[type="submit"]:hover {
+    background-color: #0056b3;
+}

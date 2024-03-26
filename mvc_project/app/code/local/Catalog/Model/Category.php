@@ -6,16 +6,14 @@ class Catalog_Model_Category extends Core_Model_Abstract
     {
         $this->_resourceClass = "Catalog_Model_Resource_Category";
         $this->_collectionClass = "Catalog_Model_Resource_Collection_Category";
+        $this->_modelClass = "catalog/category";
     }
-
-    public function getStatus()
-    {
-        if (isset($this->_data['status'])) {
-            $mapping = [
-                1 => "Enable",
-                0 => "Disable"
-            ];
-            return $mapping[$this->_data['status']];
+    public function getCategoryArray(){
+        $categoryArray = [];
+        $categoryCollectionData = Mage::getModel('catalog/category')->getCollection()->getData();
+        foreach($categoryCollectionData as $category){
+            $categoryArray[$category->getCategory_id()] = $category->getCategory_name();
         }
+        return $categoryArray;
     }
 }

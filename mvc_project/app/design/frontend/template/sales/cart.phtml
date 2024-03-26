@@ -1,0 +1,127 @@
+<?php $items = $this->getItems();
+$grandTotal = 0; ?>
+<div class="sales-cart-container">
+    <div class="cart-item-container">
+        <?php if (!empty($items)): ?>
+            <div class="address-box">
+                <p>Deliver to: <span>Ahmedabad 382350</span></p>
+            </div>
+            <div style="background: white;">
+                <?php foreach ($items as $item): ?>
+                    <?php
+                    $product = $item->getProduct();
+                    ?>
+                    <div class="item-wrapper">
+                        <div style="position: absolute;right: 0;top: 0">
+                            <button class="main-btn">
+                                <i class="fa-regular fa-pen-to-square edit-btn"></i>
+                                <i id="cancel-icon" class="fa-solid fa-xmark cancel-btn edit"></i>
+                            </button>
+                        </div>
+                        <div>
+                            <div class="item-image-wrapper">
+                                <img height="100" width="100"
+                                    src="<?php echo Mage::getBaseUrl('media/products/' . $product->getImageLink()) ?>" alt="">
+                            </div>
+                            <div class="item-detail">
+                                <p style="margin: 5px 10px">
+                                    <?php echo $product->getDescription(); ?>
+                                </p>
+                                <p style="font-size: 14px;color: gray;margin: 0 10px">
+                                    <?php echo $product->getName() . ", " . $product->getColor(); ?>
+                                </p>
+                                <p style="font-size: 20px;font-weight: 500;margin: 15px 10px">
+                                    ₹
+                                    <?php echo $product->getPrice(); ?>
+                                </p>
+                            </div>
+                        </div>
+                        <div style="justify-content: space-between;padding: 0 40px">
+                            <span class="qty-box" style="font-size: 14px" id="qty">Qty
+                                <?php echo $item->getQty(); ?>
+                            </span>
+                            <form action="<?php echo Mage::getBaseUrl('sales/quote/edit') ?>" method="post"
+                                class="edit-form edit" id="edit">
+                                <div class="quantity-box">
+                                    <input type="hidden" name="quote_id"
+                                        value="<?php echo $this->getQuote()->getQuoteId() ?>">
+                                    <input type="hidden" name="item_id" value="<?php echo $item->getItemId(); ?>">
+                                    <input type="hidden" name="product_id" value="<?php echo $item->getProductId(); ?>">
+                                    <button type="button" class="quantity-btn qnt-minus" onclick="decrease()">-</button>
+                                    <div>
+                                        <input type="number" name="qty" min="1" max="5" value="<?php echo $item->getQty(); ?>"
+                                            id="quantity" class="quantity">
+                                    </div>
+                                    <button type="button" class="quantity-btn qnt-plus" onclick="increase()">+</button>
+                                    <button class="save-btn" type="submit">SAVE</button>
+                                </div>
+                            </form>
+                            <form style="margin: 0;padding: 0" method="post"
+                                action="<?php echo Mage::getBaseUrl('sales/quote/remove') ?>">
+                                <input type="hidden" name="quote_id"
+                                    value="<?php echo $this->getQuote()->getQuoteId() ?>">
+                                <input type="hidden" name="item_id" value="<?php echo $item->getItemId(); ?>">
+                                <button style="background: none; border: none; outline: none" type="submit">REMOVE</button>
+                            </form>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <div class="order-btn">
+                <a href="<?php echo Mage::getBaseUrl('cart/checkout') ?>"><button>PLACE ORDER</button></a>
+            </div>
+        <?php else: ?>
+        <div><h3>Empty Cart</h3></div>
+        <?php endif; ?>
+    </div>
+    <?php if (!empty($items)): ?>
+        <div class="cart-price-detail-container">
+            <p>PRICE DETAILS</p>
+            <p>Price ₹
+                <?php echo $this->getQuote()->getGrandTotal(); ?> (
+                <?php echo sizeof($items) ?> Items)
+            </p>
+            <p></p>
+        </div>
+    <?php endif; ?>
+</div>
+
+<script>
+    let qnt = document.getElementsByClassName('quantity');
+    let qntPlus = document.getElementsByClassName('qnt-plus');
+    let qntMinus = document.getElementsByClassName('qnt-minus');
+    for (let i = 0; i < qnt.length; i++) {
+        qntPlus[i].addEventListener('click', function () {
+            increase(i);
+        });
+    }
+    for (let i = 0; i < qnt.length; i++) {
+        qntMinus[i].addEventListener('click', function () {
+            decrease(i);
+        });
+    }
+    function increase(i) {
+        if (parseInt(qnt[i].value) + 1 <= 5)
+            qnt[i].value = parseInt(qnt[i].value) + 1;
+    }
+    function decrease(i) {
+        if (parseInt(qnt[i].value) - 1 >= parseInt(qnt[i].getAttribute('min')))
+            qnt[i].value = parseInt(qnt[i].value) - 1;
+    }
+    let mainBtn = document.getElementsByClassName("main-btn")
+    let editBtn = document.getElementsByClassName("edit-btn")
+    let cancelBtn = document.getElementsByClassName("cancel-btn")
+    let editForm = document.getElementsByClassName("edit-form")
+    let qtyBox = document.getElementsByClassName("qty-box")
+    for (let i = 0; i < mainBtn.length; i++) {
+        mainBtn[i].addEventListener('click', function () {
+            toggleEditMode(i);
+        })
+    }
+    function toggleEditMode(i) {
+        editBtn[i].classList.toggle('edit');
+        cancelBtn[i].classList.toggle('edit');
+        editForm[i].classList.toggle('edit');
+        qtyBox[i].classList.toggle('edit');
+    }
+</script>

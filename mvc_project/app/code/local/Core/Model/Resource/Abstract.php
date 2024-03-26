@@ -1,84 +1,118 @@
 <?php
 
-class Core_Model_Resource_Abstract{
+class Core_Model_Resource_Abstract
+{
+    protected $_model = "";
+    protected $_tableName = "";
+    protected $_primaryKey = "";
 
-    protected $_tableName = '';
-    protected $_primaryKey = '';
-
-    public function init($tableName, $primaryKey){
-        $this->_tableName = $tableName;
+    public function init($tablename, $primaryKey)
+    {
+        $this->_tableName = $tablename;
         $this->_primaryKey = $primaryKey;
     }
+    public function load($id, $column = null)
+    {
+        if (isset ($id)) {
+            $sql = "SELECT * FROM {$this->_tableName} WHERE {$this->_primaryKey} = {$id} LIMIT 1";
+            return $this->getAdapter()->fetchRow($sql);
+        }
+    }
 
+    public function save(Core_Model_Abstract $model)
+    {
+        $data = $model->getData();
+        if (isset ($data[$this->getPrimaryKey()]) && $model->getId() !== '') {
+            $prevData = $this->load($model->getId());
+            $data = $this->filterNewData($data, $prevData);
+            if (!empty ($data)) {
+                $sql = $this->updateSql($this->getTableName(), $data, [$this->getPrimaryKey() => $model->getId()]);
+                $this->getAdapter()->update($sql);
+            }
+        } else {
+            $sql = $this->insertSql($this->getTableName(), $data);
+            $id = $this->getAdapter()->insert($sql);
+            $model->setId($id);
+        }
+    }
+    public function delete(Core_Model_Abstract $model)
+    {
+        $id = $model->getId();
+        $sql = $this->deleteSql($this->getTableName(), [$this->getPrimaryKey() => $id]);
+        return $this->getAdapter()->delete($sql);
+    }
+    public function getModel()
+    {
+        return $this->_model;
+    }
+    public function getAdapter()
+    {
+        return new Core_Model_Db_Adapter();
+    }
     public function getTableName()
     {
         return $this->_tableName;
     }
-
-    public function getPrimaryKey(){
+    public function getPrimaryKey()
+    {
         return $this->_primaryKey;
     }
 
-    public function getAdapter(){
-        return new Core_Model_DB_Adapter();
-    }
 
-    public function load($id, $column = null){
-        $sql = "SELECT * FROM {$this->_tableName} WHERE {$this->_primaryKey} = $id LIMIT 1";
-        return $this->getAdapter()->fetchRow($sql);
-    }
-
-// ------------------------------------------------------------
-    public function temp_Load($id='', $column= null){
-        $sql = "SELECT * FROM {$this->_tableName}";
-        return $this->getAdapter()->fetch_allData($sql);
-    }
-// ------------------------------------------------------------
-
-    public function save($product){
-
-        $data = $product->getData();
-        if($product->getId() !== ""){
-            $updateQu = $this->updateData($product->getId(), $data);
-            return $this->getAdapter()->query($updateQu);
-        }else{
-            $insertData = $this->insertSql($this->getTableName(), $data);
-            $id = $this->getAdapter()->insert($insertData);
-            $product->setId($id);
-        }
-    }
-
-    public function insertSql($tbname, $data)
+    public function filterNewData($new, $old)
     {
-        $columns = $values = [];
-        foreach ($data as $key => $val) {
-            $columns[] = "`{$key}`";
-            $values[] = "'" . addslashes($val) . "'";
-        }
-        $columns = implode(" , ", $columns);
-        $values = implode(" , ", $values);
-
-        return "INSERT INTO {$tbname}({$columns}) VALUES ({$values})";
+        $new = array_filter($new, function ($value, $key) use ($old) {
+            return ($old[$key] != $value);
+        }, ARRAY_FILTER_USE_BOTH);
+        return $new;
     }
-
-    public function delete($abstract){
-        $sql = "DELETE FROM {$this->getTableName()} WHERE {$this->getPrimaryKey()} = {$abstract->getId()}";
-
-        return $this->getAdapter()->query($sql);
-    }
-
-    public function updateData($id,$data){
-
-        $col_valData = [];
+    public function insertSql($table_name, $data)
+    {
+        $columns = [];
+        $values = [];
         foreach ($data as $col => $val) {
-            if($col=="{$this->getPrimaryKey()}") continue;
-            $col_valData[] = "`$col` = '".addslashes($val)."'";
-         }
-         
-         $col_valData = implode(", ",$col_valData);
-
-        $sql="UPDATE {$this->getTableName()} SET {$col_valData} WHERE {$this->getPrimaryKey()} = $id;";
-        return $sql;
+            $columns[] = sprintf("`%s`", $col);
+            $values[] = sprintf("'%s'", addslashes($val));
+        }
+        $columns = implode(", ", $columns);
+        $values = implode(", ", $values);
+        return "INSERT INTO $table_name($columns) VALUES($values);";
+    }
+    public function updateSql($table_name, $d, $where)
+    {
+        $data = [];
+        $condition = [];
+        foreach ($d as $col => $val) {
+            $data[] = sprintf("`%s` = '%s'", $col, addslashes($val));
+        }
+        foreach ($where as $col => $val) {
+            $condition[] = sprintf("`%s` = '%s'", $col, addslashes($val));
+        }
+        $data = implode(", ", $data);
+        $condition = implode(" AND ", $condition);
+        return "UPDATE $table_name SET $data WHERE $condition;";
     }
 
+    public function deleteSql($table_name, $where = [])
+    {
+        $condition = [];
+        foreach ($where as $col => $val) {
+            $condition[] = sprintf("`%s` = '%s'", $col, addslashes($val));
+        }
+        $condition = implode(" AND ", $condition);
+        return "DELETE FROM $table_name WHERE $condition;";
+    }
+
+    public function selectSql($table_name, $where = [])
+    {
+        $condition = [];
+        foreach ($where as $col => $val) {
+            $condition[] = sprintf("`%s` = '%s'", $col, addslashes($val));
+        }
+        if (!empty ($where))
+            $condition = "WHERE" . implode(" AND ", $condition);
+        else
+            $condition = "";
+        return "SELECT * FROM $table_name $condition;";
+    }
 }

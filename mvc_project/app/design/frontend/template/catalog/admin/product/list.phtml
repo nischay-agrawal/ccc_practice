@@ -1,60 +1,130 @@
-<?php   $productModel =  Mage::getModel('catalog/product')->getCollection(); ?>
-<?php   $catModel =  Mage::getModel('catalog/category')->getCollection(); ?>
+<?php
+$data = $this->getProducts();
+$products = $data["products"];
+$limit = $data["limit"];
+$size = $data["size"];
+$start = $data["start"];
+$end = $data["end"];
+$pages = $data["pages"];
+?>
+<div class="product-popup-container">
+    <div id="product-popup">
 
-<section class="list">
-<h2>Product List</h2>
-    <table border="1">
-        <tr>
-            <th>Product Id</th>
-            <th>Product Name</th>
-            <th>SKU</th>
-            <th>Category</th>
-            <th>Status</th>
-            <th>Edit</th>
-            <th>Delete</th>
-        </tr>
-        <?php foreach ($productModel->getData() as $product): ?>
-            <!-- <tr> -->
-            <tr id="row_<?= $product->getProductId() ?>">
-                <td style="width:30px"><?= $product->getProductId() ?></td>
-                <td><?= $product->getName() ?></td>
-                <td><?= $product->getSku() ?></td>
-                <td>
-                <?php
-                    foreach ($catModel->getData() as $category) {
-                        if ($category->getCategoryId() ==  $product->getCategoryId()) {
-                            $categoryName = $category->getCategoryName();
-                            break;
-                        }
-                    }
-                    echo $categoryName;
-                ?>
-                </td>
-                <td><?= $product->getStatus() ?></td>
-                <td><a href="http://localhost/practise/mvc_project/admin/catalog_product/form?id=<?= $product->getProductId() ?>">Edit</a></td>
-                <td><a href="http://localhost/practise/mvc_project/admin/catalog_product/delete?id=<?= $product->getProductId() ?>">Delete</a></td>
+    </div>
+</div>
+<div class="table">
+    <div style="display: flex;justify-content: space-between;align-items: center">
+        <p style="font-size: 24px;font-weight: 800">All Products</p>
+        <a href="<?php echo $this->getUrl('admin/catalog_product/form') ?>"><button class="add-btn">
+                + Add New Product
+            </button></a>
+    </div>
+    <div style="display: flex;justify-content: space-between;margin: 15px 0;font-size: 14px">
+        <div>
+            <label for="limit">Show </label>
+            <select name="limit" id="limit" onchange="setLimit(this.value)">
+                <option value="3">3</option>
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="25">25</option>
+            </select> Products
+        </div>
+        <p>
+            <?php printf("displaying %d out of %d products from %d to %d", $end - $start, $size, $start + 1, $end); ?>
+        </p>
+    </div>
+    <div class="table-container">
+        <table>
+            <tr>
+                <th>SKU</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Description</th>
+                <th>category</th>
+                <th>Status</th>
+                <th colspan="3">
+                    Action
+                </th>
             </tr>
-        <?php endforeach; ?>
-  </table>
-  <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            <?php if (($this->getRequest()->getParams('highlighted_id'))): ?>
-            var highlightedId = <?= ($this->getRequest()->getParams('highlighted_id')) ?>;
-            var row = document.getElementById('row_' + highlightedId);
-            if (row) {
-                row.style.backgroundColor = '#4CAF50';
-                row.style.border = '3px solid black';
-                setTimeout(function () {
-                    row.style.backgroundColor = '';
-                    row.style.border = '';
-                }, 4000); 
-                row.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
+            <?php foreach ($products as $product): ?>
+                <tr>
+                    <td>
+                        <?php echo $product->getSku(); ?>
+                    </td>
+                    <td>
+                        <?php echo $product->getname(); ?>
+                    </td>
+                    <td>
+                        <?php echo $product->getPrice(); ?>
+                    </td>
+                    <td>
+                        <?php echo $product->getdescription(); ?>
+                    </td>
+                    <td>
+                        <?php echo $this->getCategoryName($product->getCategory_id()); ?>
+                    </td>
+                    <td>
+                        <?php echo $product->getStatus(); ?>
+                    </td>
+                    <td>
+                        <button value="<?php echo $product->getId(); ?>" onclick="viewProduct(this.value)">View</button>
+                    </td>
+                    <td style="text-align: center;">
+                        <a href="<?php echo $this->getUrl('admin/catalog_product/form?id=' . $product->getProduct_id()) ?>">
+                            <button class="btn-update">Update</button>
+                        </a>
+                    </td>
+                    <td style="text-align: center;">
+                        <a
+                            href="<?php echo $this->getUrl('admin/catalog_product/delete?id=' . $product->getProduct_id()) ?>">
+                            <button class="btn-delete">Delete</button>
+                        </a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </table>
+    </div>
+    <div class="pagination" style="display: flex;">
+        <?php $prev = 0; ?>
+        <?php for ($i = 1; $i <= $pages; $i++): ?>
+            <?php if ($i == 1 || $i == $pages || $prev == $start || $prev == $start - $limit || $prev == $start + $limit): ?>
+                <div style="padding: 5px 10px;" class="<?php echo ($prev == $start) ? 'active' : '' ?>">
+                    <a href="<?php echo $this->getUrl('admin/catalog_product/list?s=' . $prev . '&limit=' . $limit) ?>">
+                        <?php echo $i ?>
+                    </a>
+                </div>
             <?php endif; ?>
-        });
-    </script>
-</section>
+            <?php $prev += $limit; endfor; ?>
+    </div>
+</div>
+<script>
+    let productView = document.getElementsByClassName('product-popup-container')[0];
+    productView.addEventListener('click', function () {
+        productView.style.display = "none";
+    })
+    document.getElementById('limit').value = <?php echo $limit; ?>;
+    function setLimit(limit) {
+        var xhttp;
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                window.location.href = this.responseURL;
+            }
+        };
+        xhttp.open("GET", "/Practice/mvc_project/admin/catalog_product/list?s=0&limit=" + limit, true);
+        xhttp.send();
+    }
 
-
-
-
+    function viewProduct(id) {
+        var xhttp;
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById('product-popup').innerHTML = this.response
+                productView.style.display = "block";
+            }
+        }
+        xhttp.open("GET", "<?php echo Mage::getBaseUrl('admin/catalog_product/view?id=') ?>" + id, true);
+        xhttp.send();
+    }
+</script>

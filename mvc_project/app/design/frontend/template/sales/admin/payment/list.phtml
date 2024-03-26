@@ -1,0 +1,23 @@
+<?php $paymentMethods = $this->getPaymentMethods(); ?>
+<div class="payment-list-container">
+    <table style="width: 40vw;">
+        <tr>
+            <th>Payment Id</th>
+            <th>Payment Type</th>
+            <th colspan="2">Actions</th>
+        </tr>
+        <?php foreach ($paymentMethods as $method): ?>
+            <tr>
+                <td>
+                    <?php echo $method->getId() ?>
+                </td>
+                <td>
+                    <?php echo $method->getPaymentType() ?>
+                </td>
+                <td><a href="<?php echo Mage::getBaseUrl("admin/sales_payment/form?id=" . $method->getId()) ?>">Edit</a></td>
+                <td><a href="<?php echo Mage::getBaseUrl("admin/sales_payment/delete?id=" . $method->getId()) ?>">Remove</a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+</div>

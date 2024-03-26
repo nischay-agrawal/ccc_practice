@@ -1,0 +1,20 @@
+<?php $orders = $this->getOrders(); ?>
+
+<div class="order-list-container">
+    <table>
+        <tr>
+            <th>Order Id</th>
+            <th>Grand Total</th>
+            <th>Order Status</th>
+            <th>Action</th>
+        </tr>
+        <?php foreach($orders as $_order): ?>
+            <tr>
+                <td>#<?php echo $_order->getOrderId(); ?></td>
+                <td><?php echo $_order->getGrandTotal(); ?></td>
+                <td><?php echo $this->getOrderStatusName($_order->getOrderStatus()); ?></td>
+                <td><a href="<?php echo Mage::getBaseUrl("admin/sales_order/view?id=".$_order->getId()) ?>"><button>View</button></a></td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+</div>

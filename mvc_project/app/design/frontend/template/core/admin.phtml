@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/6198d5b73f.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <?php echo $this->getChildHtml('head') ?>
+    <style>
+        .content-container {
+            overflow: scroll;
+        }
+
+        .content-container::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+
+<body style="height: 100vh;">
+    <?php echo $this->getChildHtml('header'); ?>
+        <?php echo $this->getChildHtml('content'); ?>
+    </div>
+</body>
+
+</html>

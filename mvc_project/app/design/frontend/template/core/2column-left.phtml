@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <?php echo $this->getChild('head')->toHtml(); ?>
+</head>
+
+<body>
+    <div style="display: flex;">
+
+        <div><?php  if($this->getChild('left')) echo $this->getChild('left')->toHtml(); ?></div>
+    <div><?php echo $this->getChild('content')->toHtml(); ?></div>
+    </div>
+</body>
+
+</html>

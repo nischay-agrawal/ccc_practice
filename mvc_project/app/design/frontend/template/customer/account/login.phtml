@@ -1,0 +1,36 @@
+<div class="customer-login-container">
+    <div class="login-banner-container">
+        <div>
+            <p style="font-size: 26px;font-weight: 600;margin: 0 0 10px 0;">Login</p>
+            <p style="font-size: 18px;font-weight: 300">Get access to your Orders,<br> Profile and Wishlist</p>
+        </div>
+        <div style="background: url('<?php echo Mage::getBaseUrl('skin/images/onlineshoppingdelivery.png'); ?>');
+                    background-position: center;
+                    background-size: contain;
+                    background-repeat: no-repeat;">
+        </div>
+    </div>
+    <div class="login-form-container">
+        <form action="<?php echo $this->getUrl('customer/account/login') ?>" method="post">
+            <div>
+                <label for="email">Enter Email</label>
+                <input type="email" name="login[customer_email]" id="email">
+            </div>
+            <div>
+                <label for="password">Enter Password</label>
+                <input type="password" name="login[password]" id="password">
+            </div>
+            <a href="<?php echo $this->getUrl('customer/account/forgotpassword') ?>">
+                forgot password
+            </a>
+            <div>
+                <input type="submit" value="Login">
+            </div>
+        </form>
+        <p style="margin: 0;text-align: center">
+            <a href="<?php echo $this->getUrl('customer/account/register') ?>">
+                New to FestivShop? register
+            </a>
+        </p>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+.address-form-container{
+    /* margin: 0 auto; */
+    width: fit-content;
+    padding: 16px;
+}
+.billing-address-container, .shipping-address-container{
+    /* border: 1px solid black; */
+    padding: 30px;
+}
+.address-form-container label{
+    display: block;
+}
+.address-form-container input, .address-form-container button{
+    width: 100%;
+    margin: 5px 0;
+    padding: 5px;
+    border: 1px solid gainsboro;
+    outline: none;
+}
+.checkout-container{
+    justify-content: center;
+    gap: 20px;
+    
+}
+.new-address-form.active{
+    display: none;
+}
+.new-address-form form input{
+    display: block;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 5px;
+}
+.address-cards{
+    width: 350px;
+    margin: 10px 0;
+    border: 1px solid gainsboro;
+    border-radius: 10px;
+}
+.address-cards p{
+    margin: 5px;
+}

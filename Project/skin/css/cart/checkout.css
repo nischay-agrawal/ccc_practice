@@ -6,11 +6,6 @@ body {
     padding: 0;
 }
 
-.container {
-    width: 80%;
-    margin: 20px auto;
-}
-
 .form {
     background-color: #fff;
     padding: 20px;
@@ -102,4 +97,20 @@ input[type="radio"] {
     .container {
         width: 90%;
     }
+}
+
+.checkout-container-main
+{
+    display: flex;
+    justify-content: center;
+}
+
+.checkout-container-left
+{
+width: 20vw;
+}
+
+.checkout-container-right
+{
+    width: 50vw;
 }

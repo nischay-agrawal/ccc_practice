@@ -1,0 +1,23 @@
+<?php $shippingMethods = $this->getShippingMethods(); ?>
+<div class="shipping-list-container">
+    <table style="width: 40vw;">
+        <tr>
+            <th>Shipping Id</th>
+            <th>Shipping Type</th>
+            <th colspan="2">Actions</th>
+        </tr>
+        <?php foreach ($shippingMethods as $method): ?>
+            <tr>
+                <td>
+                    <?php echo $method->getId() ?>
+                </td>
+                <td>
+                    <?php echo $method->getShippingType() ?>
+                </td>
+                <td><a href="<?php echo Mage::getBaseUrl("admin/sales_shipping/form?id=" . $method->getId()) ?>">Edit</a></td>
+                <td><a href="<?php echo Mage::getBaseUrl("admin/sales_shipping/delete?id=" . $method->getId()) ?>">Remove</a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+</div>

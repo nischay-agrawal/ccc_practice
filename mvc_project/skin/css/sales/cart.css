@@ -1,0 +1,121 @@
+.sales-cart-container{
+    background-color: rgb(240, 240, 240);
+    padding: 24px;
+    display: flex;
+    justify-content: center;
+}
+.sales-cart-container div{
+    box-sizing: border-box;
+}
+.cart-item-container{
+    margin: 0 8px;
+    width: 40vw;
+}
+.item-wrapper{
+    padding: 16px;
+    position: relative;
+}
+.item-wrapper>div{
+    display: flex;
+}
+.item-image-wrapper{
+    padding: 10px;
+}
+.item-image-wrapper img{
+    object-fit: contain;
+}
+.item-detail{
+    padding: 10px;
+}
+.item-detail p{
+    margin: 10px;
+}
+.cart-price-detail-container{
+    width: 30vw;
+    background-color: white;
+    margin: 0 8px;
+    height: fit-content;
+    padding: 16px 24px;
+}
+.cart-price-detail-container p{
+    margin: 0;
+}
+.order-btn{
+    background: white;
+    padding: 16px;
+    box-shadow: 0 -1px 5px 0 rgb(128, 128, 128, 0.4);
+    text-align: right;
+}
+.order-btn button{
+    border: none;
+    background-color: orangered;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 12px 30px;
+}
+.address-box{
+    padding: 16px;
+    background: white;
+    margin: 0 0 12px;
+}
+.address-box p{
+    margin: 0;
+    font-size: 14px;
+}
+.address-box span{
+    font-weight: 500;
+}
+.edit{
+    display: none;
+}
+
+.quantity-box{
+    display: flex;
+    gap: 2px;
+}
+.quantity-btn{
+    line-height: 25px;
+    text-align: center;
+    border: none;
+    outline: none;
+    color: white;
+    height: 25px;
+    width: 25px;
+    font-size: 18px;
+    font-weight: 500;
+    background-color: orangered;
+    cursor: pointer;
+    transition: background-color .3s ease, transform .3s ease;
+}
+.save-btn{
+    cursor: pointer;
+    background: #0D50FD;
+    color: white;
+    outline: none;
+    border: none;
+    font-weight: 500;
+    margin: 0 15px;
+    padding: 0 10px;
+    transition: transform .3s ease;
+}
+.quantity-btn:hover{
+    background-color: rgb(216, 67, 12);
+}
+.quantity-btn:active, .save-btn:active{
+    transform: scale(0.95);
+}
+#quantity{
+    height: 25px;
+    width: 25px;
+    text-align: center;
+    border: 1px solid black;
+    padding: 5px;
+    box-sizing: border-box;
+    outline: none;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

@@ -1,0 +1,62 @@
+<?php $orders = $this->getOrders(); ?>
+<div class="order-container">
+    <?php foreach ($orders as $order): ?>
+        <div class="order-item-container">
+            <p style="display: flex;justify-content: space-between">
+                <span>#
+                    <?php echo $order->getOrderNumber(); ?>
+                </span>
+                <span>
+                    <?php echo ucwords($order->getOrderStatusName($order->getOrderStatus())); ?>
+                </span>
+            </p>
+            <p style="display: flex;justify-content: space-between">
+                <span>
+                    <?php echo sizeof($order->getItems()) ?> Items
+                </span>
+                <span>₹
+                    <?php echo $order->getGrandTotal(); ?>
+                </span>
+            </p>
+            <div style="background-color: white;padding: 4px">
+                <?php if ($order->getOrderStatus() == 1): ?>
+                    <a
+                        href="<?php echo Mage::getBaseUrl("sales/order/cancel?id=" . $order->getId()); ?>"><button>Cancel</button></a>
+                <?php endif; ?>
+                <?php if ($order->getOrderStatus() == 3): ?>
+                    <p style="margin: 0">cancel request sent</p>
+                <?php endif; ?>
+                <?php if ($order->getOrderStatus() == 4): ?>
+                    <p style="margin: 0">Cancel Request Declined</p>
+                <?php endif; ?>
+                <?php if ($order->getOrderStatus() == 5): ?>
+                    <p style="margin: 0">Order Cancelled & Refunded</p>
+                <?php endif; ?>
+            </div>
+        </div>
+        <div class="order-items">
+            <?php foreach ($order->getItems() as $item): ?>
+                <div class="item-container" style="display: flex">
+                    <img src="<?php echo Mage::getBaseUrl("media/products/" . $item->getImageLink()) ?>" height="100px"
+                        width="100px" alt="">
+                    <div style="padding: 14px;width: 100%">
+                        <p>
+                            <?php echo $item->getProductName() ?>
+                        </p>
+                        <p>
+                            <?php echo $item->getProductDescription() ?>
+                        </p>
+                        <p style="display: flex;justify-content: space-between">
+                            <span style="font-size: 20px;font-weight: 600">₹
+                                <?php echo $item->getPrice() ?>
+                            </span>
+                            <span>Qty:
+                                <?php echo $item->getQty() ?>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    <?php endforeach; ?>
+</div>

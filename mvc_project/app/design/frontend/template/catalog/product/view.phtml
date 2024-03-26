@@ -1,0 +1,52 @@
+<?php $product = $this->getData('product'); ?>
+<form action="<?php echo Mage::getBaseUrl('sales/quote/add') ?>" method="post">
+<input type="hidden" name="product_id" value="<?php echo $product->getId() ?>">
+<div class="product-view-container">
+    <div class="product-view-image-container">
+        <div class="product-view-image-wrapper">
+            <img src="<?php echo Mage::getBaseUrl('media/products/' . $product->getImageLink()) ?>" alt="">
+        </div>
+        <div class="btn">
+            <button>Buy Now</button>
+            <button type="submit">Add to Cart</button>
+        </div>
+    </div>
+    <div class="product-view-detail-container">
+        <p style="font-size: 18px;font-weight: 500">
+            <?php echo $product->getDescription(); ?>
+        </p>
+        <p style="font-size: 14px;font-weight: 400">
+            <?php echo $product->getName(); ?>
+        </p>
+        <p style="font-size: 26px;font-weight: 600;margin: 15px 0">
+            ₹
+            <?php echo $product->getPrice(); ?>
+        </p>
+        <div style="font-size: 14px;margin: 15px 0;">
+            <p style="display: flex;gap: 20px"><span style="color: gray">Color</span>
+                <?php echo $product->getColor(); ?>
+            </p>
+            <p style="display: flex;gap: 20px"><span style="color: gray">Size</span>
+                <?php echo $product->getSize(); ?>
+            </p>
+        </div>
+        <p><span style="color: gray;font-size: 14px">Quantity</span></p>
+        <div class="quantity-box">
+            <div class="quantity-btn" onclick="decrease()">-</div>
+            <div><input type="number" name="qty" min="1" max="10" value="1" id="quantity"></div>
+            <div class="quantity-btn" onclick="increase()">+</div>
+        </div>
+    </div>
+</div>
+</form>
+<script>
+    let qnt = document.getElementById('quantity');
+    function increase() {
+        if (parseInt(qnt.value) + 1 <= 5)
+            qnt.value = parseInt(qnt.value) + 1;
+    }
+    function decrease() {
+        if (parseInt(qnt.value) - 1 >= parseInt(qnt.getAttribute('min')))
+            qnt.value = parseInt(qnt.value) - 1;
+    }
+</script>

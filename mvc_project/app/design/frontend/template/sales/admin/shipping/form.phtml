@@ -1,0 +1,13 @@
+<?php $data = $this->getShippingMethod() ?>
+<div class="shipping-form-container">
+    <form action="<?php echo Mage::getBaseUrl("admin/sales_shipping/save") ?>" method="post">
+        <input type="hidden" name="shipping[shipping_id]" value="<?php echo $data->getShippingId(); ?>">
+        <div>
+            <label for="">Shipping Type</label>
+            <input type="text" name="shipping[shipping_type]" value="<?php echo $data->getShippingType() ?>" id="">
+        </div>
+        <div>
+            <button type="submit">Save</button>
+        </div>
+    </form>
+</div>

@@ -1,27 +1,22 @@
-<?php $catData = $this->getCategoryData(); ?>
-<form action="<?php echo Mage::getBaseUrl('admin/catalog_category/save')?>" method="POST" class="form">
-<input type="hidden" name="catalog_category[category_id]" value="<?php echo isset($catData) ? $catData->getCategoryId() : ''; ?>">
-
-  <div class="form-row">
-        <div class="form-col">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="catalog_category[category_name]" value="<?php echo isset($catData) ? $catData->getCategoryName() : ''; ?>" >
+<?php
+$category = $this->getData();
+?>
+<div class="form-container" style="width: 60%;margin: 10px auto">
+    <h1>Category Form</h1>
+    <form action="<?php echo $this->getUrl('admin/catalog_category/save'); ?>" method="post">
+        <input type="hidden" name="category[category_id]" value="<?php echo $category->getCategory_id() ?>">
+        <div>
+            <label for="cat_name" style="display: block;">Category Name</label>
+            <input type="text" name="category[category_name]" value="<?php echo $category->getCategory_name() ?>" id="cat_name">
         </div>
-    </div>
-
-    <div class="form-row">
-        <div class="form-col">
-            <label>Status:</label>
-
-            <input type="radio" id="status_active" name="catalog_category[status]" value="1" <?php echo isset($catData) && $catData->getStatus() == 'Enable' ? 'checked' : ''; ?>>
-            <label for="status_active" style="display: inline-block; margin-right: 10px;">Enable</label>
-
-            <input type="radio" id="status_inactive" name="catalog_category[status]" value="0" <?php echo isset($catData) && $catData->getStatus() == 'Disable' ? 'checked' : ''; ?>>
-            <label for="status_inactive" style="display: inline-block;">Disable</label>
+        <?php echo $this->getRenderer("text", ["name"=>"category[category]", "id"=>"safd"]); ?>
+        <div>
+            Status:<br>
+            <input type="radio" value="1" name="category[status]" id="active"><label for="active"
+                style="display: inline;margin: 0 10px;">Active</label>
+            <input type="radio" value="0" name="category[status]" id="inactive"><label for="inactive"
+                style="display: inline;margin: 0 10px;">Inactive</label>
         </div>
-    </div>
-
-    <button type="submit" >
-        <?php echo ($catData->getId() !== "") ? 'Update' : 'Submit'; ?>
-    </button>
-</form>
+        <input type="submit" value="Submit">
+    </form>
+</div>

@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
-    <?php echo ($this->getChild('head')->toHtml())?>
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/6198d5b73f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <?php $this->getChild('head')->addCss('footer.css'); ?>
+    <?php $this->getChild('head')->addJs('header.js'); ?>
+    <?php echo $this->getChildHtml('head'); ?>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 </head>
+
 <body>
-    
-    <?php echo ($this->getChildHtml('header'))?>
-    <section class="container_content"><?php echo ($this->getChildHtml('content'))?></section>
-    <?php echo ($this->getChildHtml('footer'))?>
-    
+    <?php echo $this->getChildHtml('header'); ?>
+    <?php echo $this->getChildHtml('content'); ?>
+    <?php echo $this->getChildHtml('footer'); ?>
 </body>
+
 </html>

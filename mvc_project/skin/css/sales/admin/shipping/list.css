@@ -1,0 +1,29 @@
+.shipping-list-container {
+    font-family: Arial, sans-serif;
+}
+
+.shipping-list-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.shipping-list-container th,
+.shipping-list-container td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+.shipping-list-container th {
+    text-align: center;
+    background-color: #f2f2f2;
+}
+
+.shipping-list-container td a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.shipping-list-container td a:hover {
+    text-decoration: underline;
+}

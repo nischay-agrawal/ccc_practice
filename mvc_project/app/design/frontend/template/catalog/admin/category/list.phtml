@@ -1,27 +1,41 @@
-<?php   $listModel =  Mage::getModel('catalog/category')->getCollection() ;?>
-
-<section class="list">
-<h2>Category List</h2>
-    <table border="1">
+<?php
+$categoryCollection = Mage::getModel('catalog/category')->getCollection();
+$categories = $categoryCollection->getData();
+?>
+<div class="table" style="width: fit-content;">
+    <h2>Category List</h2>
+    <table>
         <tr>
             <th>Category Id</th>
             <th>Category Name</th>
             <th>Status</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            <th></th>
+            <th></th>
         </tr>
-        <?php foreach ($listModel->getData() as $category): ?>
+        <?php foreach ($categories as $category): ?>
             <tr>
-                <td style="width:30px"><?= $category->getCategoryId() ?></td>
-                <td><?= $category->getCategoryName() ?></td>
-                <td><?= $category->getStatus() ?></td>
-                <td><a href="http://localhost/practise/mvc_project/admin/catalog_category/form?id=<?= $category->getCategoryId() ?>">Edit</a></td>
-                <td><a href="http://localhost/practise/mvc_project/admin/catalog_category/delete?id=<?= $category->getCategoryId() ?>">Delete</a></td>
+                <td>
+                    <?php echo $category->getCategory_id(); ?>
+                </td>
+                <td>
+                    <?php echo $category->getCategory_name(); ?>
+                </td>
+                <td>
+                    <?php echo ($category->getStatus() == 1) ? 'active' : 'inactive'; ?>
+                </td>
+                <td>
+                    <a
+                        href="<?php echo $this->getUrl('admin/catalog_category/form?id=' . $category->getCategory_id()) ?>">
+                        <button>Edit</button>
+                    </a>
+                </td>
+                <td>
+                    <a
+                        href="<?php echo $this->getUrl('admin/catalog_category/delete?id=' . $category->getCategory_id()) ?>">
+                        <button>Remove</button>
+                    </a>
+                </td>
             </tr>
         <?php endforeach; ?>
-  </table>
-</section>
-
-
-
-
+    </table>
+</div>

@@ -1,0 +1,13 @@
+<?php $payment = $this->getPaymentMethod() ?>
+<div class="payment-form-container">
+    <form action="<?php echo Mage::getBaseUrl("admin/sales_payment/save") ?>" method="post">
+        <input type="hidden" name="payment[payment_id]" value="<?php echo $payment->getPaymentId(); ?>">
+        <div>
+            <label for="">Payment Type</label>
+            <input type="text" name="payment[payment_type]" value="<?php echo $payment->getPaymentType(); ?>" id="">
+        </div>
+        <div>
+            <button type="submit">Save</button>
+        </div>
+    </form>
+</div>

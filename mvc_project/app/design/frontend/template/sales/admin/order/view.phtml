@@ -1,0 +1,208 @@
+<?php $order = $this->getOrder();
+$total = 0; ?>
+<div class="shipping-progress-bar">
+    <div class="bar-wrapper">
+        <div class="bar" id="bar">
+            <div id="dot-op" class="dot completed"></div>
+            <span class="dot-text">Order Placed</span>
+            <div id="dot-ip" style="left: 40%" class="dot"></div>
+            <span class="dot-text" style="left: 40%">In Progress</span>
+            <div id="dot-d" style="left: 60%" class="dot"></div>
+            <span class="dot-text" style="left: 60%">Shipped</span>
+            <div id="dot-s" style="left: 80%" class="dot"></div>
+            <span class="dot-text" style="left: 80%">Delivered</span>
+            <div class="progress" id="progress-bar"></div>
+        </div>
+    </div>
+</div>
+<script>
+    let bar = document.getElementById("progress-bar");
+    let dots = document.getElementsByClassName("dot");
+    let status = <?php echo $order->getOrderStatus(); ?>;
+    if(status == 6){
+        bar.style.width = "100%";
+        for(let i=0;i<dots.length;i++){
+            dots[i].classList.add("completed");
+        }
+    }
+    if(status == 2){
+        bar.style.width = "80%";
+        for(let i=0;i<dots.length-1;i++){
+            dots[i].classList.add("completed");
+        }
+    }
+    if(status == 1){
+        bar.style.width = "50%";
+        for(let i=0;i<dots.length-2;i++){
+            dots[i].classList.add("completed");
+        }
+    }
+</script>
+<style>
+    .shipping-progress-bar {
+        padding: 20px;
+        background-color: white;
+        width: 100%;
+    }
+
+    .bar {
+        position: relative;
+        height: 20px;
+        background-color: blueviolet;
+    }
+
+    .progress {
+        position: absolute;
+        height: 20px;
+        background-color: green;
+        width: 25%;
+    }
+
+    .dot-text {
+        position: absolute;
+        width: fit-content;
+        top: 40px;
+        left: 20%;
+        transform: translateX(-25%);
+    }
+
+    .dot {
+        position: absolute;
+        border: 5px solid gray;
+        top: -50%;
+        left: 20%;
+        z-index: 10;
+        height: 40px;
+        width: 40px;
+        background-color: white;
+        border-radius: 50%;
+    }
+
+    .dot.completed {
+        border: 5px solid green;
+        background-color: blue;
+    }
+</style>
+<div class="order-view-container">
+    <div class="order-detail">
+        <p>#
+            <?php echo $order->getOrderNumber(); ?>
+        </p>
+    </div>
+    <div class="order-items" style="padding: 20px">
+        <div>
+            <?php echo ucwords($order->getOrderStatusArr()[$order->getOrderStatus()]); ?>
+        </div>
+        <div>
+            <?php foreach ($order->getItemCollection() as $_item): ?>
+                <?php $product = $_item->getProduct();
+                $total += $_item->getRowTotal() ?>
+                <div style="display: flex;padding: 0 14px;align-items: center">
+                    <div style="margin: 10px">
+                        <img style="object-fit: contain;"
+                            src="<?php echo Mage::getBaseUrl("media/products/" . $product->getImageLink()) ?>" height="100"
+                            width="100" alt="">
+                    </div>
+                    <div style="display: flex;justify-content: space-between;width: 100%">
+                        <p>
+                            <?php echo $product->getName(); ?>
+                        </p>
+                        <p style="display: flex;gap: 20px">
+                            <span>₹
+                                <?php echo $_item->getPrice(); ?> ×
+                                <?php echo $_item->getQty() ?>
+                            </span>
+                            <span>₹
+                                <?php echo $_item->getRowTotal(); ?>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+        <?php if ($order->getOrderStatus() != 6): ?>
+            <div style="text-align: right">
+                <a
+                    href="<?php echo Mage::getBaseUrl("admin/sales_order_status/save?id=" . $order->getId() . "&status=6"); ?>"><button
+                        <?php echo ($order->getOrderStatus() == 2) ? "" : "disabled"; ?>>Mark
+                        as Completed</button></a>
+                <a
+                    href="<?php echo Mage::getBaseUrl("admin/sales_order_status/save?id=" . $order->getId() . "&status=2"); ?>"><button
+                        <?php echo ($order->getOrderStatus() == 1 || $order->getOrderStatus() == 4) ? "" : "disabled"; ?>>Mark
+                        as
+                        Shipped</button></a>
+            </div>
+        <?php else: ?>
+            <div>
+                <p style="text-align: right">Order Completed</p>
+            </div>
+        <?php endif; ?>
+    </div>
+
+    <div class="order-price" style="padding: 20px">
+        <table style="width: 100%">
+            <tr>
+                <td>Sub Total</td>
+                <td style="text-align: right;">₹
+                    <?php echo $total ?>
+                </td>
+            </tr>
+            <tr>
+                <td>Shipping</td>
+                <td style="text-align: right;">0</td>
+            </tr>
+            <tr>
+                <td>Tax <span>8%</span></td>
+                <td style="text-align: right;">₹
+                    <?php echo $order->getGrandTotal() - $total; ?>
+                </td>
+            </tr>
+            <tr>
+                <td>Total</td>
+                <td style="text-align: right;">₹
+                    <?php echo $order->getGrandTotal() ?>
+                </td>
+            </tr>
+        </table>
+        <?php if ($order->getOrderStatus() == 3): ?>
+            <div>
+                <a
+                    href="<?php echo Mage::getBaseUrl("admin/sales_order_status/save?id=" . $order->getId() . "&status=5"); ?>">
+                    <button>Refund</button>
+                </a>
+                <a
+                    href="<?php echo Mage::getBaseUrl("admin/sales_order_status/save?id=" . $order->getId() . "&status=4"); ?>">
+                    <button>Decline</button>
+                </a>
+            </div>
+        <?php endif; ?>
+    </div>
+    <div class="order-customer">
+        <?php
+        $address = $order->getAddress();
+        $customer = $address->getCustomer();
+        ?>
+        <p>Customer</p>
+        <p>
+            <?php echo $customer->getFirstName() . " " . $customer->getLastName(); ?>
+        </p>
+        <p>Contact Information</p>
+        <p>
+            <?php echo $customer->getCustomerEmail() ?>
+        </p>
+        <p>SHIPPING ADDRESS</p>
+        <p>
+            <?php echo $address->getShippingAddress() ?><br>
+            <?php echo $address->getShippingCity() ?><br>
+            <?php echo $address->getShippingZip() ?>
+        </p>
+    </div>
+</div>
+<style>
+    .order-items,
+    .order-price {
+        margin: 20px;
+        background-color: white;
+        width: 50%;
+    }
+</style>

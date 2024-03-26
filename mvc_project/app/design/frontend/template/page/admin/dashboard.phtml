@@ -1,0 +1,45 @@
+<?php
+$joinData = Mage::getModel("sales/order_item")
+    ->getCollection()
+    ->addSelect(["catalog_product.category_id", "SUM(sales_order_item.qty) as count"])
+    ->addJoin("LEFT", "catalog_product", "catalog_product.product_id = sales_order_item.product_id")
+    ->addGroupBy("catalog_product.category_id")->getData();
+$productListBlock = Mage::getBlock("catalog/admin_product_list");
+$jsonData = [];
+foreach ($joinData as $_data) {
+    $_d = $_data->getData();
+    $jsonData[] = [
+        $productListBlock->getCategoryName($_d["category_id"]),
+        (int) $_d["count"]
+    ];
+}
+$jsonString = json_encode(["data" => $jsonData]);
+?>
+
+<div class="dashboard-container" style="overflow: scroll;">
+    <div></div>
+    <div id="chart_div" style="margin: 20px"></div>
+</div>
+<script type="text/javascript">
+        let final = JSON.parse(<?php echo json_encode($jsonString); ?>);
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Category');
+            data.addColumn('number', 'Products');
+            data.addRows(final.data);
+            var options = {
+                'title': 'Category wise Orders',
+                'width': 800,
+                'height': 600
+            };
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+    </script>
+<style>
+    .dashboard-container::-webkit-scrollbar{
+        display: none;
+    }
+</style>

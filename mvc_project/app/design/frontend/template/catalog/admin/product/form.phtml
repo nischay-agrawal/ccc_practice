@@ -1,113 +1,122 @@
-<?php $productData = $this->getProductData(); 
-$catData = Mage::getModel('catalog/category')->getCollection();
+<?php
+$categories = Mage::getModel('catalog/category')->getCollection()->getData();
+$product = $this->getData();
 ?>
-<form action="<?php echo Mage::getBaseUrl('admin/catalog_product/save')?>" method="POST" class="form">
-<input type="hidden" name="catalog_product[product_id]" value="<?php echo isset($productData) ? $productData->getProductId() : ''; ?>">
-
-    <div class="form-row">
-        <div class="form-col">
-            <label for="sku">SKU:</label>
-            <input type="text" id="sku" name="catalog_product[sku]" value="<?php echo isset($productData) ? $productData->getSku() : ''; ?>" >
-        </div>
-        <div class="form-col">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="catalog_product[name]" value="<?php echo isset($productData) ? $productData->getName() : ''; ?>" >
-        </div>
+<div class="form-container">
+    <div style="background: rgb(39, 39, 255);color:white;height: 70px">
+        <p style="font-size: 16px;font-weight: 600">Product</p>
     </div>
+    <div class="form">
+        <p style="border-bottom: 1px solid black;padding: 10px 0;font-weight: 600;">
+            <?php if ($product->getProduct_id() != ''): ?>
+                Product Id -
+                <?php echo $product->getProduct_id(); ?>
+            <?php else: ?>
+                New Product
+            <?php endif; ?>
+        </p>
+        <form action="<?php echo $this->getUrl('admin/catalog_product/save'); ?>" name="product-form" method="post"
+            enctype="multipart/form-data">
+            <input type="hidden" name="product[product_id]" value="<?php echo $product->getProduct_id(); ?>">
+            <div class="row">
+                <div>
+                    <label for="name">Name</label>
+                    <input type="text" name="product[name]" value="<?php echo $product->getname(); ?>" id="name">
+                    <p name="nameError">Error</p>
+                </div>
+                <div>
+                    <label for="sku">SKU</label>
+                    <?php echo $this->getRenderer("text", ["name" => "product[sku]", "value" => $product->getSku(), "id" => "sku"]) ?>
+                </div>
+            </div>
+            <div class="row">
+                <div>
+                    <label for="color">Color:</label>
+                    <input type="text" name="product[color]" value="<?php echo $product->getcolor() ?>" id="color">
+                </div>
+                <div>
+                    <label for="size">Size:</label>
+                    <input type="text" name="product[size]" value="<?php echo $product->getsize() ?>" id="size">
+                </div>
+            </div>
+            <div>
+                <label for="desc">Description:</label>
+                <textarea name="product[description]" id="desc" cols="30"
+                    rows="2"><?php echo $product->getdescription() ?></textarea>
+            </div>
+            <div class="row">
+                <div>
+                    <label for="img-link">Image Link:</label>
+                    <input type="file" name="image_link" id="img-link">
+                </div>
+                <div>
+                    <label for="link">Link:</label>
+                    <input type="url" name="product[link]" value="<?php echo $product->getLink() ?>" id="link">
+                </div>
+            </div>
+            <div class="row">
+                <div>
+                    <label for="cat">Category:</label>
+                    <?php echo $this->getRenderer("select", ["name" => "product[category_id]", "id" => "cat", "options" => Mage::getModel('catalog/category')->getCategoryArray(), "selected" => $product->getCategory_id()]) ?>
+                </div>
+                <div>
+                    <label for="price">Price:</label>
+                    <input type="text" name="product[price]" value="<?php echo $product->getPrice(); ?>"
+                        onkeyup="calculateMargin()" id="price">
+                </div>
+            </div>
+            <div class="row">
+                <div>
+                    <label for="mfr-cost">Manufacturer Cost</label>
+                    <input type="text" name="product[mfr_cost]" value="<?php echo $product->getMfr_cost(); ?>"
+                        onkeyup="calculateTotal()" id="mfr-cost">
+                </div>
+                <div>
+                    <label for="shipping-cost">Shipping Cost</label>
+                    <input type="text" name="product[shipping_cost]" value="<?php echo $product->getShipping_cost(); ?>"
+                        onkeyup="calculateTotal()" id="shipping-cost">
+                </div>
+                <div>
+                    <label for="total-cost">Total Cost</label>
+                    <input type="text" name="product[total_cost]" value="<?php echo $product->getTotal_cost(); ?>"
+                        onchange="calculateMargin()" id="total-cost">
+                </div>
+            </div>
+            <div class="row">
+                <div>
+                    <label for="margin-percentage">Margin Percentage</label>
+                    <input type="text" name="product[margin_percentage]"
+                        value="<?php echo $product->getMargin_percentage(); ?>" id="margin-percentage">
+                </div>
+                <div>
+                    <label for="min-price">Minimum Price</label>
+                    <input type="text" name="product[min_price]" value="<?php echo $product->getMin_price(); ?>"
+                        id="min-price">
+                </div>
+                <div>
+                    <label for="status">Status:</label>
+                    <?php $status = ($product->getStatus() == 'enabled') ? 1 : 0; ?>
 
-    <div class="form-row">
-        <div class="form-col">
-            <label for="color">Color:</label>
-            <input type="text" id="color" name="catalog_product[color]" value="<?php echo isset($productData) ? $productData->getColor() : ''; ?>" >
-        </div>
-        <div class="form-col">
-            <label for="size">Size:</label>
-            <input type="text" id="size" name="catalog_product[size]" value="<?php echo isset($productData) ? $productData->getSize() : ''; ?>" >
-        </div>
+                    <input type="radio" name="product[status]" value="1" <?php echo ($status == 1) ? 'checked' : ''; ?>
+                        id="active">
+                    <label style="display: inline;" for="active">Active</label>
+                    <input type="radio" name="product[status]" value="0" <?php echo ($status == 0) ? 'checked' : ''; ?>
+                        id="inactive">
+                    <label style="display: inline;" for="inactive">Inactive</label>
+                </div>
+            </div>
+            <div class="button-group" style="margin: 0 auto;width: fit-content;">
+                <a class="btn-new" href="/practice_mvc/admin/catalog_product/form"><span><i
+                            class="fa-solid fa-plus"></i> New</span></a>
+                <button class="btn-save" type="submit" name="submit"><i class="fa-regular fa-floppy-disk"></i>
+                    Save</button>
+                <a class="btn-cancel" href="/practice_mvc/admin/catalog_product/list"><span><i
+                            class="fa-solid fa-xmark"></i> Cancel</span></a>
+            </div>
+        </form>
     </div>
+</div>
 
-    <div class="form-row">
-        <div class="form-col">
-            <label for="description">Description:</label>
-            <textarea id="description" name="catalog_product[description]" rows="3"><?php echo isset($productData) ? $productData->getDescription() : ''; ?></textarea>
-        </div>
-        <div class="form-col">
-            <label for="image_link">Image Link:</label>
-            <input type="text" id="image_link" name="catalog_product[image_link]" value="<?php echo isset($productData) ? $productData->getImageLink() : ''; ?>" >
-        </div>
-    </div>
-
-    <div class="form-row">
-        <div class="form-col">
-            <label for="link">Product Link:</label>
-            <input type="text" id="link" name="catalog_product[link]" value="<?php echo isset($productData) ? $productData->getLink() : ''; ?>" >
-        </div>
-      
-        <div class="form-col">
-            <label for="category_id">Category:</label>
-            <select id="category_id" name="catalog_product[category_id]">
-                <option value="">-----select-----</option>
-                <?php
-                foreach ($catData->getData() as $category) {
-                    $categoryId = $category->getCategoryId();
-                    $categoryName = $category->getCategoryName();
-                    $selected = isset($productData) && $productData->getCategoryId() == $categoryId ? 'selected' : '';
-
-                    echo "<option value=\"$categoryId\" $selected>$categoryName</option>";
-                }
-                ?>
-            </select>
-        </div>
-
-    </div>
-
-    <div class="form-row">
-        <div class="form-col">
-            <label for="price">Price:</label>
-            <input type="number" id="price" name="catalog_product[price]" value="<?php echo isset($productData) ? $productData->getPrice() : ''; ?>" >
-        </div>
-        <div class="form-col">
-            <label for="mfr_cost">Manufacturer Cost:</label>
-            <input type="number" id="mfr_cost" name="catalog_product[mfr_cost]" value="<?php echo isset($productData) ? $productData->getMfrCost() : ''; ?>" >
-        </div>
-    </div>
-
-    <div class="form-row">
-        <div class="form-col">
-            <label for="shipping_cost">Shipping Cost:</label>
-            <input type="number" id="shipping_cost" name="catalog_product[shipping_cost]" value="<?php echo isset($productData) ? $productData->getShippingCost() : ''; ?>" >
-        </div>
-        <div class="form-col">
-            <label for="total_cost">Total Cost:</label>
-            <input type="number" id="total_cost" name="catalog_product[total_cost]" value="<?php echo isset($productData) ? $productData->getTotalCost() : ''; ?>" >
-        </div>
-    </div>
-
-    <div class="form-row">
-        <div class="form-col">
-            <label for="margin_percentage">Margin Percentage:</label>
-            <input type="number" id="margin_percentage" name="catalog_product[margin_percentage]" value="<?php echo isset($productData) ? $productData->getMarginPercentage() : ''; ?>" >
-        </div>
-        <div class="form-col">
-            <label for="min_price">Minimum Price:</label>
-            <input type="number" id="min_price" name="catalog_product[min_price]" value="<?php echo isset($productData) ? $productData->getMinPrice() : ''; ?>" >
-        </div>
-    </div>
-
-    <div class="form-row">
-        <div class="form-col">
-            <label>Status:</label>
-
-            <input type="radio" id="status_active" name="catalog_product[status]" value="1" <?php echo isset($productData) && $productData->getStatus() == 'Enable' ? 'checked' : ''; ?>>
-            <label for="status_active" style="display: inline-block; margin-right: 10px;">Enable</label>
-
-            <input type="radio" id="status_inactive" name="catalog_product[status]" value="0" <?php echo isset($productData) && $productData->getStatus() == 'Disable' ? 'checked' : ''; ?>>
-            <label for="status_inactive" style="display: inline-block;">Disable</label>
-        </div>
-    </div>
-
-
-    <button type="submit" >
-        <?php echo ($productData->getId() !== "") ? 'Update' : 'Submit'; ?>
-    </button >
-</form>
+<script>
+    
+</script>

@@ -1,15 +1,42 @@
-
-<header class="main-header">
-    <div class="logo">
-      <img src="<?php echo Mage::getBaseUrl('skin/img/logo.png')?>" alt="Ecommerce Logo">
+<?php $customer = ($this->getData('customer')=='')?false:$this->getData('customer'); ?>
+<header>
+    <div class="logo-container">
+        <a href="<?php echo Mage::getBaseUrl('') ?>" style="height: fit-content;display: block;"><img style="padding: 0;"
+                src="<?php echo Mage::getBaseUrl('skin/images/logo.png') ?>" height="45px" alt=""></a>
     </div>
-    <nav class="main-nav">
-      <ul>
-        <li><a href="http://localhost/practise/mvc_project/page/index/index">Home </a></li>
-        <li><a href="http://localhost/practise/mvc_project/admin/catalog_product/form">Product Form </a></li>
-        <li><a href="http://localhost/practise/mvc_project/admin/catalog_product/list">Product List</a></li>
-        <li><a href="http://localhost/practise/mvc_project/admin/catalog_category/form">Category Form </a></li>
-        <li><a href="http://localhost/practise/mvc_project/admin/catalog_category/list">Category List</a></li>
-      </ul>
-    </nav>
-  </header>
+    <div class="header-box">
+        <div class="input-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="search" name="" placeholder="Search For Products" id="">
+        </div>
+        <div class="header-btn login">
+            <a href="<?php echo (!$customer)?Mage::getBaseUrl('customer/account/login'):'#'; ?>" class="login-btn-txt">
+                <i class="fa-regular fa-circle-user"></i>
+                <span><?php echo (!$customer)?'Login':$customer->getFirst_name(); ?></span>
+                <i class="fa-solid fa-angle-down" style="font-size: 12px;"></i>
+            </a>
+            <div class="login-options">
+                <?php if(!$customer): ?>
+                <div
+                    style="display: flex;justify-content: space-between;padding: 10px 15px;border-bottom: 1px solid black; width: 200px;">
+                    <p style="margin: 0;">New customer?</p>
+                    <a href="<?php echo Mage::getBaseUrl('customer/account/register') ?>" style="font-weight: 600;color: #0D50FD">Sign Up</a>
+                </div>
+                <?php endif; ?>
+                <ul style="width: 100%">
+                    <li><a href="<?php echo Mage::getBaseUrl('customer/account/dashboard') ?>"><i class="fa-regular fa-circle-user"></i>My Profile</a></li>
+                    <li><a href="<?php echo Mage::getBaseUrl('order') ?>"><i class="fa-solid fa-boxes-stacked"></i>Orders</a></li>
+                    <?php if($customer): ?>
+                        <li><a href="<?php echo Mage::getBaseUrl('customer/account/logout') ?>"><i class="fa-solid fa-arrow-right-from-bracket"></i>Log Out</a></li>
+                    <?php endif; ?>
+                </ul>
+            </div>
+        </div>
+        <div class="header-btn">
+            <a href="<?php echo Mage::getBaseUrl('cart') ?>" class="cart-btn-txt">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span>Cart</span>
+            </a>
+        </div>
+    </div>
+</header>

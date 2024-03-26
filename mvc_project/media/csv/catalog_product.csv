@@ -1,0 +1,26 @@
+sku,name,color,size,description,image_link,link,category_id,price,mfr_cost,shipping_cost,total_cost,margin_percentage,min_price,status,inventory
+SKU001,Comfortable Sofa,,Large,A cozy sofa for your living room,00c17a09.jpg,http://localhost/Practice/mvc_project/catalog/product/view?id=36,6,8000,4500,500,5000,38,6500,1,97
+SKU002,Smartphone X,Black,Medium,Feature-rich smartphone with high-performance camera,pexels-jeremy-bishop-2765873.jpg,http://localhost/Practice/mvc_project/catalog/product/view?id=37,2,18000,500,20,520,97,879.99,1,99
+SKU003,Running Shoes,Blue,10,High-performance running shoes for athletes,shoes.jpg,http://localhost/Practice/mvc_project/catalog/product/view?id=38,3,450,40,10,50,89,69.99,1,92
+SKU004,Office Chair,Black,Adjustable,Ergonomic office chair for long hours of comfortable work,Doorbell.png,http://localhost/Practice/mvc_project/catalog/product/view?id=39,6,149.99,80,15,95,35,134.99,1,100
+SKU005,LED TV,Silver,55 inches,High-definition LED TV with smart features,television.png,http://localhost/Practice/mvc_project/catalog/product/view?id=40,8,20000,450,30,480,98,769.99,1,99
+SKU006,Coffee Maker,Stainless Steel,One Size,Automatic coffee maker with programmable settings,Menu.png,http://localhost/Practice/mvc_project/catalog/product/view?id=41,8,100,25,8,33,67,41.99,1,100
+SKU007,Laptop,Silver,13 inches,Thin and lightweight laptop with high-performance specs,laptop.png,http://localhost/Practice/mvc_project/catalog/product/view?id=42,4,55000,32000,500,32500,41,48000,0,100
+SKU008,Hiking Backpack,Green,Large,Durable backpack with multiple compartments for hiking enthusiasts,backpack.jpg,http://localhost/Practice/mvc_project/catalog/product/view?id=43,3,69.99,35,12,47,30,57.99,1,100
+SKU009,Desk Lamp,Black,Adjustable,LED desk lamp with adjustable brightness levels,lamp.jpg,http://localhost/Practice/mvc_project/catalog/product/view?id=44,5,29.99,15,5,20,40,24.99,0,99
+SKU010,Bluetooth Speaker,Red,One Size,Portable Bluetooth speaker with deep bass,bluetooth-speaker.jpg,http://localhost/Practice/mvc_project/catalog/product/view?id=45,4,39.99,20,7,27,35,32.99,1,97
+SKU011,Dining Table,Oak,Medium,Sturdy dining table with a classic design,table.jpg,http://localhost/Practice/mvc_project/catalog/product/view?id=46,6,249.99,120,25,145,30,224.99,1,100
+SKU012,Microwave Oven,White,One Size,Compact microwave oven with multiple cooking presets,microwave.jpg,http://localhost/Practice/mvc_project/catalog/product/view?id=47,8,79.99,40,10,50,45,69.99,1,100
+SKU013,Yoga Mat,Purple,One Size,Non-slip yoga mat for comfortable workouts,yogamat.jpg,http://localhost/Practice/mvc_project/catalog/product/view?id=48,11,19.99,10,3,13,45,16.99,1,100
+SKU014,Digital Camera,Black,18 Megapixels,High-resolution digital camera with various shooting modes,hr-camera.jpg,http://localhost/Practice/mvc_project/catalog/product/view?id=49,4,499.99,300,15,315,32,484.99,1,100
+SKU015,Gaming Chair,Blue,Adjustable,Comfortable gaming chair with ergonomic design,gamingchair.jpg,http://localhost/Practice/mvc_project/catalog/product/view?id=50,6,179.99,90,20,110,28,159.99,1,100
+SKU016,Blender,Silver,One Size,Powerful blender for smoothies and food processing,,http://localhost/Practice/mvc_project/catalog/product/view?id=51,8,59.99,30,8,38,35,51.99,1,100
+SKU017,Back Massager,Gray,One Size,Electric back massager for relaxation and stress relief,backmassager.jpg,http://localhost/Practice/mvc_project/catalog/product/view?id=52,4,89.99,50,12,62,30,77.99,1,100
+SKU018,Water Bottle,Blue,750ml,Insulated water bottle for hot and cold beverages,waterbottle.jpeg,http://localhost/Practice/mvc_project/catalog/product/view?id=53,1,24.99,12,5,17,40,19.99,1,97
+SKU019,Smartwatch,Black,One Size,Fitness tracker and smartwatch with health monitoring features,smartwatch.jpg,http://localhost/Practice/mvc_project/catalog/product/view?id=54,4,129.99,70,10,80,25,119.99,1,99
+SKU020,Sunscreen Lotion,SPF 50,200ml,High SPF sunscreen for effective sun protection,sunscreen.jpg,http://localhost/Practice/mvc_project/catalog/product/view?id=55,11,14.99,8,3,11,40,11.99,1,100
+SKU021,Digital Scale,Silver,Digital,Precision digital scale for accurate weight measurements,digitalscale.png,http://localhost/Practice/mvc_project/catalog/product/view?id=56,4,34.99,18,6,24,38,28.99,1,100
+SKU022,Winter Jacket,Black,Large,Insulated winter jacket for cold weather,34185.jpg,http://localhost/Practice/mvc_project/catalog/product/view?id=57,3,149.99,80,15,95,35,134.99,1,100
+SKU023,Toaster,White,2-Slice,Compact toaster for quick and easy toasting,toaster.jpg,http://localhost/Practice/mvc_project/catalog/product/view?id=58,8,29.99,15,5,20,40,24.99,1,100
+SKU024,Wireless Mouse,Gray,One Size,Wireless mouse for convenient computer navigation,mouse.jpg,http://localhost/Practice/mvc_project/catalog/product/view?id=59,4,450,250,50,300,33,400,1,100
+SKU025,Air Purifier,White,Large,High-efficiency air purifier for clean indoor air,airpurifier.jpg,http://localhost/Practice/mvc_project/catalog/product/view?id=60,8,199.99,120,20,140,30,179.99,1,100

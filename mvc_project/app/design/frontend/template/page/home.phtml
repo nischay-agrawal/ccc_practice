@@ -1,0 +1,130 @@
+<?php $banners = Mage::getModel('banner/banner')->getBanners(); ?>
+
+<div class="customer-home-container">
+    <div class="home-categories-container">
+        <div class="home-categories">
+            <div class="category-container">
+                <a href="<?php echo Mage::getBaseUrl('catalog/category/view?id=1') ?>">
+                    <div>
+                        <img src="<?php echo Mage::getBaseUrl('skin/images/54005-1-grocery-image-png-file-hd.png') ?>"
+                            height="64" width="64" alt="">
+                    </div>
+                    <p>Grocery</p>
+                </a>
+            </div>
+            <div class="category-container">
+                <a href="<?php echo Mage::getBaseUrl('catalog/category/view?id=2') ?>">
+                    <div>
+                        <img src="<?php echo Mage::getBaseUrl('skin/images/Mobiles.jpg') ?>" height="64" width="64"
+                            alt="">
+                    </div>
+                    <p>Mobiles</p>
+                </a>
+            </div>
+            <div class="category-container">
+                <a href="<?php echo Mage::getBaseUrl('catalog/category/view?id=3') ?>">
+                    <div>
+                        <img src="<?php echo Mage::getBaseUrl('skin/images/Fashion.jpg') ?>" height="64" width="64"
+                            alt="">
+                    </div>
+                    <p>Fashion</p>
+                </a>
+            </div>
+            <div class="category-container">
+                <a href="<?php echo Mage::getBaseUrl('catalog/category/view?id=4') ?>">
+                    <div>
+                        <img src="<?php echo Mage::getBaseUrl('skin/images/Electronics.jpg') ?>" height="64" width="64"
+                            alt="">
+                    </div>
+                    <p>Electronics</p>
+                </a>
+            </div>
+            <div class="category-container">
+                <a href="<?php echo Mage::getBaseUrl('catalog/category/view?id=5') ?>">
+                    <div>
+                        <img src="<?php echo Mage::getBaseUrl('skin/images/HomeDecor.jpg') ?>" height="64" width="64"
+                            alt="">
+                    </div>
+                    <p>Home Decor</p>
+                </a>
+            </div>
+            <div class="category-container">
+                <a href="<?php echo Mage::getBaseUrl('catalog/category/view?id=6') ?>">
+                    <div>
+                        <img src="<?php echo Mage::getBaseUrl('skin/images/Furniture.jpg') ?>" height="64" width="64"
+                            alt="">
+                    </div>
+                    <p>Furniture</p>
+                </a>
+            </div>
+            <div class="category-container">
+                <a href="<?php echo Mage::getBaseUrl('catalog/category/view?id=8') ?>">
+                    <div>
+                        <img src="<?php echo Mage::getBaseUrl('skin/images/Appliances.jpg') ?>" height="64" width="64"
+                            alt="">
+                    </div>
+                    <p>Appliances</p>
+                </a>
+            </div>
+            <div class="category-container">
+                <a href="<?php echo Mage::getBaseUrl('catalog/category/view?id=9') ?>">
+                    <div>
+                        <img src="<?php echo Mage::getBaseUrl('skin/images/Toys.jpg') ?>" height="64" width="64" alt="">
+                    </div>
+                    <p>Toys</p>
+                </a>
+            </div>
+            <div class="category-container">
+                <a href="<?php echo Mage::getBaseUrl('catalog/category/view?id=11') ?>">
+                    <div>
+                        <img src="<?php echo Mage::getBaseUrl('skin/images/Beauty.jpg') ?>" height="64" width="64"
+                            alt="">
+                    </div>
+                    <p>Beauty</p>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="banners-1">
+        <div class="image-slider" id="image-slider">
+            <?php foreach($banners['slider'] as $banner): ?>
+            <div class="image-wrapper">
+                <a href=""><img src="<?php echo Mage::getBaseUrl('media/banner/'.$banner->getBannerImage()) ?>" alt=""></a>
+            </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+    <div class="banners-2">
+        <div class="banners-2-container">
+            <div>
+                <div class="banner-wrapper">
+                    <a href=""><img src="<?php echo Mage::getBaseUrl('skin/images/banner-22.png') ?>" alt=""></a>
+                </div>
+                <div class="banner-wrapper">
+                    <a href=""><img src="<?php echo Mage::getBaseUrl('skin/images/banner-21.png') ?>" alt=""></a>
+                </div>
+                <div class="banner-wrapper">
+                    <a href=""><img src="<?php echo Mage::getBaseUrl('skin/images/banner-23.png') ?>" alt=""></a>
+                </div>
+            </div>
+            <div class="banners-2-extra">
+                <a href=""><img src="<?php echo Mage::getBaseUrl('skin/images/1-1-banner.png') ?>" alt=""></a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('.image-slider').slick({
+            dots: true,
+            infinite: true,
+            speed: 300,
+            slidesToShow: 1,
+            autoplay: true,
+            useCSS: true,
+            nextArrow: '<button type="button" class="slick-next"><i class="fa-solid fa-chevron-right"></i></button>',
+            prevArrow: '<button type="button" class="slick-prev"><i class="fa-solid fa-chevron-left"></i></button>',
+            appendDots: $('.image-slider')
+        });
+    });
+</script>

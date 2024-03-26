@@ -1,0 +1,12 @@
+<?php $customer = $this->getData(); ?>
+<div class="dashboard">
+    <p style="font-size: 24px;">Contact Details: </p>
+    <p style="font-size: 14px;color: gray">Name:</p>
+    <p><?php printf("%s %s", $customer->getFirst_name(), $customer->getLast_name()); ?></p>
+    <p style="font-size: 14px;color: gray">Email:</p>
+    <p><?php echo $customer->getCustomer_email() ?></p>
+    <p style="font-size: 14px;color: gray">Phone:</p>
+    <p><?php echo $customer->getBilling_phone() ?></p>
+    <p style="font-size: 14px;color: gray">Address:</p>
+    <p><?php printf("%s, %s", $customer->getBilling_address(), $customer->getBilling_city()); ?></p>
+</div>

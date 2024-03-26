@@ -1,0 +1,67 @@
+<?php $banner = $this->getBanner() ?>
+<div class="banner-form-container">
+    <form action="<?php echo Mage::getBaseUrl('admin/banner/save'); ?>" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="banner[banner_id]" value="<?php echo $banner->getBannerId(); ?>">
+        <div>
+            <label for="banner">Banner</label>
+            <input type="file" name="banner_image" id="banner">
+        </div>
+        <div>
+            <label for="status">Status</label>
+            <input type="radio" name="banner[status]" value="1" id="active"> <label style="display: inline" for="active">Active</label>
+            <input type="radio" name="banner[status]" value="0" id="inactive"> <label style="display: inline" for="inactive">Inactive</label>
+        </div>
+        <div>
+            <label for="show_on">Show on</label>
+            <select name="banner[show_on]" id="show_on">
+                <option value="">-----select------</option>
+                <option value="slider">slider</option>
+                <option value="grid1">grid1</option>
+            </select>
+        </div>
+        <div>
+            <button type="submit">Save</button>
+        </div>
+    </form>
+</div>
+<style>
+    .banner-form-container {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+    }
+
+    .banner-form-container form {
+        width: 50%;
+    }
+
+    .banner-form-container label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .banner-form-container input[type="file"],
+    .banner-form-container input[type="radio"],
+    .banner-form-container select {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    .banner-form-container input[type="radio"]{
+        width: fit-content
+    }
+
+    .banner-form-container button[type="submit"] {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .banner-form-container button[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+</style>

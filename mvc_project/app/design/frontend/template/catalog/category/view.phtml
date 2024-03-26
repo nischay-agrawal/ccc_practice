@@ -1,0 +1,35 @@
+<?php $products = $this->getData('products'); ?>
+
+<div class="category-view-container">
+    <div class="category-filter-container">
+        <p>Filters</p>
+    </div>
+    <div class="category-products-container">
+        <div class="category-product-sort">
+            <p style="margin: 10px 0"><?php echo ($this->getData('categoryName')=='')?'All':$this->getData('categoryName'); ?></p>
+            <ul>
+                <li>Sort By</li>
+                <li>Price -- Low to High</li>
+                <li>Price -- High to Low</li>
+            </ul>
+        </div>
+        <?php if(!empty($products)): ?>
+        <div class="category-products-wrapper">
+            <?php foreach ($products as $product): ?>
+                <a href="<?php echo $product->getLink(); ?>">
+                    <div class="category-product">
+                        <div class="category-product-image-wrapper">
+                            <img src="<?php echo Mage::getBaseUrl('media/products/').$product->getImage_link(); ?>" alt="product image">
+                        </div>
+                        <p><?php echo $product->getDescription(); ?></p>
+                        <p style="color: gray;font-size: 14px"><?php echo $product->getColor(); ?></p>
+                        <p>₹<?php echo $product->getPrice(); ?></p>
+                    </div>
+                </a>
+            <?php endforeach; ?>
+        </div>
+        <?php else: ?>
+        <div style="height: 50vh">Oops! No Products Found</div>
+        <?php endif; ?>
+    </div>
+</div>

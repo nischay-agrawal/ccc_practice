@@ -1,0 +1,55 @@
+<div class="customer-register-container">
+    <div class="register-banner-container">
+        <div>
+            <p style="font-size: 26px;font-weight: 600;margin: 0 0 10px 0;">Looks like you're new here!</p>
+            <p style="font-size: 18px;font-weight: 300">Sign up with your details to get started</p>
+        </div>
+        <div style="background: url('<?php echo Mage::getBaseUrl('skin/images/onlineshoppingdelivery.png'); ?>');
+                    background-position: center;
+                    background-size: contain;
+                    background-repeat: no-repeat;">
+        </div>
+    </div>
+    <div class="register-form-container">
+        <form action="<?php echo $this->getUrl('customer/account/save') ?>" method="post">
+            <div class="row">
+                <div>
+                    <label for="fname">First Name</label>
+                    <input type="text" name="register[first_name]" id="fname">
+                </div>
+                <div>
+                    <label for="lname">Last Name</label>
+                    <input type="text" name="register[last_name]" id="lname">
+                </div>
+            </div>
+            <div>
+                <label for="email">Email</label>
+                <input type="email" name="register[customer_email]" id="email">
+            </div>
+            <div>
+                <label for="phone">Phone</label>
+                <input type="tel" name="register[billing_phone]" id="phone">
+            </div>
+            <div>
+                <label for="city">City</label>
+                <input type="text" name="register[billing_city]" id="city">
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <input type="password" name="register[password]" id="email">
+            </div>
+            <div>
+                <label for="password">Repeat Password</label>
+                <input type="password" id="phone">
+            </div>
+            <div>
+                <input type="submit" value="Register">
+            </div>
+        </form>
+        <p style="margin: 0;text-align: center">
+            <a href="<?php echo $this->getUrl('customer/account/login') ?>">
+                Exsisting User? Log in
+            </a>
+        </p>
+    </div>
+</div>

@@ -1,0 +1,94 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap");
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Quicksand", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+body {
+    background: rgb(250, 250, 250);
+    display: flex;
+}
+
+.right {
+    width: 100%;
+}
+
+header {
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid rgb(0, 0, 0, 0.5);
+}
+
+.left {
+    --pad-l: 20px;
+    --pad-r: 30px;
+    box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.nav-items {
+    width: 200px;
+    font-size: 14px;
+}
+
+.l-cont {
+    display: flex;
+    align-items: center;
+}
+
+.logo-cont {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    padding-left: var(--pad-l);
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.nav-title {
+    font-size: 14px;
+    font-weight: 800;
+}
+
+ul {
+    list-style: none;
+}
+
+.nav-items {
+    padding-right: var(--pad-r);
+    font-size: 14px;
+}
+
+i {
+    margin: 5px 10px;
+}
+
+.nav-item ul li,
+.nav-item p {
+    margin: 5px 0;
+    padding: 5px 0;
+    padding-left: var(--pad-l);
+    border-radius: 0 20px 20px 0;
+}
+
+.active {
+    background-color: white;
+    color: rgb(39, 39, 255);
+    font-weight: 800;
+}
+
+.active a {
+    color: rgb(39, 39, 255);
+}
