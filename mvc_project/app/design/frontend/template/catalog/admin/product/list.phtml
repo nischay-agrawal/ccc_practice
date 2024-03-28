@@ -42,6 +42,7 @@ $pages = $data["pages"];
                 <th>Description</th>
                 <th>category</th>
                 <th>Status</th>
+                <th>Inventory</th>
                 <th colspan="3">
                     Action
                 </th>
@@ -61,10 +62,13 @@ $pages = $data["pages"];
                         <?php echo $product->getdescription(); ?>
                     </td>
                     <td>
-                        <?php echo $this->getCategoryName($product->getCategory_id()); ?>
+                        <?php echo $this->getCategoryName($product->getCategoryId()); ?>
                     </td>
                     <td>
                         <?php echo $product->getStatus(); ?>
+                    </td>
+                    <td>
+                        <?php echo $product->getInventory() ?>
                     </td>
                     <td>
                         <button value="<?php echo $product->getId(); ?>" onclick="viewProduct(this.value)">View</button>

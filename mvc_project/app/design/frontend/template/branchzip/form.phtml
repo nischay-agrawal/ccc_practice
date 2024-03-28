@@ -1,0 +1,24 @@
+<br><br>
+<?php $branch = $this->branchData(); ?>
+<form method="post">
+<label for="branch">List of Branches:</branch>
+<select name="branch" id="branch">
+    <?php
+    foreach($branch as $b)
+    echo "<option value={$b->getId()}>{$b->getName()}</option>";
+    ?>
+</select>
+<input type="submit" value="Submit">
+<?php 
+$a = $_REQUEST['branch'];
+?>
+</form>
+<br><br>
+<?php $zip = $this->zipData($a);?>
+<label for="zip">List of Zipcodes:</zip>
+<select name="zip" id="zip">
+    <?php
+    foreach($zip as $z)
+    echo "<option value={$z->getId()}>{$z->getName()}</option>";
+    ?>
+</select>
