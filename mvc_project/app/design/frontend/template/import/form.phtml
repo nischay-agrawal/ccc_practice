@@ -1,18 +1,8 @@
 <div class="form-container">
     <form action="<?php echo Mage::getBaseUrl("admin/import/upload") ?>" onsubmit="return validateData()" name="contactForm" method="post" enctype="multipart/form-data">
         <div>
-            <!-- <label for="file">CSV File</label>
-            <input type="file" name="csvfile" id="file"> -->
-        </div>
-        <div>
-            <label for="name">Name</label>
-            <?php echo $this->getRenderer("text", ["name" => "text", "placeholder" => "Enter Name", "id" => "name"]); ?>
-        </div>
-        <div>
-            <?php echo $this->getRenderer("radio", ["name" => "radio", "value" => 2, "options" => [1 => "Active", 2 => "Inactive"]]); ?>
-        </div>
-        <div>
-            <?php echo $this->getRenderer("select", ["name" => "select", "options" => [1 => "cat1", 2 => "cat2"]]); ?>
+            <label for="file">CSV File</label>
+            <input type="file" name="csvfile" id="file">
         </div>
         <div>
             <input type="submit" value="Upload">
